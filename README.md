@@ -1,1 +1,3 @@
-# GblogProject
+# BlogProject
+
+Spring MVC 
