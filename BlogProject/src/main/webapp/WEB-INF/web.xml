@@ -30,8 +30,7 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<!-- 언어 셋팅 -->
-	<!-- encoding filter -->   
+	<!-- character encoding filter -->   
      <filter>
              <filter-name>encodingFilter</filter-name>
              <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
