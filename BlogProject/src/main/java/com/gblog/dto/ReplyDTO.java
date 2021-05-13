@@ -3,11 +3,11 @@ package com.gblog.dto;
 import java.util.Date;
 
 public class ReplyDTO {
-	public int rp_id;
-	public String rp_writer;
-	public String rp_content;
-	public Date rp_reg;
-	public String post_id;
+	private int rp_id;
+	private String rp_writer;
+	private String rp_content;
+	private Date rp_reg;
+	private String post_id;
 	
 	public ReplyDTO(int rp_id, String rp_writer, String rp_content, Date rp_reg, String post_id) {
 		super();

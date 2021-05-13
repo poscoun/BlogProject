@@ -3,11 +3,11 @@ package com.gblog.dto;
 import java.util.Date;
 
 public class PostsDTO {
-	public int post_id;
-	public String post_subj;
-	public String post_content;
-	public Date post_reg;
-	public String user_id;
+	private int post_id;
+	private String post_subj;
+	private String post_content;
+	private Date post_reg;
+	private String user_id;
 	
 	public PostsDTO(int post_id, String post_subj, String post_content, Date post_reg, String user_id) {
 		super();
