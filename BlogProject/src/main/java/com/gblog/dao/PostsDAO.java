@@ -3,5 +3,8 @@ package com.gblog.dao;
 import com.gblog.dto.PostsDTO;
 
 public interface PostsDAO {
-	public int insertPost(PostsDTO postsdto) throws Exception;
+	public void insertPost(PostsDTO pdto) throws Exception;
+	
+	public PostsDTO read(Integer pid) throws Exception;
+	
 }

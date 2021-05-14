@@ -9,6 +9,9 @@ public class PostsDTO {
 	private Date post_reg;
 	private String user_id;
 	
+	public PostsDTO() {
+	}
+
 	public PostsDTO(int post_id, String post_subj, String post_content, Date post_reg, String user_id) {
 		super();
 		this.post_id = post_id;
