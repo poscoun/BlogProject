@@ -21,15 +21,15 @@ public class ProfileDAOTest {
 	
 	private static Logger logger = LoggerFactory.getLogger(ProfileDAOTest.class);
 	
-	@Test
-	public void insertTest() throws Exception {
-		ProfileDTO pdto = new ProfileDTO();
-		pdto.setProfile_content("테스트_내용");
-		pdto.setProfile_phone("010-1234-5678");
-		pdto.setProfile_sns("ddd@naver.com");
-		pdto.setUser_id("테스트_id");
-		pdao.insert(pdto);
-	}
+//	@Test
+//	public void insertTest() throws Exception {
+//		ProfileDTO pdto = new ProfileDTO();
+//		pdto.setProfile_content("테스트_내용");
+//		pdto.setProfile_phone("010-1234-5678");
+//		pdto.setProfile_sns("ddd@naver.com");
+//		pdto.setUser_id("테스트_id");
+//		pdao.insert(pdto);
+//	}
 	
 //	@Test
 //	public void readTest() throws Exception {
@@ -37,7 +37,7 @@ public class ProfileDAOTest {
 //		
 //	}
 
-	//profile_content, profile_photo, profile_sns, profile_phone
+	
 //	@Test
 //	public void updateTest() throws Exception {
 //		ProfileDTO pdto = new ProfileDTO();
