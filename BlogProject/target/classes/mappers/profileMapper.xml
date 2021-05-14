@@ -6,8 +6,8 @@
 <mapper namespace="com.gblog.dao.ProfileDAO">
 	
 	<insert id="insert">
-		insert into profile (profile_content, profile_photo, profile_sns, profile_phone)
-		values (#{profile_content}, #{profile_photo}, #{profile_sns}, #{profile_phone})
+		insert into profile (profile_content, profile_photo, profile_sns, profile_phone, user_id)
+		values (#{profile_content}, #{profile_photo}, #{profile_sns}, #{profile_phone}, #{user_id})
 	</insert>
 
 	<select id="read" resultType="com.gblog.dto.ProfileDTO">

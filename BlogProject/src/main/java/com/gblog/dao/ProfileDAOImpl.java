@@ -9,7 +9,7 @@ import com.gblog.dto.ProfileDTO;
 
 @Repository
 public class ProfileDAOImpl implements ProfileDAO {
-
+	
 	@Inject
 	private SqlSession sqlSession;
 	
