@@ -7,10 +7,10 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.gblog.dto.categoryDTO;
+import com.gblog.dto.CategoryDTO;
 
 @Repository
-public class categoryDAOImpl implements categoryDAO {
+public class CategoryDAOImpl implements CategoryDAO {
 	
 	private static final String NAMESPACE = "com.gblog.category.categoryMapper";
 	
@@ -19,7 +19,7 @@ public class categoryDAOImpl implements categoryDAO {
 	
 	// 카테고리 생성
 	@Override
-	public void insert(categoryDTO cdto) throws Exception {
+	public void Create(CategoryDTO cdto) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.insert(NAMESPACE+".insert", cdto);
 		
@@ -27,7 +27,7 @@ public class categoryDAOImpl implements categoryDAO {
 	
 	// 카테고리 삭제
 	@Override
-	public void delete(int category_id) throws Exception {
+	public void Delete(int category_id) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.delete(NAMESPACE+".delete", category_id);
 		
@@ -35,9 +35,9 @@ public class categoryDAOImpl implements categoryDAO {
 	
 	// 카테고리 목록
 	@Override
-	public List<categoryDTO> categorylist(String sid) throws Exception {
+	public List<CategoryDTO> CategoryList(String sid) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+".categorylist", sid);
+		return sqlSession.selectList(NAMESPACE+".CategoryList", sid);
 	}
 
 

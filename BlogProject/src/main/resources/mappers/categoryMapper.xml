@@ -13,18 +13,19 @@
 	</insert>
 	
 	<!-- 카테고리 삭제 -->
-	<delete id="delete">
+ 	<delete id="delete">
 		delete from category where category_id = #{category_id}
-	</delete>
+	</delete> 
 	
 	<!-- 카테고리 목록 -->
-	<select id="categorylist" resultType="com.gblog.dto.categoryDTO">
+ 	<select id="CategoryList" resultType="com.gblog.dto.categoryDTO">
 	 <![CDATA[	
 		select category_name
 		from category
 		order by post_count desc
 	]]>
 	</select>
+
 </mapper>
 
 

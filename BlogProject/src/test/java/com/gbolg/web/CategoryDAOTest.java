@@ -9,21 +9,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.gblog.dao.categoryDAO;
-import com.gblog.dto.categoryDTO;
+import com.gblog.dao.CategoryDAO;
+import com.gblog.dto.CategoryDTO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-public class categoryDAOTest {
+public class CategoryDAOTest {
 	
 	@Inject
-	private categoryDAO cdao;
+	private CategoryDAO cdao;
 	
-	private static Logger logger = LoggerFactory.getLogger(categoryDAOTest.class);
+	private static Logger logger = LoggerFactory.getLogger(CategoryDAOTest.class);
 	
 	// 카테고리 작성
 //	@Test
-//	public void insertTest() throws Exception {
+//	public void createTest() throws Exception {
 //		categoryDTO cdto = new categoryDTO();
 //		cdto.setCategory_name("테스트");
 //		cdao.insert(cdto);
@@ -38,7 +38,7 @@ public class categoryDAOTest {
 	// 카테고리 목록
 	@Test
 	public void categorylistTest() throws Exception {
-		logger.info(cdao.categorylist(null).toString());
+		logger.info(cdao.CategoryList(null).toString());
 	}
 	
 }
