@@ -23,21 +23,36 @@ public class UserTest {
 	private UserDAO udao;
 	private static Logger logger = LoggerFactory.getLogger(UserTest.class);
 	
-	@Test
-	public void insertTest() throws Exception{
-		UserDTO udto = new UserDTO();
-		udto.setUser_id("goott27");
-		udto.setUser_pw("qwer123");
-		udto.setUser_name("집가자");
-		udto.setUser_birth("20201112");
-		udto.setUser_email("goott@gott.com");
-		
-        udto.setUser_phone("010123456789");
-        udto.setUser_gender("남성");
-        udao.insertUser(udto);
-        
-		
-		
-		
-	}
+//	@Test
+//	public void insertTest() throws Exception{
+//		UserDTO udto = new UserDTO();
+//		udto.setUser_id("goott27");
+//		udto.setUser_pw("qwer123");
+//		udto.setUser_name("집가자");
+//		udto.setUser_birth("20201112");
+//		udto.setUser_email("goott@gott.com");
+//		
+//        udto.setUser_phone("010123456789");
+//        udto.setUser_gender("남성");
+//        udao.insertUser(udto);
+//        
+//		
+//		
+//		
+//	}
+	
+	
+//	@Test // 중복확인 test
+//	public void idcheck() throws Exception{
+//		
+//		String id = "test";
+//		String id2 = "rand";
+//		
+//		udao.idcheck(id);
+//		udao.idcheck(id2);
+//		
+//		
+//		
+//		
+//	}
 }

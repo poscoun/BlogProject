@@ -13,6 +13,16 @@
   	]]>
   </insert>
   
+<!-- 아이디중복확인 -->
+  <select id="idcheck" resultType="int">
+  <![CDATA[
+  select count(*) from user
+  where user_id = #{user_id}  
+  
+  ]]>
+  
+  </select>
+  
    
   
   

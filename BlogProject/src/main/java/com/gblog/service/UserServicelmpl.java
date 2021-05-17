@@ -14,7 +14,7 @@ public class UserServicelmpl implements UserService{
 
 	@Inject
 	private UserDAO udao;
-	
+	//회원가입
 	@Override
 	public void insertUser(UserDTO udto) throws Exception {
 		// TODO Auto-generated method stub
@@ -23,5 +23,13 @@ public class UserServicelmpl implements UserService{
 	
 		
 	}
+	@Override
+	public int idcheck(UserDTO udto) throws Exception {
+		// TODO Auto-generated method stub
+		return udao.idcheck(udto);
+	}
+	
+	//아이디 중복확인
+	
 
 }
