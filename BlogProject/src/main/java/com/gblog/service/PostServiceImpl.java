@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 import com.gblog.dao.PostDAO;
 import com.gblog.dto.PostDTO;
 
-public class PostSeriveImpl implements PostService{
+@Service
+public class PostServiceImpl implements PostService{
 
 	@Inject
 	private PostDAO pdao;

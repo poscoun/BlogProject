@@ -3,24 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.gblog.dao.PostsDAO">
+<mapper namespace="com.gblog.dao.PostDAO">
 
 	<insert id="insert">
 		insert into blog_posts (post_subj, post_content, user_id)
 		value (#{post_subj}, #{post_content}, #{user_id})
 	</insert>
 	
-	<select id="read" resultType="com.gblog.dto.PostsDTO">
+	<select id="read" resultType="com.gblog.dto.PostDTO">
 		select * from blog_posts
 		where post_id = #{post_id}
 	</select>
 	
-	<select id="list" resultType="com.gblog.dto.PostsDTO">
+	<select id="list" resultType="com.gblog.dto.PostDTO">
 	<![CDATA[
 		select * 
 		from blog_posts
 		where post_id > 0
-		order by post_id desc, regdate desc
+		order by post_id desc, post_reg desc
 	]]>
 	</select>
 
