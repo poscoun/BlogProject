@@ -2,17 +2,17 @@ package com.gblog.dto;
 
 import java.util.Date;
 
-public class PostsDTO {
+public class PostDTO {
 	private int post_id;
 	private String post_subj;
 	private String post_content;
 	private Date post_reg;
 	private String user_id;
 	
-	public PostsDTO() {
+	public PostDTO() {
 	}
 
-	public PostsDTO(int post_id, String post_subj, String post_content, Date post_reg, String user_id) {
+	public PostDTO(int post_id, String post_subj, String post_content, Date post_reg, String user_id) {
 		super();
 		this.post_id = post_id;
 		this.post_subj = post_subj;

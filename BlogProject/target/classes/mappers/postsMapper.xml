@@ -9,6 +9,20 @@
 		insert into blog_posts (post_subj, post_content, user_id)
 		value (#{post_subj}, #{post_content}, #{user_id})
 	</insert>
+	
+	<select id="read" resultType="com.gblog.dto.PostsDTO">
+		select * from blog_posts
+		where post_id = #{post_id}
+	</select>
+	
+	<select id="list" resultType="com.gblog.dto.PostsDTO">
+	<![CDATA[
+		select * 
+		from blog_posts
+		where post_id > 0
+		order by post_id desc, regdate desc
+	]]>
+	</select>
 
 </mapper>
   
