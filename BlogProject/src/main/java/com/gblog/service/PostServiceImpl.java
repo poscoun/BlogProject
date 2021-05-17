@@ -20,4 +20,16 @@ public class PostServiceImpl implements PostService{
 		return pdao.list();
 	}
 
+	@Override
+	public void insertPost(PostDTO pdto) throws Exception {
+		// TODO Auto-generated method stub
+		pdao.insertPost(pdto);
+	}
+
+	@Override
+	public PostDTO getPostContent(int post_id) throws Exception {
+		// TODO Auto-generated method stub
+		return pdao.read(post_id);
+	}
+
 }

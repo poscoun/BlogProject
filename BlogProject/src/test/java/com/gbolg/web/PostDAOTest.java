@@ -21,19 +21,19 @@ public class PostDAOTest {
 	
 	private static Logger logger = LoggerFactory.getLogger(PostDAOTest.class);
 	
-//	@Test
-//	public void insertTest() throws Exception {
-//		PostsDTO pdto = new PostsDTO();
-//		pdto.setPost_subj("testSubj");
-//		pdto.setPost_content("testCont");
-//		pdto.setUser_id("testId");
-//		pdao.insertPost(pdto);
-//	}
-	
 	@Test
-	public void readTest() throws Exception{
-		logger.info(pdao.read(1).toString());
+	public void insertTest() throws Exception {
+		PostDTO pdto = new PostDTO();
+		pdto.setPost_subj("testSubj");
+		pdto.setPost_content("testCont4");
+		pdto.setUser_id("testId");
+		pdao.insertPost(pdto);
 	}
+	
+//	@Test
+//	public void readTest() throws Exception{
+//		logger.info(pdao.read(1).toString());
+//	}
 
 	
 }
