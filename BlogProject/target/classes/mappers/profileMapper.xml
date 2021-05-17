@@ -20,6 +20,14 @@
 		set profile_content = #{profile_content}, profile_photo = #{profile_photo}, profile_sns = #{profile_sns}, profile_phone = #{profile_phone}
 		where user_id = #{user_id}
 	</update>
+	
+	<delete id="delete">
+		delete from profile where user_id = #{user_id}
+	</delete>
+	
+	<select id="list" resultType="com.gblog.dto.ProfileDTO">
+		select * from profile
+	</select>
 
 
 </mapper>

@@ -1,5 +1,7 @@
 package com.gblog.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -27,6 +29,17 @@ public class ProfileDAOImpl implements ProfileDAO {
 	@Override
 	public void update(ProfileDTO pdto) throws Exception {
 		sqlSession.update("update", pdto);
+	}
+
+	@Override
+	public void delete(String user_id) throws Exception {
+		sqlSession.delete("delete", user_id);
+	}
+
+	@Override
+	public List<ProfileDTO> list() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("list");
 	}
 
 }

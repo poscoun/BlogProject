@@ -37,15 +37,19 @@ public class ProfileDAOTest {
 //		
 //	}
 
-	//profile_content, profile_photo, profile_sns, profile_phone
-	@Test
-	public void updateTest() throws Exception {
-		ProfileDTO pdto = new ProfileDTO();
-		pdto.setUser_id("테스트_id");
-		pdto.setProfile_content("테스트_내용수정");
-		pdto.setProfile_phone("010-5555-6666");
-		pdto.setProfile_sns("수정@naver.com");
-		pdao.update(pdto);
-	}
+//	@Test
+//	public void updateTest() throws Exception {
+//		ProfileDTO pdto = new ProfileDTO();
+//		pdto.setUser_id("테스트_id");
+//		pdto.setProfile_content("테스트_내용수정");
+//		pdto.setProfile_phone("010-5555-6666");
+//		pdto.setProfile_sns("수정@naver.com");
+//		pdao.update(pdto);
+//	}
+	
+//	@Test
+//	public void deleteTest() throws Exception {
+//		pdao.delete("테스트_id");
+//	}
 	
 }
