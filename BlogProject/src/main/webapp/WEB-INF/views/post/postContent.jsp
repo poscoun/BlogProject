@@ -18,11 +18,17 @@
 	$(document).on('click', '#btnUpdate', function(){
 		var url = "${pageContext.request.contextPath}/post/modifyForm";
 		url = url + "?post_id="+${postDTO.post_id};
-		url = url + "&mode=modi";
+		url = url + "&mode=edit";
 		
 		location.href = url;
 	});
 	
+	//삭제 버튼 클릭 이벤트
+	$(document).on('click', '#btnDelete', function(){
+	    var url = "${pageContext.request.contextPath}/post/deletePost";
+	    url = url + "?post_id=" + ${postDTO.post_id};
+		location.href = url;
+	});
 </script>
 </head>
 <body>

@@ -23,6 +23,17 @@
 		order by post_id desc, post_reg desc
 	]]>
 	</select>
+	
+	<update id="update">
+		update blog_posts
+		set post_subj = #{post_subj}, post_content = #{post_content}
+		where post_id = #{post_id}
+	</update>
+	
+	<delete id="delete">
+		delete from blog_posts
+		where post_id = #{post_id}
+	</delete>
 
 </mapper>
   

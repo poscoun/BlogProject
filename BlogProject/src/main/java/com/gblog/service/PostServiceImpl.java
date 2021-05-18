@@ -32,4 +32,16 @@ public class PostServiceImpl implements PostService{
 		return pdao.read(post_id);
 	}
 
+	@Override
+	public void updatePost(PostDTO pdto) throws Exception {
+		// TODO Auto-generated method stub
+		pdao.update(pdto);
+	}
+
+	@Override
+	public void deletePost(int post_id) throws Exception {
+		// TODO Auto-generated method stub
+		pdao.delete(post_id);
+	}
+
 }

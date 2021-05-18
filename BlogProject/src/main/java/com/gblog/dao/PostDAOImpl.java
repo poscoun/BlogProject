@@ -31,4 +31,16 @@ public class PostDAOImpl implements PostDAO {
 		return sqlSession.selectList("list");
 	}
 
+	@Override
+	public void update(PostDTO pdto) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update("update", pdto);
+	}
+
+	@Override
+	public void delete(Integer post_id) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete("delete", post_id);
+	}
+
 }

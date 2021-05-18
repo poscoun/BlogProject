@@ -31,14 +31,29 @@ public class PostController {
 	}
 
 	@RequestMapping(value = "postForm", method = RequestMethod.GET)
-	public void postFormGet(PostDTO pdto, Model model) throws Exception{
+	public String postFormGet(PostDTO pdto, Model model) throws Exception{
 		logger.info("...write get...");
+		return "post/postForm";
 	}
 	
-	@RequestMapping(value = "/postForm", method = RequestMethod.POST)
-	public String postFormPost(PostDTO pdto, RedirectAttributes reAttr) throws Exception{
+//	@RequestMapping(value = "/postForm", method = RequestMethod.POST)
+//	public String postFormPost(PostDTO pdto, RedirectAttributes reAttr) throws Exception{
 //		psvc.insertPost(pdto);
-		reAttr.addFlashAttribute("result", "success");
+//		reAttr.addFlashAttribute("result", "success");
+//		return "redirect:/post/list";
+//	}
+	
+	@RequestMapping(value = "/savePost", method = RequestMethod.POST)
+	public String savePost(@ModelAttribute("postDTO") PostDTO pdto,
+			@RequestParam("mode") String mode,
+			RedirectAttributes rttr) throws Exception {
+		
+		if(mode.equals("edit")) {
+			psvc.updatePost(pdto);
+		}else {
+			psvc.insertPost(pdto);
+		}
+		
 		return "redirect:/post/list";
 	}
 	
@@ -52,6 +67,16 @@ public class PostController {
 	@RequestMapping(value = "/modifyForm", method = RequestMethod.GET)
 	public String modifyForm(@RequestParam("post_id") int post_id,
 			@RequestParam("mode") String mode, Model model) throws Exception{
-		return null;
+		
+		model.addAttribute("postContent", psvc.getPostContent(post_id));
+		model.addAttribute("mode", mode);
+		model.addAttribute("postDTO", new PostDTO());
+		return "post/postForm";
+	}
+	
+	@RequestMapping(value = "/deletePost", method = RequestMethod.GET)
+	public String deletePost(RedirectAttributes rttr, @RequestParam("post_id") int post_id) throws Exception {
+		psvc.deletePost(post_id);
+		return "redirect:/post/list";
 	}
 }

@@ -11,4 +11,8 @@ public interface PostDAO {
 	
 	public List<PostDTO> list() throws Exception;
 	
+	public void update(PostDTO pdto) throws Exception;
+	
+	public void delete(Integer post_id) throws Exception;
+	
 }
