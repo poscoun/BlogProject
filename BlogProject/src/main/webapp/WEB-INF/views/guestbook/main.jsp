@@ -15,10 +15,10 @@
 		$('#joinBtn7').on('click', function(){
 			// alert('click')
 			
-			frmObj.attr('action', "/guestbook/write");
-			frmObj.method('get')
+			frmObj.attr('action', "/guestbook/guestbook_form");
+			frmObj.method('get');
 			frmObj.submit();
-		
+	
 		});
 		
 		

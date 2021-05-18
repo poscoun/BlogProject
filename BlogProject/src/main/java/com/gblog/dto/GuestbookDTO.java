@@ -3,19 +3,19 @@ package com.gblog.dto;
 import java.util.Date;
 
 public class GuestbookDTO {
-	private Integer vis_con_no;
+	private Integer guest_id;
 	private String user_id;
-	private String vis_content;
-	private Date vis_con_date;
+	private String guest_content;
+	private Date guest_date;
 	
 	public GuestbookDTO() {}
 
-	public Integer getVis_con_no() {
-		return vis_con_no;
+	public Integer getGuest_id() {
+		return guest_id;
 	}
 
-	public void setVis_con_no(Integer vis_con_no) {
-		this.vis_con_no = vis_con_no;
+	public void setGuest_id(Integer guest_id) {
+		this.guest_id = guest_id;
 	}
 
 	public String getUser_id() {
@@ -26,20 +26,22 @@ public class GuestbookDTO {
 		this.user_id = user_id;
 	}
 
-	public String getVis_content() {
-		return vis_content;
+	public String getGuest_content() {
+		return guest_content;
 	}
 
-	public void setVis_content(String vis_content) {
-		this.vis_content = vis_content;
+	public void setGuest_content(String guest_content) {
+		this.guest_content = guest_content;
 	}
 
-	public Date getVis_con_date() {
-		return vis_con_date;
+	public Date getGuest_date() {
+		return guest_date;
 	}
 
-	public void setVis_con_date(Date vis_con_date) {
-		this.vis_con_date = vis_con_date;
+	public void setGuest_date(Date guest_date) {
+		this.guest_date = guest_date;
 	}
 	
+	
+
 }

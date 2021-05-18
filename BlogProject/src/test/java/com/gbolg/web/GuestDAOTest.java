@@ -1,0 +1,58 @@
+package com.gbolg.web;
+
+import javax.inject.Inject;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.gblog.dao.GuestbookDAO;
+import com.gblog.dto.GuestbookDTO;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+public class GuestDAOTest {
+	
+	@Inject
+	private GuestbookDAO gdao;
+	
+	private static Logger logger = LoggerFactory.getLogger(GuestDAOTest.class);
+	
+//	@Test
+//	public void insertTest() throws Exception{
+//		GuestbookDTO gdto = new GuestbookDTO();
+//		
+//		gdto.setUser_id("세션에서 가저올 ID");
+//		gdto.setGuest_content("방명록 내용");
+//		
+//		gdao.insert(gdto);
+//		
+//	}
+	
+//	@Test
+//	public void listTest() throws Exception{
+//		logger.info(gdao.list().toString());
+//	}
+	
+//	@Test
+//	public void updateTest() throws Exception{
+//		GuestbookDTO gdto = new GuestbookDTO();
+//		gdto.setGuest_id(4);
+//		gdto.setGuest_content("수정하기");
+//		
+//		gdao.update(gdto);
+//	}
+//	@Test
+//	public void deleteTest() throws Exception{
+//		gdao.delete(4);
+//	}
+	
+//	@Test
+//	public void readTest() throws Exception{
+//		logger.info(gdao.read(5).toString());
+//	}
+	
+}
