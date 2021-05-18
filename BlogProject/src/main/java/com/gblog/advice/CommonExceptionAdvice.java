@@ -6,24 +6,23 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
-// @ControllerAdvice: 현재 클래스가 컨트롤러에서 발생하는 Exception을 전문적으로 처리하는 클래스이다
 @ControllerAdvice
 public class CommonExceptionAdvice {
 	private static final Logger logger=
 			LoggerFactory.getLogger(CommonExceptionAdvice.class);
 	
 //	@ExceptionHandler(Exception.class)
-//	public String common(Exception e) {
-//		logger.info(e.toString());
-//		
-//		return null;
+//	public String errorException(Model model, Exception e) {
+//		logger.info("@ControllerAdvice 방식 \n###exception : " + e.getMessage());
+//		model.addAttribute("exception", e);
+//		return "error/exception_view";
 //	}
 	
 	@ExceptionHandler(Exception.class)
 	private ModelAndView errMav(Exception e) {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.setViewName("/post/exception_view");
+		mav.setViewName("/error/exception_view");
 		mav.addObject("exception", e);
 		return mav;
 	}

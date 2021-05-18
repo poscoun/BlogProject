@@ -24,8 +24,8 @@ public class PostDAOTest {
 	@Test
 	public void insertTest() throws Exception {
 		PostDTO pdto = new PostDTO();
-		pdto.setPost_subj("testSubj");
-		pdto.setPost_content("testCont4");
+		pdto.setPost_subj("testSubjp");
+		pdto.setPost_content("testContP");
 		pdto.setUser_id("testId");
 		pdao.insertPost(pdto);
 	}
