@@ -1,13 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
-    <title>Louie - Free Bootstrap 4 Template by Colorlib</title>
+    <title>ProfileRead</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff" rel="stylesheet">
+    <link href="/https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="/https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+    <link href="/https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff" rel="stylesheet">
 
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
@@ -33,15 +36,15 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<h1 id="colorlib-logo"><a href="index.html"><span class="img" style="background-image: url(images/author.jpg);"></span>Louie Smith</a></h1>
+			<h1 id="colorlib-logo"><a href="index.html"><span class="img" style="background-image: url(/resources/assets/images/author.jpg);"></span>Louie Smith</a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="collection.html">Collection</a></li>
-					<li><a href="about.html">About Me</a></li>
-					<li><a href="services.html">My Services</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li class="colorlib-active"><a href="contact.html">Contact</a></li>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Collection</a></li>
+					<li><a href="#">About Me</a></li>
+					<li><a href="#">My Services</a></li>
+					<li><a href="#">Blog</a></li>
+					<li class="#"><a href="contact.html">Contact</a></li>
 				</ul>
 			</nav>
 			<div class="colorlib-footer">
@@ -71,7 +74,7 @@
 	        </div>
 
 	        <div class="row block-9">
-	          <div class="col-md-8 d-flex">
+	          <div class="col-md-8 d-flex" id="modify_container">
 	            <form action="#" class="bg-light p-5 contact-form">
 	            <div class="form-group">
 	            	<label>content</label>
@@ -91,7 +94,7 @@
 	              </div>
 	              
 	              <div class="form-group">
-	                <input type="submit" value="수정하기" class="btn btn-primary py-3 px-5">
+	                <input type="submit" value="수정하기" class="btn btn-primary py-3 px-5" id="modify_btn">
 	              </div>
 	            </form>
 	          </div>
@@ -122,8 +125,7 @@
   <script src="js/jquery.timepicker.min.js"></script>
   <script src="js/scrollax.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
-    
+	
   </body>
-</html>
+ </html>

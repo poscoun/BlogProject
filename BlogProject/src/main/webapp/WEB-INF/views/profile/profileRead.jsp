@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,8 +23,8 @@
 
     <link rel="stylesheet" href="/resources/assets/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="/resources/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/resources/css/jquery.timepicker.css">
+    <link rel="stylesheet" href="/resources/assets/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/resources/assets/css/jquery.timepicker.css">
 
     
     <link rel="stylesheet" href="/resources/assets/css/flaticon.css">
@@ -38,12 +39,12 @@
 			<h1 id="colorlib-logo"><a href="index.html"><span class="img" style="background-image: url(images/author.jpg);"></span>Louie Smith</a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li class="colorlib-active"><a href="index.html">Home</a></li>
-					<li><a href="collection.html">Collection</a></li>
-					<li><a href="about.html">About Me</a></li>
-					<li><a href="services.html">My Services</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li class="colorlib-active"><a href="#">Home</a></li>
+					<li><a href="#">Collection</a></li>
+					<li><a href="#">About Me</a></li>
+					<li><a href="#">My Services</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">Contact</a></li>
 				</ul>
 			</nav>
 
@@ -75,22 +76,28 @@
 						</div>
 						<div class="author-info text p-3 p-md-5">
 							<div class="desc">
+							<c:forEach items="${list }" var="pdto">
+							
 								<span class="subheading">Hello! I'm</span>
-								<h1 class="big-letter">(user_id)</h1>
-								<h1 class="mb-4"><span>(user_id)</span></h1>
-								<p class="mb-4">(profile_content)I am A Photographer from America Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+								<h1 class="big-letter">${pdto.user_id }</h1>
+								<h1 class="mb-4"><span>${pdto.user_id }</span></h1>
+								<p class="mb-4">${pdto.profile_content }</p>
 								<h1 class="signature h1">About Me</h1>
 								<div class="block-23 mb-3">
 		              				<ul>
-		               					<li><label>NICKNAME</label><p class="mb-4">(profile_nickname)</p></li>
 		                				<li><label>HOBBY</label><p class="mb-4">(profile_hobby)</p></li>
-		                				<li><label>LIKE</label><p class="mb-4">(profile_like)</p></li>
-		                				<li><label>HATE</label><p class="mb-4">(profile_hate)</p></li>
+		                				<li><label>PHONE</label><p class="mb-4">${pdto.profile_phone }</p></li>
+		                				<li><label>SNS</label><p class="mb-4">(profile_sns)</p></li>
 		              					</ul>
 		            			</div>
+							
+							
+							
+							</c:forEach>
+								
 	            			</div>
 
-	            			<p><a href="#" class="btn-custom">수정 <span class="ion-ios-arrow-forward"></span></a></p>
+	            			<p><a href="profileModify.jsp" class="btn-custom">수정 <span class="ion-ios-arrow-forward"></span></a></p>
 	            			<p><a href="#" class="btn-custom">초기화 <span class="ion-ios-arrow-forward"></span></a></p>
 						</div>
 					</div>
@@ -119,10 +126,8 @@
   <script src="/resources/assets/js/aos.js"></script>
   <script src="/resources/assets/js/jquery.animateNumber.min.js"></script>
   <script src="/resources/assets/js/bootstrap-datepicker.js"></script>
-  <script src="/resources/assets/js/jquery.timepicker.min.js"></script>
   <script src="/resources/assets/js/scrollax.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="/resources/assets/js/google-map.js"></script>
   <script src="/resources/assets/js/main.js"></script>
     
   </body>
