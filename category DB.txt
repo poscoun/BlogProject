@@ -1,0 +1,11 @@
+CREATE TABLE `goott7`.`category` (
+ 
+ `category_id` INT NOT NULL AUTO_INCREMENT,
+
+  `post_id` INT NULL DEFAULT NULL,
+
+  `category_name` VARCHAR(100) NOT NULL,
+
+  `post_count` INT NULL DEFAULT '0',
+
+  PRIMARY KEY (`category_id`));
