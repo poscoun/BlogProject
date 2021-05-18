@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.gblog.common.Pagination;
 import com.gblog.dto.PostDTO;
 
 @Repository
@@ -16,8 +17,8 @@ public class PostDAOImpl implements PostDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public void insertPost(PostDTO pdto) throws Exception {
-		sqlSession.insert("insert", pdto);
+	public int insertPost(PostDTO pdto) throws Exception {
+		return sqlSession.insert("insert", pdto);
 	}
 
 	@Override
@@ -41,6 +42,18 @@ public class PostDAOImpl implements PostDAO {
 	public void delete(Integer post_id) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.delete("delete", post_id);
+	}
+
+	@Override
+	public int getPostListCnt() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("listCnt");
+	}
+
+	@Override
+	public List<PostDTO> list(Pagination pgn) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("pList", pgn);
 	}
 
 }

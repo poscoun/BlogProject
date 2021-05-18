@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gblog.common.Pagination;
 import com.gblog.dto.PostDTO;
 import com.gblog.service.PostService;
 
@@ -24,10 +25,31 @@ public class PostController {
 	@Inject
 	private PostService psvc;
 	
+//	@RequestMapping(value = "/list", method = RequestMethod.GET)
+//	public void list(Model model) throws Exception {
+//		logger.info("list 출력");
+//		model.addAttribute("list", psvc.getPostList());
+//	}
+	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void list(Model model) throws Exception {
+	public String list(Model model,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range
+			) throws Exception {
+		
 		logger.info("list 출력");
-		model.addAttribute("list", psvc.getPostList());
+		
+		// 전체 게시글 개수
+		int listCnt = psvc.getPostListCnt();
+		
+		// Pagination 객체 생성
+		Pagination pgn = new Pagination();
+		pgn.pageInfo(page, range, listCnt);
+		
+		model.addAttribute("pagination", pgn);
+		model.addAttribute("list", psvc.getPostList(pgn));
+		
+		return "post/list";
 	}
 
 	@RequestMapping(value = "postForm", method = RequestMethod.GET)

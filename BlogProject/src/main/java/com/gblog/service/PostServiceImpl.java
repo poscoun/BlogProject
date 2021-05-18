@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.gblog.common.Pagination;
 import com.gblog.dao.PostDAO;
 import com.gblog.dto.PostDTO;
 
@@ -42,6 +43,18 @@ public class PostServiceImpl implements PostService{
 	public void deletePost(int post_id) throws Exception {
 		// TODO Auto-generated method stub
 		pdao.delete(post_id);
+	}
+
+	@Override
+	public int getPostListCnt() throws Exception {
+		// TODO Auto-generated method stub
+		return pdao.getPostListCnt();
+	}
+
+	@Override
+	public List<PostDTO> getPostList(Pagination pgn) throws Exception {
+		// TODO Auto-generated method stub
+		return pdao.list(pgn);
 	}
 
 }

@@ -15,15 +15,6 @@
 		where post_id = #{post_id}
 	</select>
 	
-	<select id="list" resultType="com.gblog.dto.PostDTO">
-	<![CDATA[
-		select * 
-		from blog_posts
-		where post_id > 0
-		order by post_id desc, post_reg desc
-	]]>
-	</select>
-	
 	<update id="update">
 		update blog_posts
 		set post_subj = #{post_subj}, post_content = #{post_content}
@@ -34,6 +25,31 @@
 		delete from blog_posts
 		where post_id = #{post_id}
 	</delete>
+	
+	<select id="list" resultType="com.gblog.dto.PostDTO">
+	<![CDATA[
+		select * 
+		from blog_posts
+		where post_id > 0
+		order by post_id desc, post_reg desc
+	]]>
+	</select>
+	
+	<!-- 페이징 처리 -->
+	<select id="pList" resultType="com.gblog.dto.PostDTO">
+	<![CDATA[
+		select * 
+		from blog_posts
+		where post_id > 0
+		order by post_id desc, post_reg desc
+		limit #{startList}, #{listSize}
+	]]>
+	</select>
 
+	<!-- 전체 글의 개수를 읽어옴 -->
+	<select id="listCnt" resultType="int">
+		select count(*) as listCnt
+		from blog_posts 
+	</select>
 </mapper>
   

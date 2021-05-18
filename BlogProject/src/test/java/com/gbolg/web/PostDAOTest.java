@@ -24,10 +24,23 @@ public class PostDAOTest {
 	@Test
 	public void insertTest() throws Exception {
 		PostDTO pdto = new PostDTO();
-		pdto.setPost_subj("testSubjp");
-		pdto.setPost_content("testContP");
+//		pdto.setPost_subj("testSubjp");
+//		pdto.setPost_content("testContP");
 		pdto.setUser_id("testId");
-		pdao.insertPost(pdto);
+		
+		for(int i=0; i<150; i++) {
+			pdto.setPost_subj("testSubj" + i);
+			pdto.setPost_content("testContP" + i);
+			int result = pdao.insertPost(pdto);
+			
+			logger.info("insert result: " + result);
+			if(result==1) {
+				logger.info("success");
+			}else {
+				logger.info("fail");
+			}
+		}
+//		pdao.insertPost(pdto);
 	}
 	
 //	@Test
