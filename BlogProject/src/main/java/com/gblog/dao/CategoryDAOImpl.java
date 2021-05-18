@@ -27,7 +27,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	
 	// 카테고리 삭제
 	@Override
-	public void Delete(int category_id) throws Exception {
+	public void Delete(Integer category_id) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.delete(NAMESPACE+".delete", category_id);
 		

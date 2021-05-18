@@ -18,9 +18,9 @@
 	</delete> 
 	
 	<!-- 카테고리 목록 -->
- 	<select id="CategoryList" resultType="com.gblog.dto.categoryDTO">
+ 	<select id="CategoryList" resultType="com.gblog.dto.CategoryDTO">
 	 <![CDATA[	
-		select category_name
+		select category_name, post_count, category_id
 		from category
 		order by post_count desc
 	]]>
