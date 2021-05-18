@@ -1,4 +1,4 @@
-package com.gblog.controller;
+package com.gblog.web;
 
 import javax.inject.Inject;
 
@@ -21,14 +21,14 @@ public class ProfileController {
 	@Inject
 	private ProfileService psvc;
 	
-	@RequestMapping(value="/profileRead", method = RequestMethod.GET)
+	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public void read(@RequestParam("user_id") String user_id, Model model) throws Exception{
 		
 		model.addAttribute(psvc.read(user_id));
 
 	}
 	
-	 @RequestMapping(value = "/list", method = RequestMethod.GET)
+	 @RequestMapping(value = "/profileWrite", method = RequestMethod.GET)
 	   public void list(Model model) throws Exception {
 	      LOGGER.info(".... list 출력 ....");
 	      

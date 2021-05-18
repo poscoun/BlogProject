@@ -29,7 +29,4 @@
 	<context:component-scan base-package="com.gblog.dao" />
 	<!-- service 계층(Business Logic) -->
 	<context:component-scan base-package="com.gblog.service" />
-	<!-- exception 처리 -->
-	<context:component-scan base-package="com.gblog.advice" />
-		
 </beans>
