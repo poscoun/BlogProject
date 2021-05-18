@@ -26,6 +26,12 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("idcheck",udto);
 	}
+	@Override
+	public UserDTO login(UserDTO udto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("login",udto);
+	}
+	
 	
 
 	

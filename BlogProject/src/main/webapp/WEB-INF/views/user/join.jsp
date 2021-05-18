@@ -84,6 +84,7 @@
                     <label for="inputName" class="col-lg-2 control-label">이름</label>
                     <div class="col-lg-10">
                         <input type="text" class="form-control onlyHangul" id="user_name" name="user_name" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15">
+                        
                     </div>
                 </div>
                 
@@ -92,8 +93,22 @@
                 <div class="form-group" id="divEmail">
                     <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
                     <div class="col-lg-10">
-                        <input type="email" class="form-control" id="user_email" name="user_email" data-rule-required="true" placeholder="ex)goot77@gmail.com" maxlength="40">
+                        <input type="email" class="form-control" id="user_email" name="user_email" data-rule-required="true" placeholder="ex)goot77@gmail.com" maxlength="40">                       
                     </div>
+                    <span class="final_mail_ck">이메일을 입력해주세요.</span>
+					<sapn class="mail_input_box_warn"></sapn>                    
+                 <div class="mail_check_wrap">
+					<div class="mail_check_input_box" id="mail_check_input_box_false">
+						<input class="mail_check_input" disabled="disabled">
+					</div>
+					<div class="mail_check_button">
+						<span>인증번호 전송</span>
+					</div>
+					<div class="clearfix"></div>
+					<span id="mail_check_input_box_warn"></span>
+				</div>
+				
+				
                 </div>
                 
                 <div class="form-group" id="divbirth">
@@ -131,7 +146,11 @@
         
         <script>
         
-        
+       /*   입력 이메일 형식 유효성 검사 
+        function mailFormCheck(email){
+       	var form = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+       	return form.test(email);
+       } */
         	
         
         
@@ -140,7 +159,7 @@
                 var modalContents = $(".modal-contents");
                 var modal = $("#defaultModal");
                 
-                
+               
                 
                 
                 
@@ -383,6 +402,15 @@
                         divEmail.addClass("has-success");
                     }
                     
+                    
+                    
+                   
+              
+                    
+                    
+                    
+                    
+                    
                     //휴대폰 번호
                     if($('#user_phone').val()==""){
                         modalContents.text("휴대폰 번호를 입력하여 주시기 바랍니다.");
@@ -411,7 +439,7 @@
         			success : function(data) {
         				if(data == 1) {
         					alert("중복된 아이디 입니다.");
-        					$
+        					
         				} else if(data == 0) {
         					alert("사용가능한 아이디 입니다.");
         					
@@ -419,6 +447,55 @@
         			}
         		})
         	}
+            
+            
+            /* 인증번호 이메일 전송 */
+            $(".mail_check_button").click(function(){
+            	
+            	var email = $(".user_email").val();			// 입력한 이메일
+            	var cehckBox = $(".mail_check_input");		// 인증번호 입력란
+            	var boxWrap = $(".mail_check_input_box");	// 인증번호 입력란 박스
+            	var warnMsg = $(".mail_input_box_warn");	// 이메일 입력 경고글
+            	
+            	
+            	if(mailFormCheck(email)){
+            		warnMsg.html("이메일이 전송 되었습니다. 이메일을 확인해주세요.");
+            		warnMsg.css("display", "inline-block");
+            	} else {
+            		warnMsg.html("올바르지 못한 이메일 형식입니다.");
+            		warnMsg.css("display", "inline-block");
+            		return false;
+            	}	
+            	
+            	$.ajax({
+            		
+            		type:"GET",
+            		url:"mailCheck?email=" + email,
+            		success:function(data){
+            			
+            			//console.log("data : " + data);
+            			cehckBox.attr("disabled",false);
+            			boxWrap.attr("id", "mail_check_input_box_true");
+            			code = data;
+            			
+            		}
+            				
+            	});
+            	
+            });
+            
+           
+            
+            
+           
+           
+            
+            
+            
+            
+           
+            
+           
             
             
           

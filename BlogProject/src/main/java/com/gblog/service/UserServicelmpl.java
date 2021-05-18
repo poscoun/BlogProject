@@ -28,8 +28,12 @@ public class UserServicelmpl implements UserService{
 		// TODO Auto-generated method stub
 		return udao.idcheck(udto);
 	}
+	@Override
+	public UserDTO login(UserDTO udto) throws Exception {
+		// TODO Auto-generated method stub
+		return udao.login(udto);
+	}
 	
-	//아이디 중복확인
 	
 
 }

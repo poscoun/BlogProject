@@ -23,6 +23,26 @@
   
   </select>
   
+  
+  <!-- 이메일 중복 확인 -->
+  <select id="login" resultType="com.gblog.dto.UserDTO">
+  <![CDATA[
+ 
+  select * from user
+  where
+  user_id = #{user_id} 
+  ]]>
+  
+  </select>
+  
+  <!--  select * from user
+  where
+  user_id = #{user_id} and user_pw = #{user_pw} -->
+  
+  
+  
+ 
+  
    
   
   

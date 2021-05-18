@@ -49,10 +49,24 @@ public class UserTest {
 //		String id2 = "rand";
 //		
 //		udao.idcheck(id);
-//		udao.idcheck(id2);
-//		
-//		
-//		
-//		
+//		udao.idcheck(id2);	
 //	}
+	
+	@Test
+	public void logintest()throws Exception{
+		
+		UserDTO udto = new UserDTO();
+		
+		udto.setUser_id("login11");
+		
+		
+		udao.login(udto);
+		System.out.println("결과 값 : " + udao.login(udto));
+		
+		
+	}
+	
+	
+	
+	
 }
