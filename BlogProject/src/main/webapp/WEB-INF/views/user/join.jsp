@@ -93,7 +93,7 @@
                 <div class="form-group" id="divEmail">
                     <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
                     <div class="col-lg-10">
-                        <input type="email" class="form-control" id="user_email" name="user_email" data-rule-required="true" placeholder="ex)goot77@gmail.com" maxlength="40">                       
+                        <input type="email" class="mail_input" id="user_email" name="user_email" data-rule-required="true" placeholder="ex)goot77@gmail.com" maxlength="40">                       
                     </div>
                     <span class="final_mail_ck">이메일을 입력해주세요.</span>
 					<sapn class="mail_input_box_warn"></sapn>                    
@@ -146,11 +146,11 @@
         
         <script>
         
-       /*   입력 이메일 형식 유효성 검사 
+         //입력 이메일 형식 유효성 검사 
         function mailFormCheck(email){
        	var form = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
        	return form.test(email);
-       } */
+       } 
         	
         
         
@@ -452,7 +452,7 @@
             /* 인증번호 이메일 전송 */
             $(".mail_check_button").click(function(){
             	
-            	var email = $(".user_email").val();			// 입력한 이메일
+            	var email = $(".mail_input").val();			// 입력한 이메일
             	var cehckBox = $(".mail_check_input");		// 인증번호 입력란
             	var boxWrap = $(".mail_check_input_box");	// 인증번호 입력란 박스
             	var warnMsg = $(".mail_input_box_warn");	// 이메일 입력 경고글
@@ -486,7 +486,23 @@
             
            
             
-            
+            /* 인증번호 비교 */
+            $(".mail_check_input").blur(function(){
+            	
+            	var inputCode = $(".mail_check_input").val();		// 입력코드	
+            	var checkResult = $("#mail_check_input_box_warn");	// 비교 결과 	
+            	
+            	if(inputCode == code){							// 일치할 경우
+            		checkResult.html("인증번호가 일치합니다.");
+            		checkResult.attr("class", "correct");		
+            		mailnumCheck = true;
+            	} else {											// 일치하지 않을 경우
+            		checkResult.html("인증번호를 다시 확인해주세요.");
+            		checkResult.attr("class", "incorrect");
+            		mailnumCheck = false;
+            	}	
+            	
+            });
            
            
             

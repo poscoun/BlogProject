@@ -27,7 +27,7 @@
      <property name="host" value="smtp.naver.com"/> <!-- 메이서버 호스트 -->
      <property name="port" value="465"/> <!-- 메이서버 포트번호 -->
      <property name="username" value="wl960407@naver.com"/> <!-- 자신의 이메일 아이디 -->
-     <property name="password" value="wl01196443958"/> <!-- 자신의 비밀번호 -->
+     <property name="password" value="wl01039023958"/> <!-- 자신의 비밀번호 -->
      <property name="defaultEncoding" value="utf-8" />
        <!-- 보안연결 SSL과 관련된 설정 -->
      <property name="javaMailProperties">

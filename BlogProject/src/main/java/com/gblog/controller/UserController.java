@@ -2,7 +2,7 @@ package com.gblog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +16,10 @@ import com.gblog.service.UserService;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-import javax.inject.Inject;
+import java.util.Random;
 
+import javax.inject.Inject;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -102,22 +104,22 @@ public class UserController {
 	}
 	
 	
-	/* 이메일 인증 
+	 //이메일 인증 
 	@RequestMapping(value="/mailCheck", method=RequestMethod.GET)
 	@ResponseBody
-	public String mailCheckGET(String email) throws Exception{
+	public String mailCheck(String email) throws Exception{
 		
-		 뷰(View)로부터 넘어온 데이터 확인 
+		 //뷰(View)로부터 넘어온 데이터 확인 
 		LOGGER.info("이메일 데이터 전송 확인");
 		LOGGER.info("이메일 : " + email);
 				
-		 인증번호(난수) 생성 
+		 //인증번호(난수) 생성 
 		Random random = new Random();
 		int checkNum = random.nextInt(888888) + 111111;
 		LOGGER.info("인증번호 " + checkNum);
 		
-		 이메일 보내기 
-		String setFrom = "sjinjin6@naver.com";
+		 //이메일 보내기 
+		String setFrom = "wl960407@naver.com";
 		String toMail = email;
 		String title = "회원가입 인증 이메일 입니다.";
 		String content = 
@@ -145,7 +147,7 @@ public class UserController {
 		
 		return num;
 		
-	}*/
+	}
 	
 	
 
@@ -198,16 +200,16 @@ public class UserController {
 	
 	
 	  /* 이메일 인증 */
-    @RequestMapping(value="/mailCheck", method=RequestMethod.GET)
-    @ResponseBody
-    public void mailCheckGET(String email) throws Exception{
-        
-        /* 뷰(View)로부터 넘어온 데이터 확인 */
-        LOGGER.info("이메일 데이터 전송 확인");
-        LOGGER.info("인증번호 : " + email);
-                
-        
-    }
+//    @RequestMapping(value="/mailCheck", method=RequestMethod.GET)
+//    @ResponseBody
+//    public void mailCheckGET(String email) throws Exception{
+//        
+//        /* 뷰(View)로부터 넘어온 데이터 확인 */
+//        LOGGER.info("이메일 데이터 전송 확인");
+//        LOGGER.info("인증번호 : " + email);
+//                
+//        
+//    }
 	
 	
 	
