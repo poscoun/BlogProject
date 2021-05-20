@@ -7,15 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>board</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <h2>카테고리 목록</h2>
 	<table>
-		<colgroup>
-
-		</colgroup>
 		<thead>
 			<tr>
+				<th>카테고리 ID</th>
 				<th>카테고리명</th>
 				<th>게시글 수</th>
 			</tr>
@@ -26,10 +25,11 @@
 					<tr><td colspan="5" align="center">데이터가 없습니다.</td></tr>
 				</c:when> 
 				<c:when test="${!empty CategoryList}">
-					<c:forEach var="list" items="${CategoryList}">
+					<c:forEach var="cdto" items="${CategoryList}">
 						<tr>
-							<td><c:out value="${list.category_name}"/></td>
-							<td><c:out value="${list.post_count}"/></td>
+							<td><c:out value="${cdto.category_id}"/></td>
+							<td><c:out value="${cdto.category_name}"/></td>
+							<td><c:out value="${cdto.post_count}"/></td>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -38,5 +38,3 @@
 	</table>
 </body>
 </html>
-
-

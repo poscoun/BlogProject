@@ -1,7 +1,7 @@
 package com.gblog.controller;
 
+
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,10 +57,11 @@ public class CategoryController {
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestParam("category_id") Integer category_id, RedirectAttributes reAttr) throws Exception {
 		
+		
 		csvc.Delete(category_id);
 		
 		reAttr.addFlashAttribute("result", "success");
 		
-		return "redirect:/category/create";
+		return "redirect:/category/list";
 	}
 }
