@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.gblog.dao.GuestbookReplyDAO">
+	
+	<insert id="insert">
+		insert into guestbook_reply (guest_id, guest_rp_content)
+		values (#{guest_id}, #{guest_rp_content})
+	</insert>
+	
+	<select id="list" resultType="com.gblog.dto.GuestbookReplyDTO" parameterType="int">
+		SELECT gb.user_id, gbr.guest_id, gbr.guest_rp_content, gbr.guest_rp_date
+		FROM guestbook gb
+		JOIN guestbook_reply gbr
+		ON gb.guest_id = gbr.guest_id
+		WHERE gb.guest_id = #{guest_id}
+	</select>
+
+</mapper>

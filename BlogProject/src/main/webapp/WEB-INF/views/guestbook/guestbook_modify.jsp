@@ -60,7 +60,7 @@
 				<table width="700">
 					<tr>
 						<td>
-							<input type="text" name="user_id" value="${guestbookDTO.user_id }" readonly="readonly">
+							<label>${guestbookDTO.user_id }</label>
 						</td>
 					</tr>
 					<tr><td colspan="4">&nbsp;</td></tr>

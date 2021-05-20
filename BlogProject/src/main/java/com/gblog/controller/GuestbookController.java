@@ -32,11 +32,10 @@ public class GuestbookController {
 		return "/guestbook/main";
 	}
 	
-	
+	// 방명록 페이지
 	@RequestMapping(value = "/guestbook_form", method = RequestMethod.GET)
 	public String guestbookformGET(GuestbookDTO gdto ,Model model, RedirectAttributes reAttr) throws Exception {
 		logger.info("write GET ...");
-		
 		
 		model.addAttribute("list", gsvc.list());
 		
@@ -44,8 +43,10 @@ public class GuestbookController {
 		
 	}
 	
+	// 방명록 작성
 	@RequestMapping(value = "/guestbook_form", method = RequestMethod.POST)
 	public String guestbookformPOST(GuestbookDTO gdto, RedirectAttributes reAttr) throws Exception {
+		
 		logger.info("write POST ...");
 		
 		gsvc.write(gdto);
@@ -72,6 +73,7 @@ public class GuestbookController {
 		return "redirect:/guestbook/guestbook_form"; 
 	}
 	
+	// 삭제 처리
 	@RequestMapping(value = "/guestbook_del", method = RequestMethod.GET)
 	public String guestbookDel(@RequestParam("guest_id") int guest_id, RedirectAttributes reAttr) throws Exception {
 		
@@ -79,6 +81,23 @@ public class GuestbookController {
 		
 		return "redirect:/guestbook/guestbook_form";
 		
+	}
+	
+	// 답글 윈도우 창
+	@RequestMapping(value = "/guestbook_reply", method = RequestMethod.GET)
+	public String guestbookReplyGET(@RequestParam("guest_id") int guest_id, RedirectAttributes reAttr, Model model) throws Exception {
+		System.out.println(guest_id);
+		
+		model.addAttribute("reply_list", gsvc.listReply(guest_id));
+		
+		return "/guestbook/guestbook_reply";
+		
+	}
+	
+	// 답글 처리
+	public String guestbookReplyPOST(@RequestParam("guest_id") int guest_id, RedirectAttributes reAttr) throws Exception {
+		
+		return "redirect:/guestbook/guestbook_reply";
 	}
 
 }

@@ -20,7 +20,6 @@ public class GuestbookDAOImple implements GuestbookDAO{
 	@Override
 	public void insert(GuestbookDTO gdto) throws Exception {
 		sqlSession.insert(NAMESPACE+".insert", gdto);
-		
 	}
 
 	@Override

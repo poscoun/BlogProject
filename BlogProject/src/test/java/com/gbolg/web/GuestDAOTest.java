@@ -32,10 +32,10 @@ public class GuestDAOTest {
 //		
 //	}
 	
-//	@Test
-//	public void listTest() throws Exception{
-//		logger.info(gdao.list().toString());
-//	}
+	@Test
+	public void listTest() throws Exception{
+		logger.info(gdao.list().toString());
+	}
 	
 //	@Test
 //	public void updateTest() throws Exception{
@@ -54,5 +54,6 @@ public class GuestDAOTest {
 //	public void readTest() throws Exception{
 //		logger.info(gdao.read(5).toString());
 //	}
+	
 	
 }

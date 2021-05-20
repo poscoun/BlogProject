@@ -7,10 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>방명록</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		
@@ -34,6 +35,13 @@
 	
 	function guestbookupdate(guest_id){
 		location.href = '/guestbook/guestbook_modify?guest_id='+guest_id;
+	}
+	
+	function guestbookreply(guest_id){
+		window.name = "replyForm";
+		window.open('/guestbook/guestbook_reply?guest_id='+guest_id, 
+				    "rForm", "width=800, height=600, resizable=no, scrollbars=no");
+		
 	}
 	
 
@@ -66,19 +74,11 @@
 		<!-- 글 등록 부분 시작-->
 		<div id="writeGuestForm">
 			<form name="guestbookInfo" method="post">
-				<table width="700">
-					<tr>
-						<td>
-							<input type="text" name="user_id" placeholder="세션에서 아이디 가져오기">
-						</td>
-					</tr>
-					<tr><td colspan="4">&nbsp;</td></tr>
-					<tr>
-						<td colspan="4">
-							<textarea rows="7" cols="80" name="guest_content" style="resize: none"> </textarea>
-						</td>
-					</tr>
-				</table>
+				<div class="form-group">
+					<input type="text" name="user_id" id="user_id" placeholder="세션에서 가져올 아이디" />
+					<hr />
+    				<textarea rows="7" cols="80" style="resize: none" class="form-control" name="guest_content"></textarea>
+  				</div>
 				<button id="guestbookreg" class="btn btn-light" >확인</button>
 			</form>
 		</div>
@@ -87,21 +87,22 @@
 	        <form method="post" name="listform">
 	            <input type="hidden" name="pro">
 	            <div id="comment">
-	            	<c:forEach var="guestbook" items="${list}">
-		                <hr size="1" width="700">
-		                <label>${guestbook.user_id }</label>&nbsp;&nbsp;&nbsp;
-		                <label><fmt:formatDate value="${guestbook.guest_date }" pattern="yyyy-MM-dd HH:mm"/></label>&nbsp;&nbsp;&nbsp;&nbsp;
-		                <a href="#" onclick="guestbookupdate(${guestbook.guest_id})">[수정]</a>&nbsp;
-		                <a href="#" onclick="guestbookdel(${guestbook.guest_id})">[삭제]</a><br>
-		                 ${guestbook.guest_content } <br>
-		                 <br />
-		                 <a data-bs-toggle="collapse" href="#guestreply" role="button" aria-expanded="false" aria-controls="guestreply">[댓글쓰기]</a>&nbsp;
-		                 <br />
-		                 <div class="collapse" id="guestreply">
-  							<textarea rows="7" cols="80" name="guest_content" style="resize: none"> </textarea>
-						</div>
-		                 <hr size="1" width="700">
-	                 </c:forEach>
+	            	<br />
+		            <c:if test="${empty list }">
+		            	<label>등록된 방명록이 없습니다.</label>
+		            </c:if>
+		            <c:if test="${not empty list }">
+		            	<c:forEach var="guestbook" items="${list}" varStatus="Count">
+		            		<hr size="1" width="700">
+			                <label>${guestbook.user_id }</label>&nbsp;&nbsp;&nbsp;
+			                <label><fmt:formatDate value="${guestbook.guest_date }" pattern="yyyy-MM-dd HH:mm"/></label>&nbsp;&nbsp;&nbsp;&nbsp;
+			                <a href="#" onclick="guestbookupdate(${guestbook.guest_id})">[수정]</a>&nbsp;
+			                <a href="#" onclick="guestbookdel(${guestbook.guest_id})">[삭제]</a><br />
+			                ${guestbook.guest_content } <br>
+			                <br />
+			                <a  href="#" onclick="guestbookreply(${guestbook.guest_id})">[답글쓰기]</a><br>
+		                </c:forEach>
+					</c:if>
 	            </div>
 	        </form>
 	     </div>

@@ -41,7 +41,6 @@ public class GuestbookDTO {
 	public void setGuest_date(Date guest_date) {
 		this.guest_date = guest_date;
 	}
-	
-	
+
 
 }
