@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.gblog.dao.PostDAO;
 import com.gblog.dto.PostDTO;
+import com.gblog.dto.ReplyDTO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -24,24 +25,35 @@ public class PostDAOTest {
 	@Test
 	public void insertTest() throws Exception {
 		PostDTO pdto = new PostDTO();
-//		pdto.setPost_subj("testSubjp");
-//		pdto.setPost_content("testContP");
+		pdto.setPost_subj("강남");
+		pdto.setPost_content("1 요리 444 yori");
 		pdto.setUser_id("testId");
 		
-		for(int i=0; i<150; i++) {
-			pdto.setPost_subj("testSubj" + i);
-			pdto.setPost_content("testContP" + i);
-			int result = pdao.insertPost(pdto);
-			
-			logger.info("insert result: " + result);
-			if(result==1) {
-				logger.info("success");
-			}else {
-				logger.info("fail");
-			}
-		}
+//		for(int i=0; i<150; i++) {
+//			pdto.setPost_subj("testSubj" + i);
+//			pdto.setPost_content("testContP" + i);
+//			int result = pdao.insertPost(pdto);
+//			
+//			logger.info("insert result: " + result);
+//			if(result==1) {
+//				logger.info("success");
+//			}else {
+//				logger.info("fail");
+//			}
+//		}
 //		pdao.insertPost(pdto);
 	}
+	
+	@Test
+	public void insertReply() throws Exception {
+		ReplyDTO rdto = new ReplyDTO();
+		rdto.setPost_id(165);
+		rdto.setRp_content("엥");
+		rdto.setRp_writer("443434");
+		
+		pdao.insertReply(rdto);
+	}
+
 	
 //	@Test
 //	public void readTest() throws Exception{

@@ -42,7 +42,7 @@ body {
 <body>
 	<article>
 		<div class="container" role="main">
-			<h2>board Form</h2>
+			<h2>Post Form</h2>
 			<form:form name="form" id="form" role="form" modelAttribute="postDTO" method="post" 
 			action="${pageContext.request.contextPath}/post/savePost">
 				<!-- postDTO에는 mode라는 속성을 가지고 있지 않기 때문에 일반적인 form태그 사용 -->

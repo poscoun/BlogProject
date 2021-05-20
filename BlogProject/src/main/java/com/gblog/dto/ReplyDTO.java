@@ -7,9 +7,12 @@ public class ReplyDTO {
 	private String rp_writer;
 	private String rp_content;
 	private Date rp_reg;
-	private String post_id;
+	private int post_id;
 	
-	public ReplyDTO(int rp_id, String rp_writer, String rp_content, Date rp_reg, String post_id) {
+	public ReplyDTO() {
+	}
+	
+	public ReplyDTO(int rp_id, String rp_writer, String rp_content, Date rp_reg, int post_id) {
 		super();
 		this.rp_id = rp_id;
 		this.rp_writer = rp_writer;
@@ -50,11 +53,11 @@ public class ReplyDTO {
 		this.rp_reg = rp_reg;
 	}
 
-	public String getPost_id() {
+	public int getPost_id() {
 		return post_id;
 	}
 
-	public void setPost_id(String post_id) {
+	public void setPost_id(int post_id) {
 		this.post_id = post_id;
 	}
 		

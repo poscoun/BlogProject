@@ -1,5 +1,7 @@
 package com.gblog.web;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -10,10 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gblog.common.Pagination;
+import com.gblog.common.Search;
 import com.gblog.dto.PostDTO;
+import com.gblog.dto.ReplyDTO;
 import com.gblog.service.PostService;
 
 @Controller
@@ -25,34 +31,47 @@ public class PostController {
 	@Inject
 	private PostService psvc;
 	
-//	@RequestMapping(value = "/list", method = RequestMethod.GET)
-//	public void list(Model model) throws Exception {
-//		logger.info("list 출력");
-//		model.addAttribute("list", psvc.getPostList());
-//	}
-	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model,
 			@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int range
+			@RequestParam(required = false, defaultValue = "1") int range,
+			@RequestParam(required = false) String keyword,
+			@ModelAttribute("search") Search search
 			) throws Exception {
 		
 		logger.info("list 출력");
 		
+		//검색
+		model.addAttribute("search", search);
+		search.setKeyword(keyword);
+		
 		// 전체 게시글 개수
-		int listCnt = psvc.getPostListCnt();
+		int listCnt = psvc.getPostListCnt(search);
+		
+		search.pageInfo(page, range, listCnt);
 		
 		// Pagination 객체 생성
-		Pagination pgn = new Pagination();
-		pgn.pageInfo(page, range, listCnt);
+		//Pagination pgn = new Pagination();
+		//pgn.pageInfo(page, range, listCnt);
 		
-		model.addAttribute("pagination", pgn);
-		model.addAttribute("list", psvc.getPostList(pgn));
+		// 페이징
+		model.addAttribute("pagination", search);
+		//게시글 화면 출력
+		model.addAttribute("list", psvc.getPostList(search));
 		
 		return "post/list";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/replyList", method = RequestMethod.POST)
+	public List<ReplyDTO> replyList(@RequestParam("post_id") int post_id, Model model) 
+			throws Exception{
+		logger.info("...replylist post...");
+		model.addAttribute("reList", psvc.getReplyList(post_id));
+		return psvc.getReplyList(post_id);
+	}
 
-	@RequestMapping(value = "postForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/postForm", method = RequestMethod.GET)
 	public String postFormGet(PostDTO pdto, Model model) throws Exception{
 		logger.info("...write get...");
 		return "post/postForm";
@@ -82,7 +101,8 @@ public class PostController {
 	@RequestMapping(value = "/postContent", method = RequestMethod.GET)
 	public void read(@RequestParam("post_id") int post_id, Model model) throws Exception {
 		
-		model.addAttribute(psvc.getPostContent(post_id));
+		model.addAttribute("postDTO", psvc.getPostContent(post_id));
+		model.addAttribute("replyDTO", new ReplyDTO());
 		// key(name)을 사용하지 않을 경우 자동으로 클래스명을 소문자로 인식해서 지정해줌
 	}
 	
@@ -97,7 +117,8 @@ public class PostController {
 	}
 	
 	@RequestMapping(value = "/deletePost", method = RequestMethod.GET)
-	public String deletePost(RedirectAttributes rttr, @RequestParam("post_id") int post_id) throws Exception {
+	public String deletePost(RedirectAttributes rttr, @RequestParam("post_id") int post_id) 
+			throws Exception {
 		psvc.deletePost(post_id);
 		return "redirect:/post/list";
 	}

@@ -5,23 +5,23 @@
   
 <mapper namespace="com.gblog.dao.PostDAO">
 
-	<insert id="insert">
+	<insert id="postInsert">
 		insert into blog_posts (post_subj, post_content, user_id)
 		value (#{post_subj}, #{post_content}, #{user_id})
 	</insert>
 	
-	<select id="read" resultType="com.gblog.dto.PostDTO">
+	<select id="postRead" resultType="com.gblog.dto.PostDTO">
 		select * from blog_posts
 		where post_id = #{post_id}
 	</select>
 	
-	<update id="update">
+	<update id="postUpdate">
 		update blog_posts
 		set post_subj = #{post_subj}, post_content = #{post_content}
 		where post_id = #{post_id}
 	</update>
 	
-	<delete id="delete">
+	<delete id="postDelete">
 		delete from blog_posts
 		where post_id = #{post_id}
 	</delete>
@@ -31,16 +31,24 @@
 		select * 
 		from blog_posts
 		where post_id > 0
-		order by post_id desc, post_reg desc
+		order by post_id desc, post_reg desc		
 	]]>
 	</select>
 	
 	<!-- 페이징 처리 -->
-	<select id="pList" resultType="com.gblog.dto.PostDTO">
+	<select id="postList" resultType="com.gblog.dto.PostDTO">
 	<![CDATA[
 		select * 
 		from blog_posts
 		where post_id > 0
+	]]>
+
+		<if test="keyword != null and keyword != '' ">
+			AND (post_subj like CONCAT('%', #{keyword}, '%')
+			or post_content like CONCAT('%', #{keyword}, '%'))
+		</if>
+		
+	<![CDATA[
 		order by post_id desc, post_reg desc
 		limit #{startList}, #{listSize}
 	]]>
@@ -50,6 +58,13 @@
 	<select id="listCnt" resultType="int">
 		select count(*) as listCnt
 		from blog_posts 
+		<trim prefix="where" prefixOverrides="AND">
+			<if test="keyword != null and keyword != '' ">
+				AND (post_subj like CONCAT('%', #{keyword}, '%')
+				or post_content like CONCAT('%', #{keyword}, '%'))
+			</if>
+		</trim>
 	</select>
+
 </mapper>
   
