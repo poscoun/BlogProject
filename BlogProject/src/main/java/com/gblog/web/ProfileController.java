@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gblog.dto.ProfileDTO;
 import com.gblog.service.ProfileService;
@@ -23,31 +24,43 @@ public class ProfileController {
 	@Inject
 	private ProfileService psvc;
 	
-//	@RequestMapping(value="/profileRead", method = RequestMethod.GET)
-//	public void read(@RequestParam("테스트_id") String user_id, Model model) throws Exception{
-//		
-//		model.addAttribute(psvc.read(user_id));
-//
-//	}
-	
-	 @RequestMapping(value = "/profileRead", method = RequestMethod.GET)
+	 @RequestMapping(value = "/list", method = RequestMethod.GET)
 	   public void list(Model model) throws Exception {
 	      LOGGER.info(".... list 출력 ....");
 	      
 	      model.addAttribute("list", psvc.list());
 	   }
 	 
-//	 @RequestMapping(value = "/profileModify", method = RequestMethod.GET)
-//	 public void modifyGET(@RequestParam("user_id") String user_id, Model model) throws Exception{
-//		 model.addAttribute(psvc.read(user_id));
-//	 }
-//	 
-//	 @RequestMapping(value = "/profileModify", method = RequestMethod.POST)
-//	 public String modifyPOST(ProfileDTO, RedirectAttributes reAttr) throws Exception{
-//		 
-//	 }
-//	
-	
+	 
+	 @RequestMapping(value = "/read", method = RequestMethod.GET)
+	 public void read(@RequestParam("user_id") String user_id, Model model) throws Exception{
+		 
+		 model.addAttribute(psvc.read(user_id));
+	 }
+	 
 
+	
+	 @RequestMapping(value = "/modify", method = RequestMethod.GET)
+	 public void modifyGET(@RequestParam("user_id") String user_id, Model model) throws Exception{
+		 LOGGER.info(".... modifyGET ....");
+		 
+		 model.addAttribute(psvc.read(user_id));
+	 }
+	 
+	 @RequestMapping(value = "/modify", method = RequestMethod.POST)
+	 public String modifyPOST (ProfileDTO pdto, RedirectAttributes reAttr) throws Exception{
+		 LOGGER.info(".....modifyPOST.....");
+		 
+		 psvc.modify(pdto);
+		 
+		 reAttr.addFlashAttribute("result", "success");
+		 
+		 return "redirect:/profile/list";
+	 }
+	 
+	 
+
+	 
+	 
 
 }

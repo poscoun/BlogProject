@@ -24,10 +24,10 @@ public class ProfileDAOTest {
 //	@Test
 //	public void insertTest() throws Exception {
 //		ProfileDTO pdto = new ProfileDTO();
-//		pdto.setProfile_content("테스트_내용");
+//		pdto.setProfile_content("test2");
 //		pdto.setProfile_phone("010-1234-5678");
-//		pdto.setProfile_sns("ddd@naver.com");
-//		pdto.setUser_id("테스트_id");
+//		pdto.setProfile_sns("test@naver.com");
+//		pdto.setUser_id("테스트_id2");
 //		pdao.insert(pdto);
 //	}
 	
