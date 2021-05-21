@@ -7,7 +7,8 @@
 - Dynamic Web Module(4.0)
 - java(1.8)
 - Lombok(1.18.2)
-
+- jQuery(3.6.0)
+- jstl
 ## 설치 
 
 ### Lombok
