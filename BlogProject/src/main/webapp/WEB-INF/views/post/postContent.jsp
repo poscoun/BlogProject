@@ -2,18 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>postContent</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
+
 	$(document).ready(function(){
 		showReplyList();
-	});
-
+	});	
+	
 	//목록으로 이동
 	$(document).on('click', '#btnList', function(){
 		location.href = "${pageContext.request.contextPath}/post/list";
@@ -71,7 +73,7 @@
             data : paramData,
             dataType : 'json',
             success : function(result) {
-            	console.log(result);
+            	// console.log(result);
                	var htmls = "";
 			if(result.length < 1){
 				htmls = "등록된 댓글이 없습니다";
@@ -102,15 +104,61 @@
 		});	// Ajax end
 	}
 	
-	function fn_deleteReply(rid){
+	function fn_editReply(rp_id, rp_writer, rp_content){
+		var htmls = "";
+		htmls += '<div class="media text-muted pt-3" id="rp_id' + rp_id + '">';
+		htmls += '<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder:32x32">';
+		htmls += '<title>Placeholder</title>';
+		htmls += '<rect width="100%" height="100%" fill="#007bff"></rect>';
+		htmls += '<text x="50%" fill="#007bff" dy=".3em">32x32</text>';
+		htmls += '</svg>';
+		htmls += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom horder-gray">';
+		htmls += '<span class="d-block">';
+		htmls += '<strong class="text-gray-dark">' + rp_writer + '</strong>';
+		htmls += '<span style="padding-left: 7px; font-size: 9pt">';
+		htmls += '<a href="javascript:void(0)" onclick="fn_updateReply(' + rp_id + ', \'' + rp_writer + '\')" style="padding-right:5px">저장</a>';
+		htmls += '<a href="javascript:void(0)" onClick="showReplyList()">취소<a>';
+		htmls += '</span>';
+		htmls += '</span>';		
+		htmls += '<textarea name="editContent" id="editContent" class="form-control" rows="3">';
+		htmls += rp_content;
+		htmls += '</textarea>';
+		htmls += '</p>';
+		htmls += '</div>';
 
-		var paramData = {"rid": rid};
+		$('#rp_id' + rp_id).replaceWith(htmls);
+		$('#rp_id' + rp_id + ' #editContent').focus();
+	}
+	function fn_updateReply(rp_id, rp_writer){
+		var replyEditContent = $('#editContent').val();
+		var paramData = JSON.stringify({"rp_content": replyEditContent, "rp_id": rp_id	});
+		var headers = {"Content-Type" : "application/json"
+				, "X-HTTP-Method-Override" : "POST"};
 		$.ajax({
-			url: "${deleteReplyURL}"
+			url: "${pageContext.request.contextPath}/restPost/updateReply"
+			, headers : headers
 			, data : paramData
 			, type : 'POST'
 			, dataType : 'text'
 			, success: function(result){
+                console.log(result);
+				showReplyList();
+			}
+			, error: function(error){
+				console.log("에러 : " + error);
+			}
+		});
+	}
+	
+	function fn_deleteReply(rp_id){
+		var paramData = {"rp_id": rp_id};
+		$.ajax({
+			url: "${pageContext.request.contextPath}/restPost/deleteReply"
+			, data : paramData
+			, type : 'POST'
+			, dataType : 'text'
+			, success: function(result){
+				console.log(result)
 				showReplyList();
 			}
 			, error: function(error){
@@ -129,7 +177,10 @@
 				<div class="board_info_box">
 					<span class="board_author"><c:out value="${postDTO.user_id}"/>,</span><span class="board_date"><c:out value="${postDTO.post_reg}"/></span>
 				</div>
-				<div class="board_content"><c:out value="${postDTO.post_content}"/></div>
+				<div class="board_content">
+					${postDTO.post_content}
+					<%-- <textarea rows="" cols="" id="content" name="content"><c:out value="${postDTO.post_content}"/></textarea> --%>
+				</div>
 				<div class="board_tag">TAG : </div>
 			</div>
 			<div style="margin-top : 20px">
@@ -164,5 +215,17 @@
 			
 			</div>
 	</article>
+	<script type="text/javascript">
+	
+	/* 
+	CKEDITOR.replace( 'content',{
+		width:'780',
+		height:'300'
+	}); 
+	var editorContent = CKEDITOR.instances.content.getData();
+	var convertContent = editorContent.replace(/(<([^>]+)>)/ig,"");
+	console.log(convertContent); */
+	
+	</script>
 </body>
 </html>

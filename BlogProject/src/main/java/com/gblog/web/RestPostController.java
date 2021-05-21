@@ -47,35 +47,34 @@ public class RestPostController {
 		return result;
 	}
 	
-//	@RequestMapping(value = "/updateReply", method = {RequestMethod.GET, RequestMethod.POST})
-//
-//	public Map<String, Object> updateReply(@RequestBody ReplyVO replyVO) throws Exception {
-//
-//		Map<String, Object> result = new HashMap<>();
-//		try {
-//			boardService.updateReply(replyVO);
-//			result.put("status", "OK");
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			result.put("status", "False");
-//		}
-//		return result;
-//	}
-//	@RequestMapping(value = "/deleteReply", method = {RequestMethod.GET, RequestMethod.POST})
-//
-//	public Map<String, Object> deleteReply(@RequestParam("rid") int rid) throws Exception {
-//
-//		Map<String, Object> result = new HashMap<>();
-//		try {
-//			boardService.deleteReply(rid);
-//			result.put("status", "OK");
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			result.put("status", "False");
-//		}
-//		return result;
-//	}
+	@RequestMapping(value = "/updateReply", method = {RequestMethod.GET, RequestMethod.POST})
+	public Map<String, Object> updateReply(@RequestBody ReplyDTO rdto) throws Exception {
+
+		Map<String, Object> result = new HashMap<>();
+		try {
+			psvc.updateReply(rdto);
+			result.put("status", "OK");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put("status", "False");
+		}
+		return result;
+	}
+	
+	@RequestMapping(value = "/deleteReply", method = {RequestMethod.GET, RequestMethod.POST})
+	public Map<String, Object> deleteReply(@RequestParam("rp_id") int rp_id) throws Exception {
+
+		Map<String, Object> result = new HashMap<>();
+		try {
+			psvc.deleteReply(rp_id);
+			result.put("status", "OK");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put("status", "False");
+		}
+		return result;
+	}
 
 }

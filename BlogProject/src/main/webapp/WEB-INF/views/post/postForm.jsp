@@ -2,13 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri = "http://www.springframework.org/tags/form" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ include file="/WEB-INF/views/layout/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<%@ include file="/WEB-INF/views/layout/header.jsp" %>
 <title>board</title>
+<script src="/resources/ckeditor/ckeditor.js"></script>
 <script>
+	
 	$(document).on('click', '#btnSave', function(e) {
 		e.preventDefault();
 		$("#form").submit();
@@ -28,16 +31,11 @@
 			$("input:hidden[name='mode']").val('<c:out value="${mode}"/>');
 			$("#reg_id").val('<c:out value="${postContent.user_id}"/>');
 			$("#title").val('<c:out value="${postContent.post_subj}"/>');
-			$("#content").val('<c:out value="${postContent.post_content}"/>');
+			$("#content").val('${postContent.post_content})');
+
 		}
 	});
 </script>
-<style>
-body {
-	padding-top: 70px;
-	padding-bottom: 30px;
-}
-</style>
 </head>
 <body>
 	<article>
@@ -74,5 +72,17 @@ body {
 			</div>
 		</div>
 	</article>
+	<script type="text/javascript">
+	CKEDITOR.replace( 'content',{
+		width:'780',
+		height:'300'
+	});
+	
+	/* var editorContent = CKEDITOR.instances.content.getData();
+	var convertContent = editorContent.replace(/(<([^>]+)>)/ig,"");
+	console.log(convertContent);
+	console.log(convertContent.length); */
+	
+	</script>
 </body>
 </html>
