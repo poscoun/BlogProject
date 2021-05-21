@@ -71,8 +71,7 @@
             data : paramData,
             dataType : 'json',
             success : function(result) {
-            	console.log("성공");
-            	console.log(this.rp_content);
+            	console.log(result);
                	var htmls = "";
 			if(result.length < 1){
 				htmls = "등록된 댓글이 없습니다";
@@ -130,7 +129,7 @@
 				<div class="board_info_box">
 					<span class="board_author"><c:out value="${postDTO.user_id}"/>,</span><span class="board_date"><c:out value="${postDTO.post_reg}"/></span>
 				</div>
-				<div class="board_content">${postDTO.post_content}</div>
+				<div class="board_content"><c:out value="${postDTO.post_content}"/></div>
 				<div class="board_tag">TAG : </div>
 			</div>
 			<div style="margin-top : 20px">

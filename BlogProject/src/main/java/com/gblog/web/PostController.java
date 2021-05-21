@@ -62,14 +62,14 @@ public class PostController {
 		return "post/list";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/replyList", method = RequestMethod.POST)
-	public List<ReplyDTO> replyList(@RequestParam("post_id") int post_id, Model model) 
-			throws Exception{
-		logger.info("...replylist post...");
-		model.addAttribute("reList", psvc.getReplyList(post_id));
-		return psvc.getReplyList(post_id);
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "/replyList", method = RequestMethod.POST)
+//	public List<ReplyDTO> replyList(@RequestParam("post_id") int post_id, Model model) 
+//			throws Exception{
+//		logger.info("...replylist post...");
+//		model.addAttribute("reList", psvc.getReplyList(post_id));
+//		return psvc.getReplyList(post_id);
+//	}
 
 	@RequestMapping(value = "/postForm", method = RequestMethod.GET)
 	public String postFormGet(PostDTO pdto, Model model) throws Exception{

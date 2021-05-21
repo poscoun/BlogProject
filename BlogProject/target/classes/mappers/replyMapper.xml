@@ -5,7 +5,7 @@
   
 <mapper namespace="com.gblog.dao.ReplyDAO">
 
-	<select id="replyList" resultType="com.gblog.dto.PostDTO">
+	<select id="replyList" resultType="com.gblog.dto.ReplyDTO">
 	<![CDATA[
 		select *
 		from blog_reply
