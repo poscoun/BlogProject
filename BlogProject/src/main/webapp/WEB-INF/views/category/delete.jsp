@@ -10,7 +10,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		
 		// 삭제 클릭 시
 		$("#delete").click(function(){
 			if($(':radio[name="category_id"]:checked').length < 1) {
@@ -28,16 +27,30 @@
 				}				
 			}
 		});
-		
-		// 카테고리명 빈값 체크 
-		
+	});		// 삭제 클릭시 확인창 출력
+	
+	$(document).ready(function(){		// 페이지가 로딩되면서 실행
+		$('form[name="create"]').bind('submit', function(){		// form을 submit 하기 전에 이벤트
+			if($('input[name="category_name"]').val()==''){		// input value가 빈값 일 경우
+				alert('카테고리명을 입력해주세요.');
+				$('input[name="category_name"]').focus();		// 해당 input에 focus
+				
+				return false;
+			}
+		})
+	})		// 폼 전송하기 전에 bind로 이벤트가 발생하면서 submit 이벤트 전에 실행
+	
+	$(document).ready(function(){
+		$('modify').click(function(){
+			location.href = 'category/modify.jsp';
+		});
 	});
 	
 
 </script>
 </head>
 <body>
-<form action="./create" method="post">
+<form action="./create" name="create" method="post">
 		<fieldset>
 			<legend>카테고리 에디터</legend>
 			카테고리명 : <input type="text" name="category_name"><br />  
@@ -66,7 +79,7 @@
 						<tr> 
 						 	<!-- checked="checked" 사용시 defualt 값 없이 자동으로 체크 -->
 							<td><input type="radio" name="category_id" value="${cdto.category_id}" checked="checked"/><c:out value="${cdto.category_id}"/></td>
-							<td><c:out value="${cdto.category_name}"/></td>
+							<td><a href="#" onclick=""><c:out value="${cdto.category_name}"/></a></td>
 							<td><c:out value="${cdto.post_count}"/></td>
 						</tr>
 					</c:forEach>
@@ -75,7 +88,6 @@
 		</tbody>
 	</table>
 </form>
-
 </body>
 </html>
 

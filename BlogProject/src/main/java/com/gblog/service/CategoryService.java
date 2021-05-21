@@ -10,13 +10,7 @@ public interface CategoryService {
 	public List<CategoryDTO> CategoryList(String sid) throws Exception;		// 카테고리 목록
 	
 	public void Delete(Integer category_id) throws Exception;		// 카테고리 삭제
-	
 
-	
-	
-	
-	
-	
-	
+
 	
 }

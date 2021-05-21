@@ -11,5 +11,5 @@ public interface CategoryDAO {
 	
 	public List<CategoryDTO> CategoryList(String sid) throws Exception;	 // 카테고리 목록 
 	
-	
+
 }

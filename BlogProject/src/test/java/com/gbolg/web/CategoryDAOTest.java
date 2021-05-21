@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.gblog.dao.CategoryDAO;
+import com.gblog.dto.CategoryDTO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -29,15 +30,24 @@ public class CategoryDAOTest {
 //	}
 	
 	// 카테고리 삭제
-	@Test
-	public void deleteTest() throws Exception {
-		cdao.Delete(16);
-	}
+//	@Test
+//	public void deleteTest() throws Exception {
+//		cdao.Delete(16);
+//	}
 	
 	// 카테고리 목록
 //	@Test
 //	public void categorylistTest() throws Exception {
 //		logger.info(cdao.CategoryList(null).toString());
 //	}
-//	
+//
+	
+	// 카테고리 수정
+//	@Test
+//	public void ModifyTest() throws Exception {
+//		CategoryDTO cdto = new CategoryDTO();
+//		cdto.setCategory_id(84);
+//		cdto.setCategory_name("수정테스트");
+//		cdao.Modify(cdto);
+//	}
 }

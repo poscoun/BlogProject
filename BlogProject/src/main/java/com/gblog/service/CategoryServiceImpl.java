@@ -36,6 +36,5 @@ public class CategoryServiceImpl implements CategoryService {
 		cdao.Delete(category_id);
 	}
 	
-	
 
 }
