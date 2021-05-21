@@ -6,16 +6,16 @@
 <mapper namespace="com.gblog.dao.GuestbookReplyDAO">
 	
 	<insert id="insert">
-		insert into guestbook_reply (guest_id, guest_rp_content)
-		values (#{guest_id}, #{guest_rp_content})
+		insert into guestbook_reply (guest_id, guest_rp_content, user_id)
+		values (#{guest_id}, #{guest_rp_content}, #{user_id})
 	</insert>
 	
-	<select id="list" resultType="com.gblog.dto.GuestbookReplyDTO" parameterType="int">
-		SELECT gb.user_id, gbr.guest_id, gbr.guest_rp_content, gbr.guest_rp_date
-		FROM guestbook gb
-		JOIN guestbook_reply gbr
+	<select id="list" resultType="com.gblog.dto.GuestbookReplyDTO">
+		SELECT gbr.guest_id, gbr.guest_rp_content, gbr.guest_rp_date, gbr.user_id
+		FROM guestbook_reply gbr
+		JOIN guestbook gb
 		ON gb.guest_id = gbr.guest_id
-		WHERE gb.guest_id = #{guest_id}
+		WHERE gbr.guest_id = #{guest_id}
 	</select>
 
 </mapper>

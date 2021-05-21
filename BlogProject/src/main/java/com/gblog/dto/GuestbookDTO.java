@@ -7,6 +7,15 @@ public class GuestbookDTO {
 	private String user_id;
 	private String guest_content;
 	private Date guest_date;
+	public Integer getReply_count() {
+		return reply_count;
+	}
+
+	public void setReply_count(Integer reply_count) {
+		this.reply_count = reply_count;
+	}
+
+	private Integer reply_count;
 	
 	public GuestbookDTO() {}
 

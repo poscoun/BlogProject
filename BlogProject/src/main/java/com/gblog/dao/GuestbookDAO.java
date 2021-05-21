@@ -10,5 +10,6 @@ public interface GuestbookDAO {
 	public List<GuestbookDTO> list() throws Exception;
 	public void update(GuestbookDTO gdto) throws Exception;
 	public void delete(Integer guest_id) throws Exception;
+	public void updateReplyCount(Integer guest_id) throws Exception;
 
 }

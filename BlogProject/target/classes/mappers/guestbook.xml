@@ -32,4 +32,12 @@
 		where guest_id = #{guest_id}
 	</delete>
 	
+	<update id="updateReplyCount" parameterType="int">
+		<![CDATA[
+			update guestbook
+			set reply_count = (select count(guest_id) from guestbook_reply where guest_id = #{guest_id})
+			where guest_id = #{guest_id};
+		]]>
+	</update>
+	
 </mapper>

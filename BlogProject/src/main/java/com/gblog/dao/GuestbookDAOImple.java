@@ -47,5 +47,12 @@ public class GuestbookDAOImple implements GuestbookDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+".read", guest_id);
 	}
+
+	@Override
+	public void updateReplyCount(Integer guest_id) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(NAMESPACE+".updateReplyCount", guest_id);
+		
+	}
 	
 }

@@ -24,21 +24,9 @@ public class GuestbookReplyDAOImple implements GusetbookReplyDAO{
 	}
 
 	@Override
-	public List<GuestbookReplyDTO> list(Integer guest_id) throws Exception {
+	public List<GuestbookReplyDTO> listreply(Integer guest_id) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+".list", guest_id);
-	}
-
-	@Override
-	public void update(GuestbookReplyDTO gdto) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Integer guest_id) throws Exception {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

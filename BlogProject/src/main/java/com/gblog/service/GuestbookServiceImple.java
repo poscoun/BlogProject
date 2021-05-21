@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.gblog.dao.GuestDAO;
 import com.gblog.dao.GuestbookDAO;
 import com.gblog.dao.GusetbookReplyDAO;
 import com.gblog.dto.GuestbookDTO;
@@ -16,7 +17,12 @@ public class GuestbookServiceImple implements GuestbookService{
 	
 	@Inject
 	private GuestbookDAO gdao;
+	
+	@Inject
 	private GusetbookReplyDAO grdao;
+	
+	@Inject
+	private GuestDAO gvdao;
 
 	@Override
 	public void write(GuestbookDTO gdto) throws Exception {
@@ -59,8 +65,33 @@ public class GuestbookServiceImple implements GuestbookService{
 	@Override
 	public List<GuestbookReplyDTO> listReply(Integer guest_id) throws Exception {
 		// TODO Auto-generated method stub
-		return grdao.list(guest_id);
+		// System.out.println(guest_id);
+		return grdao.listreply(guest_id);
 	}
-	
+
+	@Override
+	public void replyCount(Integer guest_id) throws Exception {
+		// TODO Auto-generated method stub
+		gdao.updateReplyCount(guest_id);
+	}
+
+	@Override
+	public void insertdate() throws Exception {
+		// TODO Auto-generated method stub
+		gvdao.insert();
+		
+	}
+
+	@Override
+	public int visitTotal() throws Exception {
+		// TODO Auto-generated method stub
+		return gvdao.visitTotal();
+	}
+
+	@Override
+	public int visitToday() throws Exception {
+		// TODO Auto-generated method stub
+		return gvdao.visitTotal();
+	}
 
 }

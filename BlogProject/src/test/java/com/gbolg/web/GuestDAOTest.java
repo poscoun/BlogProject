@@ -1,5 +1,8 @@
 package com.gbolg.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -9,7 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.gblog.dao.GuestDAO;
 import com.gblog.dao.GuestbookDAO;
+import com.gblog.dto.GuestDTO;
 import com.gblog.dto.GuestbookDTO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -17,7 +22,10 @@ import com.gblog.dto.GuestbookDTO;
 public class GuestDAOTest {
 	
 	@Inject
-	private GuestbookDAO gdao;
+	private GuestbookDAO gbdao;
+	
+	@Inject
+	private GuestDAO gdao;
 	
 	private static Logger logger = LoggerFactory.getLogger(GuestDAOTest.class);
 	
@@ -32,10 +40,10 @@ public class GuestDAOTest {
 //		
 //	}
 	
-	@Test
-	public void listTest() throws Exception{
-		logger.info(gdao.list().toString());
-	}
+//	@Test
+//	public void listTest() throws Exception{
+//		logger.info(gdao.list().toString());
+//	}
 	
 //	@Test
 //	public void updateTest() throws Exception{
@@ -49,11 +57,22 @@ public class GuestDAOTest {
 //	public void deleteTest() throws Exception{
 //		gdao.delete(4);
 //	}
-	
+//	
 //	@Test
 //	public void readTest() throws Exception{
-//		logger.info(gdao.read(5).toString());
+//		logger.info(gdao.read(6).toString());
 //	}
 	
+	@Test
+	public void visitTest() throws Exception{
+		
+		// gdao.insert();
+//		int totalcount = gdao.visitTotal();
+//		System.out.println(totalcount);
+		
+		int todaytcount = gdao.visitToday();
+		System.out.println(todaytcount);
+		
+	}
 	
 }

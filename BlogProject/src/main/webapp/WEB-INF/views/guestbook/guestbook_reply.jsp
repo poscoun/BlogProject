@@ -1,10 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>    
 <html>
 <head>
-<title>¹æ¸í·Ï ´äº¯</title>
+<meta charset="UTF-8">
+<title>ë°©ëª…ë¡ ë‹µë³€</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -17,68 +19,65 @@
 		}
 </style>
 <script type="text/javascript">
-	function checkValue(){
-		var form = document.forms[0];
 
-		if(!form.guest_content.value)
-		{
-			alert("³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
-			return false;
-		}
-		else
-		{
-			form.target = opener.name;
-			form.method="post";
-			form.action="";
-			form.submit();
+function checkValue(guest_id){
+    var form = document.replyInfo;
 
-			if (opener != null) {
-               	opener.rForm = null;
-               	self.close();
-			}
-		}
-	}
+    if(form.guest_rp_content.value.lengh == 0)
+    {
+        alert("ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”.");
+        return false;
+    }
+    else
+    {
+        form.target = opener.name;
+        form.action='/guestbook/guestbook_reply?guest_id='+guest_id;
+        form.submit();
+
+        if (opener != null) {
+            opener.rForm = null;
+            self.close();
+        }
+    }
+}
 </script>
 
 </head>
 <body>
 	<div id="wrap">
 		<br>
-		<b><font size="5" color="gray">´ä±Û</font></b>
+		<b><font size="5" color="gray">ë‹µê¸€</font></b>
 		<hr size="1" width="700">
 		<br>
 	
-		<!-- ´ä±Û µî·Ï ºÎºĞ ½ÃÀÛ-->
+		<!-- ë‹µê¸€ ë“±ë¡ ë¶€ë¶„ ì‹œì‘-->
 		<div id="writeReplyForm">
-			<form name="replyInfo" target="replyForm">
-				<!-- ºÎ¸ğ ¹æ¸í·ÏÀÇ Á¤º¸¸¦ °°ÀÌ Àü¼ÛÇÑ´Ù. -->
+			<form name="replyInfo" target="replyForm" id="replyInfo" method="post">
+				<!-- ë¶€ëª¨ ë°©ëª…ë¡ì˜ ì •ë³´ë¥¼ ê°™ì´ ì „ì†¡í•œë‹¤. -->
 				<div class="form-group">
-					<input type="text" name="user_id" id="user_id" placeholder="¼¼¼Ç¿¡¼­ °¡Á®¿Ã ¾ÆÀÌµğ" />
+					<input type="text" name="user_id" id="user_id" placeholder="ì„¸ì…˜ì—ì„œ ê°€ì ¸ì˜¬ ì•„ì´ë””" />
 					<hr />
-	  				<textarea rows="7" cols="80" style="resize: none" class="form-control" name="guest_content"></textarea>
+	  				<textarea rows="7" cols="80" style="resize: none" class="form-control" name="guest_rp_content"></textarea>
 				</div>
 				<br>
-				<input type="button" value="È®ÀÎ" id="replyInsert" onclick="checkValue()" class="btn btn-light">
-				<input type="button" value="Ã¢´İ±â" onclick="window.close()" class="btn btn-light">
+				<input type="button" value="í™•ì¸" id="replyInsert" onclick="checkValue(${guest_id})" class="btn btn-light">
+				<input type="button" value="ì°½ë‹«ê¸°" onclick="window.close()" class="btn btn-light">
 			</form>
 		</div>
-		<!-- ´ä±Û µî·Ï ºÎºĞ ³¡-->
+		<!-- ë‹µê¸€ ë“±ë¡ ë¶€ë¶„ ë-->
 		<div id="listGestFrom">
 	        <form method="post" name="listform">
-	            <input type="hidden" name="pro">
 	            <div id="comment">
 	            	<br />
 		            <c:if test="${empty reply_list }">
-		            	<label>µî·ÏµÈ ¹æ¸í·ÏÀÌ ¾ø½À´Ï´Ù.</label>
+		            	<label>ë“±ë¡ëœ ë°©ëª…ë¡ì´ ì—†ìŠµë‹ˆë‹¤.</label>
 		            </c:if>
 		            <c:if test="${not empty reply_list }">
-		            	<c:forEach var="guestbookrpl" items="${reply_list}" varStatus="Count">
+		            	<c:forEach var="guestbookrpl" items="${reply_list}">
 		            		<hr size="1" width="700">		            			
 			                <label>${guestbookrpl.user_id }</label>&nbsp;&nbsp;&nbsp;
-			                <label><fmt:formatDate value="${guestbookrpl.guest_date }" pattern="yyyy-MM-dd HH:mm"/></label>&nbsp;&nbsp;&nbsp;&nbsp;
-			                <a href="#" onclick="guestbookupdate(${guestbookrpl.guest_id})">[¼öÁ¤]</a>&nbsp;
-			                <a href="#" onclick="guestbookdel(${guestbookrpl.guest_id})">[»èÁ¦]</a><br />
-			                ${guestbookrpl.guest_content } <br>
+			                <label><fmt:formatDate value="${guestbookrpl.guest_rp_date }" pattern="yyyy-MM-dd HH:mm"/></label>&nbsp;&nbsp;&nbsp;&nbsp; <br />
+			                ${guestbookrpl.guest_rp_content } <br>
 			                <br />
 		                </c:forEach>
 					</c:if>

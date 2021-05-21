@@ -41,6 +41,7 @@
 		window.name = "replyForm";
 		window.open('/guestbook/guestbook_reply?guest_id='+guest_id, 
 				    "rForm", "width=800, height=600, resizable=no, scrollbars=no");
+		/* location.href = '/guestbook/guestbook_reply?guest_id='+guest_id; */
 		
 	}
 	
@@ -92,13 +93,18 @@
 		            	<label>등록된 방명록이 없습니다.</label>
 		            </c:if>
 		            <c:if test="${not empty list }">
-		            	<c:forEach var="guestbook" items="${list}" varStatus="Count">
+		            	<c:forEach var="guestbook" items="${list}">
 		            		<hr size="1" width="700">
 			                <label>${guestbook.user_id }</label>&nbsp;&nbsp;&nbsp;
 			                <label><fmt:formatDate value="${guestbook.guest_date }" pattern="yyyy-MM-dd HH:mm"/></label>&nbsp;&nbsp;&nbsp;&nbsp;
 			                <a href="#" onclick="guestbookupdate(${guestbook.guest_id})">[수정]</a>&nbsp;
 			                <a href="#" onclick="guestbookdel(${guestbook.guest_id})">[삭제]</a><br />
-			                ${guestbook.guest_content } <br>
+			                <div>
+			                	${guestbook.guest_content }
+			                	<c:if test="${guestbook.reply_count ne 0}">
+									<small><b>[&nbsp;<c:out value="${guestbook.reply_count}"/>&nbsp;]</b></small>
+								</c:if>		
+			                </div>
 			                <br />
 			                <a  href="#" onclick="guestbookreply(${guestbook.guest_id})">[답글쓰기]</a><br>
 		                </c:forEach>
