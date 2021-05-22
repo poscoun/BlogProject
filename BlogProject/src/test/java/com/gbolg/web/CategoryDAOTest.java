@@ -22,12 +22,12 @@ public class CategoryDAOTest {
 	private static Logger logger = LoggerFactory.getLogger(CategoryDAOTest.class);
 	
 	// 카테고리 작성
-//	@Test
-//	public void createTest() throws Exception {
-//		categoryDTO cdto = new categoryDTO();
-//		cdto.setCategory_name("테스트");
-//		cdao.insert(cdto);
-//	}
+	@Test
+	public void createTest() throws Exception {
+		CategoryDTO cdto = new CategoryDTO();
+		cdto.setCategory_name("테스트");
+		cdao.Create(cdto);
+	}
 	
 	// 카테고리 삭제
 //	@Test

@@ -20,25 +20,11 @@
 	<!-- 카테고리 목록 -->
  	<select id="CategoryList" resultType="com.gblog.dto.CategoryDTO">
 	 <![CDATA[	
-		select category_name, post_count, category_id
+		select category_name, category_id
 		from category
-		order by post_count desc
 	]]>
 	</select>
 	
-	<!-- 카테고리 수정 -->
-	<update id="updateCategory" parameterType="com.gblog.dto.CategoryDTO">
-		update category
-		set category_name = #{category_name}
-		where category_id = #{category_id}
-	</update>
-	
-	<!-- 카테고리 조회 -->
-	<select id="selectCategory" resultType="com.gblog.dto.CategoryDTO">
-		select category_name, post_id
-		from category
-		where category_id = #{category_id}
-	</select>
 </mapper>
 
 

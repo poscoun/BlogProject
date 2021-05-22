@@ -46,6 +46,12 @@
 		});
 	});
 	
+	// 수정 페이지로 이동
+	function modifyView(category_id){
+		var url = "${pageContext.request.contextPath}/category/modify";
+		url = url + "?category_id="+category_id;
+		location.href = url;
+	}
 
 </script>
 </head>
@@ -66,7 +72,6 @@
 			<tr>
 				<th>카테고리 ID</th>
 				<th>카테고리명</th>
-				<th>게시글 수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -80,7 +85,6 @@
 						 	<!-- checked="checked" 사용시 defualt 값 없이 자동으로 체크 -->
 							<td><input type="radio" name="category_id" value="${cdto.category_id}" checked="checked"/><c:out value="${cdto.category_id}"/></td>
 							<td><a href="#" onclick=""><c:out value="${cdto.category_name}"/></a></td>
-							<td><c:out value="${cdto.post_count}"/></td>
 						</tr>
 					</c:forEach>
 				</c:when>

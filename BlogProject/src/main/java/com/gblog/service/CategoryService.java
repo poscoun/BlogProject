@@ -11,6 +11,5 @@ public interface CategoryService {
 	
 	public void Delete(Integer category_id) throws Exception;		// 카테고리 삭제
 
-
 	
 }

@@ -16,7 +16,6 @@
 			<tr>
 				<th>카테고리 ID</th>
 				<th>카테고리명</th>
-				<th>게시글 수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,7 +28,6 @@
 						<tr>
 							<td><c:out value="${cdto.category_id}"/></td>
 							<td><c:out value="${cdto.category_name}"/></td>
-							<td><c:out value="${cdto.post_count}"/></td>
 						</tr>
 					</c:forEach>
 				</c:when>
