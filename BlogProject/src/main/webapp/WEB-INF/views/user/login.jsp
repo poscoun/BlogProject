@@ -10,7 +10,7 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/resources/css/member/login.css">
+
 </head>
 <body>
 
@@ -24,12 +24,12 @@
 			<div class="login_wrap"> 
 				<div class="id_wrap">
 						<div class="id_input_box">
-						<input class="id_input" name="user_id">
+						<input class="id_input" name="memberId">
 					</div>
 				</div>
 				<div class="pw_wrap">
 					<div class="pw_input_box">
-						<input class="pw_iput" name="user_pw">
+						<input class="pw_iput" name="memberPw">
 					</div>
 				</div>
 				

@@ -57,14 +57,16 @@
                 
  
  
-            <form class="form-horizontal" role="form" method="post" >
-               
+            <form class="form-horizontal" role="form" method="post" >               
         
                 <div class="form-group" id="divId">
                     <label for="inputId" class="col-lg-2 control-label">아이디</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control onlyAlphabetAndNumber" id="user_id" name="user_id" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
-                        <button class="idcheck" type="button" id="idcheck" onclick="fn_idcheck();">중복확인</button>                        
+                        <input type="text" class="form-control onlyAlphabetAndNumber" id="user_id" name="user_id" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">                        
+                      
+                        <!-- <span class="id_input_re_1">사용 가능한 아이디입니다.</span>
+						<span class="id_input_re_2">아이디가 이미 존재합니다.</span>	 -->
+						<div class="check_font" id="id_check"></div>
                     </div>
                    
                 </div>
@@ -78,6 +80,7 @@
                     <label for="inputPasswordCheck" class="col-lg-2 control-label">패스워드 확인</label>
                     <div class="col-lg-10">
                         <input type="password" class="form-control" id="user_pwcheck" data-rule-required="true" placeholder="패스워드 확인" maxlength="30">
+                        <div id="pw_check"></div>
                     </div>
                 </div>
                 <div class="form-group" id="divName">
@@ -93,16 +96,16 @@
                 <div class="form-group" id="divEmail">
                     <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
                     <div class="col-lg-10">
-                        <input type="email" class="mail_input" id="user_email" name="user_email" data-rule-required="true" placeholder="ex)goot77@gmail.com" maxlength="40">                       
+                        <input type="email" class="form-control mail_input" id="user_email" name="user_email" data-rule-required="true" placeholder="ex)goot77@gmail.com" maxlength="40">                       
                     </div>
-                    <span class="final_mail_ck">이메일을 입력해주세요.</span>
 					<sapn class="mail_input_box_warn"></sapn>                    
                  <div class="mail_check_wrap">
 					<div class="mail_check_input_box" id="mail_check_input_box_false">
-						<input class="mail_check_input" disabled="disabled">
+						<input class="mail_check_input" id="mailcheck" disabled="disabled">
+						<div class="check_font" id="email_check"></div>
 					</div>
-					<div class="mail_check_button">
-						<span>인증번호 전송</span>
+					<div class="email_check_button">
+						<input type="button" class="btn btn-primary" id="email_check_button" name="email_check_button" value="인증번호 전송"> 
 					</div>
 					<div class="clearfix"></div>
 					<span id="mail_check_input_box_warn"></span>
@@ -129,8 +132,8 @@
                     <label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
                     <div class="col-lg-10">
                         <select class="form-control" id="user_gender" name="user_gender">
-                            <option value="M">남</option>
-                            <option value="F">여</option>
+                            <option value="남성">남성</option>
+                            <option value="여성">여성</option>
                         </select>
                     </div>
                 </div>
@@ -273,6 +276,22 @@
                     }
                 });
                 
+				 $('#mailcheck').keyup(function(event){
+                    
+					 var mail_check_input_box_false = $('#mail_check_input_box_false');
+                    
+                    if($.trim($('#mailcheck').val())==""){
+                    	mail_check_input_box_false.removeClass("has-success");
+                    	mail_check_input_box_false.addClass("has-error");
+                    }else{
+                    	mail_check_input_box_false.removeClass("has-error");
+                        mail_check_input_box_false.addClass("has-success");
+                    }
+                });
+                
+                
+                
+                
                 $('#user_phone').keyup(function(event){
                     
                     var divPhoneNumber = $('#divPhoneNumber');
@@ -287,6 +306,14 @@
                 });
                 
                 
+                
+                
+                
+                
+                
+                
+                
+                
                 //------- validation 검사
                 $( "form" ).submit(function( event ) {  
                     var divId = $('#divId');
@@ -296,6 +323,7 @@
                     var divName = $('#divName');                    
                     var divEmail = $('#divEmail');
                     var divPhoneNumber = $('#divPhoneNumber');
+                    var mail_check_input_box_false = $('#mail_check_input_box_false');
                     
                     
                     
@@ -312,9 +340,7 @@
                         divId.removeClass("has-error");
                         divId.addClass("has-success");
                     }  
-                    
-                             
-                    
+                     
                     //패스워드 검사
                     if($('#user_pw').val()==""){
                         modalContents.text("패스워드를 입력하여 주시기 바랍니다.");
@@ -330,7 +356,7 @@
                     }
                     
                     //패스워드 확인
-                    if($('#user_pwCheck').val()==""){
+                    if($('#user_pwcheck').val()==""){
                         modalContents.text("패스워드 확인을 입력하여 주시기 바랍니다.");
                         modal.modal('show');
                         
@@ -404,8 +430,38 @@
                     
                     
                     
-                   
-              
+                    
+                    /* //이메일
+                    if($('#mailcheck').val()==""){
+                        modalContents.text("인증번호 확인해줘.");
+                        modal.modal('show');
+                        
+                        mail_check_input_box_false.removeClass("has-success");
+                        mail_check_input_box_false.addClass("has-error");
+                        $('#mailcheck').focus();
+                        return false;
+                    }else{
+                    	mail_check_input_box_false.removeClass("has-error");
+                    	mail_check_input_box_false.addClass("has-success");
+                    } */
+                    
+                    
+                    //이메일 체크 
+                    
+                    if($('#mailcheck').val()!=code){
+                        modalContents.text("인증번호 확인해줘.");
+                        modal.modal('show');
+                        
+                        mail_check_input_box_false.removeClass("has-success");
+                        mail_check_input_box_false.addClass("has-error");
+                        $('#mailcheck').focus();
+                        return false;
+                    }else{
+                    	mail_check_input_box_false.removeClass("has-error");
+                    	mail_check_input_box_false.addClass("has-success");
+                    }
+                    
+                    
                     
                     
                     
@@ -425,32 +481,46 @@
                         divPhoneNumber.addClass("has-success");
                     }
                     
+                    
+                    
                 
                 });
                 
             });
             
-            function fn_idcheck() {
-        		$.ajax({
+             
+             
+            $('#user_id').on("ropertychange change keyup paste input",function(){
+            	
+            	
+            	$.ajax({
         			url : "/user/idcheck",
         			type : "post",
         			dataType : "json",
         			data : { "user_id" : $("#user_id").val()},
         			success : function(data) {
-        				if(data == 1) {
-        					alert("중복된 아이디 입니다.");
+        				if(data == 0) {
+        					$("#id_check").text("사용가능한 아이디입니다");
+    						$("#id_check").css("color", "green");
+        						
         					
-        				} else if(data == 0) {
-        					alert("사용가능한 아이디 입니다.");
+        				} else if(data == 1) {
+        					
+        					
+        					$("#id_check").text("중복된 아이디 입니다");
+    						$("#id_check").css("color", "red");
+        					
         					
         				}
         			}
-        		})
-        	}
+        		}); 
+            	
+            }); 
             
+           
             
             /* 인증번호 이메일 전송 */
-            $(".mail_check_button").click(function(){
+            $("#email_check_button").click(function(){
             	
             	var email = $(".mail_input").val();			// 입력한 이메일
             	var cehckBox = $(".mail_check_input");		// 인증번호 입력란
@@ -487,39 +557,23 @@
            
             
             /* 인증번호 비교 */
-            $(".mail_check_input").blur(function(){
+            $(".mail_check_input").on("ropertychange change keyup paste input", function(){
             	
             	var inputCode = $(".mail_check_input").val();		// 입력코드	
             	var checkResult = $("#mail_check_input_box_warn");	// 비교 결과 	
             	
             	if(inputCode == code){							// 일치할 경우
-            		checkResult.html("인증번호가 일치합니다.");
-            		checkResult.attr("class", "correct");		
-            		mailnumCheck = true;
+            		$("#email_check").text("인증번호 일치");
+            		$("#email_check").css("color", "green");		
+            		
             	} else {											// 일치하지 않을 경우
-            		checkResult.html("인증번호를 다시 확인해주세요.");
-            		checkResult.attr("class", "incorrect");
-            		mailnumCheck = false;
+            		$("#email_check").text("인증번호 불일치");
+            		$("#email_check").css("color", "red");
+            		
             	}	
             	
             });
            
-           
-            
-            
-            
-            
-           
-            
-           
-            
-            
-          
-            
-            
-            
-            
-            
         </script>           
           
         </div>
