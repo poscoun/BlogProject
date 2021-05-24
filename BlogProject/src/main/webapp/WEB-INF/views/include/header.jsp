@@ -5,7 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
+<<<<<<< HEAD
 <title>Gblog</title>
+=======
+<title>Environmental</title>
+>>>>>>> e518a851ee4b91323380260f8a215f52ddc09660
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="site.webmanifest">
@@ -53,7 +57,11 @@
 								        <ul id="navigation">                                                                                          
 								            <li><a href="index.html">Home</a></li>
 								            <li><a href="about.html">About</a></li>
+<<<<<<< HEAD
 								            <li><a href="/category/category">category</a></li>
+=======
+								            <li><a href="blog.html">Blog</a></li>
+>>>>>>> e518a851ee4b91323380260f8a215f52ddc09660
 								            <li><a href="/guestbook/guestbook_form">Guest</a></li>
 								        </ul>
 								    </nav>
