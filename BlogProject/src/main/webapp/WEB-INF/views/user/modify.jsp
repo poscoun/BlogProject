@@ -9,7 +9,7 @@
         <meta charset="utf-8">
         <!-- meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/ -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>회원가입</title>
+        <title>pw변경</title>
         <!-- Bootstrap -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) -->
@@ -91,6 +91,24 @@
 					<span id="mail_check_input_box_warn"></span>
 				</div>
                 </div>
+                
+                <div class="form-group" id="divPassword">
+                    <label for="inputPassword" class="col-lg-2 control-label">새 패스워드</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" id="user_pw"  name="user_pw" data-rule-required="true" placeholder="패스워드" maxlength="30" disabled="disabled">
+                    </div>
+                </div>
+                
+                
+                 <div class="form-group" id="divPasswordCheck">
+                    <label for="inputPasswordCheck" class="col-lg-2 control-label">패스워드 확인</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" id="user_pwcheck" data-rule-required="true" placeholder="패스워드 확인" maxlength="30" disabled="disabled">
+                        <div id="pw_check"></div>
+                    </div>
+                </div>
+                
+                
          
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
@@ -165,7 +183,36 @@
                         mail_check_input_box_false.addClass("has-success");
                     }
                 });
+				 
+				 $('#user_pw').keyup(function(event){
+	                    
+	                    var divPassword = $('#divPassword');
+	                    
+	                    if($('#user_pw').val()==""){
+	                        divPassword.removeClass("has-success");
+	                        divPassword.addClass("has-error");
+	                    }else{
+	                        divPassword.removeClass("has-error");
+	                        divPassword.addClass("has-success");
+	                    }
+	                });
                 
+				 $('#user_pwcheck').keyup(function(event){
+	                    
+	                    var passwordCheck = $('#user_pwcheck').val();
+	                    var password = $('#user_pw').val();
+	                    var divPasswordCheck = $('#divPasswordCheck');
+	                    
+	                    if((passwordCheck=="") || (password!=passwordCheck)){
+	                        divPasswordCheck.removeClass("has-success");
+	                        divPasswordCheck.addClass("has-error");
+	                    }else{
+	                        divPasswordCheck.removeClass("has-error");
+	                        divPasswordCheck.addClass("has-success");
+	                    }
+	                });
+				 
+				 
                 
                 
                 
@@ -181,6 +228,8 @@
                 	var divId = $('#divId');               
                     var divEmail = $('#divEmail');
                     var mail_check_input_box_false = $('#mail_check_input_box_false');
+                    var divPassword = $('#divPassword');
+                    var divPasswordCheck = $('#divPasswordCheck');
                     
                     
              
@@ -249,6 +298,50 @@
                     }
                     
                     
+                  //패스워드 검사
+                    if($('#user_pw').val()==""){
+                        modalContents.text("패스워드를 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                        
+                        divPassword.removeClass("has-success");
+                        divPassword.addClass("has-error");
+                        $('#user_pw').focus();
+                        return false;
+                    }else{
+                        divPassword.removeClass("has-error");
+                        divPassword.addClass("has-success");
+                    }
+                    
+                    
+                  //패스워드 확인
+                    if($('#user_pwcheck').val()==""){
+                        modalContents.text("패스워드 확인을 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                        
+                        divPasswordCheck.removeClass("has-success");
+                        divPasswordCheck.addClass("has-error");
+                        $('#user_pwCheck').focus();
+                        return false;
+                    }else{
+                        divPasswordCheck.removeClass("has-error");
+                        divPasswordCheck.addClass("has-success");
+                    }
+                  
+                    //패스워드 비교
+                    if($('#user_pw').val()!=$('#user_pwcheck').val() || $('#user_pwcheck').val()==""){
+                        modalContents.text("패스워드가 일치하지 않습니다.");
+                        modal.modal('show');
+                        
+                        divPasswordCheck.removeClass("has-success");
+                        divPasswordCheck.addClass("has-error");
+                        $('#user_pwcheck').focus();
+                        return false;
+                    }else{
+                        divPasswordCheck.removeClass("has-error");
+                        divPasswordCheck.addClass("has-success");
+                    }
+                    
+                    
                 });
                 
             });
@@ -289,6 +382,36 @@
             	
             });
             
+            
+            
+            
+	       $('#user_id').on("ropertychange change keyup paste input",function(){
+            	
+            	
+            	$.ajax({
+        			url : "/user/idcheck",
+        			type : "post",
+        			dataType : "json",
+        			data : { "user_id" : $("#user_id").val()},
+        			success : function(data) {
+        				if(data == 0) {
+        					$("#id_check").text("ID 있음");
+    						$("#id_check").css("color", "green");
+        						
+        					
+        				} else if(data == 1) {
+        					
+        					
+        					$("#id_check").text("아이디 없음");
+    						$("#id_check").css("color", "red");
+        					
+        					
+        				}
+        			}
+        		}); 
+            	
+            }); 
+            
            
             
             /* 인증번호 비교 */
@@ -299,7 +422,9 @@
             	
             	if(inputCode == code){							// 일치할 경우
             		$("#email_check").text("인증번호 일치");
-            		$("#email_check").css("color", "green");		
+            		$("#email_check").css("color", "green");
+            		$("#user_pw").attr("disabled",false);
+            		$("#user_pwcheck").attr("disabled",false);
             		
             	} else {											// 일치하지 않을 경우
             		$("#email_check").text("인증번호 불일치");

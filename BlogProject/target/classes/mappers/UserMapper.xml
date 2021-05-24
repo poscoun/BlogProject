@@ -69,6 +69,25 @@
   where user_id = #{user_id} and user_email = #{user_email}
   </update>
    
+   
+   <update id="userupdate">
+   <![CDATA[
+   update user
+   set user_name = #{user_name}, user_pw = #{user_pw}, user_birth = #{user_birth},
+       user_email = #{user_email}, user_phone = #{user_phone}, user_gender = #{user_gender}
+       where user_id = #{user_id}, and user_pw = {user_pw}  
+   ]]>
+   
+   </update>
+   
+   <select id="information" resultType="com.gblog.dto.UserDTO">
+   <![CDATA[
+   	select user_id, user_name, user_birth, user_phone, user_email, user_gender, user_date
+   	from user
+   	where user_id = #{user_id}
+   ]]>
+   
+   </select>
   
   
   

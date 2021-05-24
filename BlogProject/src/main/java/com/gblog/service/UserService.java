@@ -17,4 +17,6 @@ public interface UserService {
 	public UserDTO pwselect(UserDTO udto)throws Exception;
 	
 	public void modify(UserDTO udto) throws Exception;
+	
+	public UserDTO information(UserDTO udto) throws Exception;
 }

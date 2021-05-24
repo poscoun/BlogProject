@@ -51,6 +51,11 @@ public class UserServicelmpl implements UserService{
 		udao.modify(udto);
 		
 	}
+	@Override
+	public UserDTO information(UserDTO udto) throws Exception {
+		// TODO Auto-generated method stub
+		return udao.information(udto);
+	}
 	
 	
 	

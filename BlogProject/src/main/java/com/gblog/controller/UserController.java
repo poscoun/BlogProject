@@ -283,6 +283,32 @@ public class UserController {
 	
 	
 	
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public void modify( Model model)throws Exception{
+		LOGGER.info("get User register");		
+	}
+	
+	
+	//비밀번호 수정???
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modify(UserDTO udto) throws Exception{
+		
+		String rawPw = "";			// 인코딩 전 비밀번호
+		String encodePw = "";		// 인코딩 후 비밀번호
+		
+		rawPw = udto.getUser_pw();			// 비밀번호 데이터 얻음
+		encodePw = pwEncoder.encode(rawPw);		// 비밀번호 인코딩
+		udto.setUser_pw(encodePw);			// 인코딩된 비밀번호 member객체에 다시 저장
+		
+		/* 회원가입 쿼리 실행 */
+		usvc.modify(udto);
+		
+		return "redirect:/user/login";
+		
+	
+	}
+	
+	
 	
 	
 	

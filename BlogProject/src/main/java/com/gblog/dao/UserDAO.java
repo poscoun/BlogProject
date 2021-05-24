@@ -21,5 +21,9 @@ public interface UserDAO {
 	//비번 찾기
 	public UserDTO pwselect(UserDTO udto)throws Exception;
 	
+	//비밀번호 뭐지?? 새로 발급 ㄱㄱ 
 	public void modify(UserDTO udto) throws Exception;
+	
+	//회원정보요
+	public UserDTO information(UserDTO udto) throws Exception;
 }

@@ -11,7 +11,7 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
-	<link rel="stylesheet"  href="/resources/css/member/login.css">
+	<link rel="stylesheet"  href="/resources/css/member/login.css?ver=1">
 </head>
 <body width="100%" height="100%">
     <form action="index.html" method="post" class="loginForm" id="login_form">
@@ -41,12 +41,15 @@
   		$("#login_form").submit();
   		
   	});
+      
+      
+      
       	
       </script>
       
       
       <div class="bottomText">
-      <a href="/user/idselect">	ID 찾기 </a> | <a href="#"> PW 찾기 </a> | <a href="/user/join"> 회원가입 </a>
+      <a href="/user/idselect">	Forget ID </a> | <a href="/user/modify"> Forget PW </a> | <a href="/user/join"> Sing in </a>
       </div>
     </form>
   </body>

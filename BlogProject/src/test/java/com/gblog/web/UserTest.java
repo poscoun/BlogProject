@@ -79,13 +79,22 @@ public class UserTest {
 //		//udao.idselect("wl960407@naver.com");
 //	}
 	
+//	@Test
+//	public void modifyTest() throws Exception{
+//		UserDTO udto = new UserDTO();
+//		udto.setUser_id("test");
+//		udto.setUser_email("wl960407@naver.com");
+//		udto.setUser_pw("123456");
+//		udao.modify(udto);
+//		
+//	}
+	
 	@Test
-	public void modifyTest() throws Exception{
+	public void inforTest()throws Exception{
 		UserDTO udto = new UserDTO();
+		
 		udto.setUser_id("test");
-		udto.setUser_email("wl960407@naver.com");
-		udto.setUser_pw("123456");
-		udao.modify(udto);
+		udao.information(udto);
 		
 	}
 	
