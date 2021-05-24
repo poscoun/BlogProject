@@ -2,11 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%-- <%@ include file="../include/siderbar.jsp" %> --%>
+<%@ include file="../include/header.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>board</title>
+<title>카테고리 목록</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -54,6 +57,7 @@
 	}
 
 </script>
+
 </head>
 <body>
 <form action="./create" name="create" method="post">
@@ -70,8 +74,8 @@
 	<table>
 		<thead>
 			<tr>
-				<th>카테고리 ID</th>
-				<th>카테고리명</th>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -84,7 +88,7 @@
 						<tr> 
 						 	<!-- checked="checked" 사용시 defualt 값 없이 자동으로 체크 -->
 							<td><input type="radio" name="category_id" value="${cdto.category_id}" checked="checked"/><c:out value="${cdto.category_id}"/></td>
-							<td><a href="#" onclick=""><c:out value="${cdto.category_name}"/></a></td>
+							<td><c:out value="${cdto.category_name}"/></td>
 						</tr>
 					</c:forEach>
 				</c:when>

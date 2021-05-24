@@ -9,7 +9,7 @@ public interface CategoryDAO {
 	
 	public void Delete(Integer category_id) throws Exception; 	// 카테고리 삭제
 	
-	public List<CategoryDTO> CategoryList(String sid) throws Exception;	 // 카테고리 목록 
+	public List<CategoryDTO> CategoryList() throws Exception;	 // 카테고리 목록 
 	
 
 }
