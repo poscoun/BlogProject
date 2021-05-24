@@ -23,6 +23,17 @@ public class CategoryController {
 	@Inject
 	private CategoryService csvc;
 	
+	// 카테고리 리스트
+	@RequestMapping(value = "/category", method = RequestMethod.GET)
+	public String CategoryList(Model model) throws Exception {
+		LOGGER.info("----- list 출력 -----");
+		
+		model.addAttribute("CategoryList", csvc.CategoryList(null));
+		
+		return "category/category";
+		
+	}
+
 	// 카테고리 생성
 	@RequestMapping(value= "/create", method = RequestMethod.GET)
 	public void createGET(CategoryController cdto, Model model) throws Exception{
@@ -42,16 +53,8 @@ public class CategoryController {
 		return "redirect:/category/list";
 	}
 	
-	// 카테고리 리스트
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String CategoryList(Model model) throws Exception {
-		LOGGER.info("----- list 출력 -----");
-		
-		model.addAttribute("CategoryList", csvc.CategoryList(null));
-		
-		return "category/delete";
-		
-	}
+	
+	// 카테고리 에디터 리스트
 	
 	// 카테고리 삭제
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -64,6 +67,7 @@ public class CategoryController {
 		
 		return "redirect:/category/list";
 	}
+	
 	
 	
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>board</title>
+<title>카테고리 목록</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -70,8 +70,8 @@
 	<table>
 		<thead>
 			<tr>
-				<th>카테고리 ID</th>
-				<th>카테고리명</th>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
