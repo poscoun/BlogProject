@@ -1,4 +1,4 @@
-package com.gblog.controller;
+package com.gblog.web;
 
 
 import javax.inject.Inject;
