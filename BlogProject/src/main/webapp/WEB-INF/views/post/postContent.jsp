@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>postContent</title>
-<script src="/resources/ckeditor/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function(){

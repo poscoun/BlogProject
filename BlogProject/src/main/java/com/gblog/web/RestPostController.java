@@ -21,7 +21,7 @@ import com.gblog.service.PostService;
 @RequestMapping(value = "/restPost/*")
 public class RestPostController {
 
-	private static final Logger logger = LoggerFactory.getLogger(PostController.class);
+	private static final Logger logger = LoggerFactory.getLogger(RestPostController.class);
 	
 	@Inject
 	private PostService psvc;

@@ -9,7 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>board</title>
-<script src="/resources/ckeditor/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+<!-- <script src="/resources/ckeditor/ckeditor.js"></script> -->
 <script>
 	
 	$(document).on('click', '#btnSave', function(e) {
@@ -36,6 +37,14 @@
 		}
 	});
 </script>
+<style type="text/css">
+	.ck.ck-editor {
+		max-width: 100%;
+	}
+	.ck-editor__editable{
+		min-height: 300px;
+	}
+</style>
 </head>
 <body>
 	<article>
@@ -73,10 +82,25 @@
 		</div>
 	</article>
 	<script type="text/javascript">
-	CKEDITOR.replace( 'content',{
+	
+	ClassicEditor 
+    .create( document.querySelector( '#content' ),{ 	// textarea의 id
+    	lanuage: 'ko',
+    	ckfinder: {
+    		uploadUrl: 'post/postForm/fileUpload'  // 내가 지정한 업로드 url (post로 요청감)
+    	}
+    })
+    .then( editor => { 
+        console.log( editor ); 
+    } ) 
+    .catch( error => { 
+        console.error( error ); 
+    } );
+
+	/* CKEDITOR.replace( 'content',{
 		width:'780',
 		height:'300'
-	});
+	}); */
 	
 	/* var editorContent = CKEDITOR.instances.content.getData();
 	var convertContent = editorContent.replace(/(<([^>]+)>)/ig,"");

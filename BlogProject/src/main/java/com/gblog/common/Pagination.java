@@ -1,8 +1,8 @@
 package com.gblog.common;
 
 public class Pagination {
-	private int listSize = 10;  // 한 페이지당 보여질 리스트의 개수
-	private int rangeSize = 10; // 한 페이지에 보여질 페이지 개수(범위)
+	private int listSize = 5;  // 한 페이지당 보여질 리스트의 개수
+	private int rangeSize = 5; // 한 페이지에 보여질 페이지 개수(범위)
 	private int page;		// 현재 목록의 페이지 번호
 	private int range;		// 현재 페이지 범위 정보
 	private int listCnt;	// 전체 게시물의 개수

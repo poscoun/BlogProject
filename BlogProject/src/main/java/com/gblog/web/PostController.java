@@ -31,6 +31,37 @@ public class PostController {
 	@Inject
 	private PostService psvc;
 	
+	@RequestMapping(value = "/getList", method = RequestMethod.GET)
+	public String getList(Model model,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range,
+			@RequestParam(required = false) String keyword,
+			@ModelAttribute("search") Search search
+			) throws Exception {
+		
+		logger.info("list 출력");
+		
+		//검색
+		model.addAttribute("search", search);
+		search.setKeyword(keyword);
+		
+		// 전체 게시글 개수
+		int listCnt = psvc.getPostListCnt(search);
+		
+		search.pageInfo(page, range, listCnt);
+		
+		// Pagination 객체 생성
+		//Pagination pgn = new Pagination();
+		//pgn.pageInfo(page, range, listCnt);
+		
+		// 페이징
+		model.addAttribute("pagination", search);
+		//게시글 화면 출력
+		model.addAttribute("list", psvc.getPostList(search));
+		
+		return "post/getList";
+	}
+	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model,
 			@RequestParam(required = false, defaultValue = "1") int page,
@@ -122,4 +153,6 @@ public class PostController {
 		psvc.deletePost(post_id);
 		return "redirect:/post/list";
 	}
+	
+	
 }
