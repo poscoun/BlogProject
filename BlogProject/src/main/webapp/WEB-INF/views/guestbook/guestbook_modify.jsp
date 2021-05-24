@@ -2,13 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>방명록</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
 	$(document).ready(function(){
 		
@@ -46,34 +41,27 @@
 			height: 220px;
 		}
 </style>
-</head>
-<body>	
-	<div id="wrap">
-		<br>
-		<b><font size="5" color="gray">방명록</font></b>
-		<hr size="1" width="700">
-		<br>
-	
-		<!-- 글 등록 부분 시작-->
-		<div id="writeGuestForm">
-			<form name="guestbookInfo" method="post">
-				<table width="700">
-					<tr>
-						<td>
-							<label>${guestbookDTO.user_id }</label>
-						</td>
-					</tr>
-					<tr><td colspan="4">&nbsp;</td></tr>
-					<tr>
-						<td colspan="4">
-							<textarea rows="7" cols="80" name="guest_content" style="resize: none">${guestbookDTO.guest_content }</textarea>
-						</td>
-					</tr>
-				</table>
-				<button id="guestbookmodify" class="btn btn-light" >확인</button>
-				<button id="guestcencle" class="btn btn-light">돌아가기</button>
-			</form>
+<div id="colorlib-main">
+	<div class="ftco-section" style="padding: 3em 1.8em; margin-right: 20%;">
+		<div id="wrap" style="width: 85%;">
+			<b><font size="5" color="gray">방명록</font></b>
+			<hr />
+			<div id="writeGuestForm">
+				<form name="guestbookInfo" method="post">
+					<div class="form-group">
+						<!-- <input type="hidden" name="user_id" id="user_id" /> -->
+						<label>${guestbookDTO.user_id }</label>
+						<hr />
+						<textarea rows="7" cols="80" style="resize: none" class="form-control" name="guest_content">${guestbookDTO.guest_content }</textarea>
+					</div>
+					<button id="guestbookreg" class="btn btn-light" >확인</button>
+					<button id="guestcencle" class="btn btn-light">돌아가기</button>
+				</form>
+			</div>
 		</div>
 	</div>
-</body>
-</html>
+</div>
+<br />
+<br />
+<br />
+<br />

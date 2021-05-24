@@ -23,9 +23,10 @@
 function checkValue(guest_id){
     var form = document.replyInfo;
 
-    if(form.guest_rp_content.value.lengh == 0)
+    if(!form.guest_rp_content.value)
     {
         alert("내용을 입력하세요.");
+        $('#guest_rp_text').focus();
         return false;
     }
     else
@@ -41,23 +42,23 @@ function checkValue(guest_id){
     }
 }
 </script>
-
 </head>
 <body>
 	<div id="wrap">
 		<br>
 		<b><font size="5" color="gray">답글</font></b>
 		<hr size="1" width="700">
-		<br>
 	
 		<!-- 답글 등록 부분 시작-->
 		<div id="writeReplyForm">
 			<form name="replyInfo" target="replyForm" id="replyInfo" method="post">
 				<!-- 부모 방명록의 정보를 같이 전송한다. -->
 				<div class="form-group">
-					<input type="text" name="user_id" id="user_id" placeholder="세션에서 가져올 아이디" />
+					<input type="hidden" name="user_id" id="user_id" />
+					<label>세션에서 가져올 아이디</label>
+					<input type="text" name="user_id" id="user_id" class="form-control" style="width: 30%; display: inline;" />
 					<hr />
-	  				<textarea rows="7" cols="80" style="resize: none" class="form-control" name="guest_rp_content"></textarea>
+	  				<textarea rows="7" cols="80" style="resize: none" class="form-control" name="guest_rp_content" id="guest_rp_text"></textarea>
 				</div>
 				<br>
 				<input type="button" value="확인" id="replyInsert" onclick="checkValue(${guest_id})" class="btn btn-light">

@@ -91,7 +91,7 @@ public class GuestbookServiceImple implements GuestbookService{
 	@Override
 	public int visitToday() throws Exception {
 		// TODO Auto-generated method stub
-		return gvdao.visitTotal();
+		return gvdao.visitToday();
 	}
 
 }
