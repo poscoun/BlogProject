@@ -41,8 +41,33 @@
   
   
   
- 
+ <!-- 아이디 찾기 -->
+  <select id="idselect" resultType="com.gblog.dto.UserDTO">
+  <![CDATA[
+  select user_id 
+  from user
+  where user_name = #{user_name} and
+  user_email = #{user_email}
   
+  ]]>
+  </select>
+  
+  
+  <select id="pwselect" resultType="com.gblog.dto.UserDTO">
+  <![CDATA[
+  select user_pw
+  from user
+  where user_id = #{user_id} and
+  user_email = #{user_email}
+  ]]>
+  </select>
+  
+  
+  <update id="modify">
+  update user
+  set user_pw = #{user_pw}
+  where user_id = #{user_id} and user_email = #{user_email}
+  </update>
    
   
   

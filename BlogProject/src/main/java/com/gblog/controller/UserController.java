@@ -16,6 +16,8 @@ import com.gblog.service.UserService;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
+import java.util.Base64.Decoder;
+import java.util.List;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -23,6 +25,7 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +45,7 @@ public class UserController {
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
 	
+	
 	//아이디 중복확인
 	@ResponseBody
 	@RequestMapping(value = "/idcheck", method = RequestMethod.POST)
@@ -49,6 +53,55 @@ public class UserController {
 		int result = usvc.idcheck(udto);
 		return result;
 	}
+	
+		@RequestMapping(value = "/idselect", method = RequestMethod.GET)
+		public void idselect( Model model)throws Exception{
+			LOGGER.info("get User register");		
+		}
+	
+	
+	
+	//아이디 찾기
+	@RequestMapping(value = "/idselect", method = RequestMethod.POST)
+	public String idselect(UserDTO udto, Model model) throws Exception{
+		UserDTO user = usvc.idselect(udto);
+		
+		if(user == null) { 
+			model.addAttribute("check", 1);
+		} else { 
+			model.addAttribute("check", 0);
+			model.addAttribute("id", user.getUser_id());
+		}
+		
+		return "user/home";
+		
+	}
+	
+	
+		//
+			@RequestMapping(value = "/pwselect", method = RequestMethod.GET)
+			public void pwselect( Model model)throws Exception{
+				LOGGER.info("get User register");		
+			}
+		
+		
+		
+		//아이디 찾기
+		@RequestMapping(value = "/pwselect", method = RequestMethod.POST)
+		public String pwselect(UserDTO udto, Model model) throws Exception{
+			UserDTO user = usvc.pwselect(udto);
+			
+			if(user == null) { 
+				model.addAttribute("check", 1);
+			} else { 
+				model.addAttribute("check", 0);
+				model.addAttribute("pw", user.getUser_pw());
+			}
+			
+			return "user/home";
+			
+		}
+	
 	
 	
 	
@@ -100,7 +153,7 @@ public class UserController {
 			// TODO: handle exception
 			throw new RuntimeException();
 		}
-		return "redirect:/";
+		return "redirect:/user/login";
 	}
 	
 	
@@ -163,6 +216,7 @@ public class UserController {
 		HttpSession session = request.getSession();
 		String rawPw = "";
 		String encodePw = "";
+		
 	
 		UserDTO lvo = usvc.login(udto);	// 제출한아이디와 일치하는 아이디 있는지 
 		
@@ -177,7 +231,9 @@ public class UserController {
 			
 				
 				
-				lvo.setUser_pw("");					// 인코딩된 비밀번호 정보 지움
+				
+				lvo.setUser_pw("");					// 인코딩된 비밀번호 정보 지움				
+				
 				session.setAttribute("udto", lvo); 	// session에 사용자의 정보 저장
 				return "redirect:/user/join";		// 메인페이지 이동  --> 나중에 메인으로 변경해야함 
 				
@@ -212,6 +268,18 @@ public class UserController {
 //    }
 	
 	
+	
+	@RequestMapping(value="/logout", method=RequestMethod.POST)
+    @ResponseBody
+    public void logoutPOST(HttpServletRequest request) throws Exception{
+    	
+    	LOGGER.info("비동기 로그아웃 메서드 진입");
+    	
+    	HttpSession session = request.getSession();
+    	
+    	session.invalidate();
+    	
+    }
 	
 	
 	

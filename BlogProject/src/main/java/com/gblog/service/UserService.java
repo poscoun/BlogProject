@@ -1,5 +1,7 @@
 package com.gblog.service;
 
+import java.util.List;
+
 import com.gblog.dto.UserDTO;
 
 public interface UserService {
@@ -10,5 +12,9 @@ public interface UserService {
 	
 	public UserDTO login(UserDTO udto) throws Exception;
 	
-
+	public UserDTO idselect(UserDTO udto) throws Exception;
+	
+	public UserDTO pwselect(UserDTO udto)throws Exception;
+	
+	public void modify(UserDTO udto) throws Exception;
 }

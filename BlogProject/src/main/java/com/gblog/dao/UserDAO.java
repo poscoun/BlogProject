@@ -2,6 +2,8 @@ package com.gblog.dao;
 
 
 
+import java.util.List;
+
 import com.gblog.dto.UserDTO;
 
 public interface UserDAO {
@@ -13,4 +15,11 @@ public interface UserDAO {
 	public UserDTO login(UserDTO udto) throws Exception;
 
 		
+	//아이디 찾기
+	public UserDTO idselect(UserDTO udto) throws Exception;
+	
+	//비번 찾기
+	public UserDTO pwselect(UserDTO udto)throws Exception;
+	
+	public void modify(UserDTO udto) throws Exception;
 }

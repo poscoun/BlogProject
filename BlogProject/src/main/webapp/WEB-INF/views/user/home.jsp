@@ -10,8 +10,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="box1">
-					<h3>Spring Board</h3>
-				
+						<c:if test="${check == 0 }">
+						<label>찾으시는 아이디는' ${pw}' 입니다.</label>
+						</c:if>
+								
 				</div>
 			
 			</div>

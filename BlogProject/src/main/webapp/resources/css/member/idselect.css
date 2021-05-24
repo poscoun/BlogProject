@@ -40,7 +40,7 @@ body {
   padding: 10px 10px;
 }
 
-.id {
+.name {
   width: 100%;
   border:none;
   outline:none;
@@ -50,7 +50,7 @@ body {
   background: none;
 }
 
-.pw {
+.email {
   width: 100%;
   border:none;
   outline:none;

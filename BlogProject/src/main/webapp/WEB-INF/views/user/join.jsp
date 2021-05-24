@@ -25,14 +25,7 @@
         <div class="container"><!-- 좌우측의 공간 확보 -->
             <!-- 헤더 들어가는 부분 -->
             
-            <div class="row">
-                <p></p>
-                <div class="col-md-12">
-                    <small>
-                    <a href="#">로그인</a> | <a href="#">회원가입</a>
-                    </small>
-                </div>
-            </div>
+            
             <!--// 헤더 들어가는 부분 -->
             <!-- 모달창 -->
             <div class="modal fade" id="defaultModal">
@@ -101,11 +94,14 @@
 					<sapn class="mail_input_box_warn"></sapn>                    
                  <div class="mail_check_wrap">
 					<div class="mail_check_input_box" id="mail_check_input_box_false">
-						<input class="mail_check_input" id="mailcheck" disabled="disabled">
+					<br>
+					&nbsp;&nbsp;&nbsp;<input class="mail_check_input" id="mailcheck" disabled="disabled">
 						<div class="check_font" id="email_check"></div>
 					</div>
+					
 					<div class="email_check_button">
-						<input type="button" class="btn btn-primary" id="email_check_button" name="email_check_button" value="인증번호 전송"> 
+					<br>
+					&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" id="email_check_button" name="email_check_button" value="인증번호 전송"> 
 					</div>
 					<div class="clearfix"></div>
 					<span id="mail_check_input_box_warn"></span>
@@ -431,7 +427,7 @@
                     
                     
                     
-                    /* //이메일
+                     //이메일
                     if($('#mailcheck').val()==""){
                         modalContents.text("인증번호 확인해줘.");
                         modal.modal('show');
@@ -443,7 +439,7 @@
                     }else{
                     	mail_check_input_box_false.removeClass("has-error");
                     	mail_check_input_box_false.addClass("has-success");
-                    } */
+                    } 
                     
                     
                     //이메일 체크 

@@ -1,5 +1,7 @@
 package com.gblog.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -31,8 +33,19 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("login",udto);
 	}
-	
-	
-
-	
+	@Override
+	public UserDTO idselect(UserDTO udto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("idselect", udto);
+	}
+	@Override
+	public UserDTO pwselect(UserDTO udto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("pwselect", udto);
+	}
+	@Override
+	public void modify(UserDTO udto) throws Exception {
+		// TODO Auto-generated method stub
+		 sqlSession.update("modify", udto);
+    }
 }

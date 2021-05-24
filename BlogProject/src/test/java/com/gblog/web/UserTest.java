@@ -52,17 +52,40 @@ public class UserTest {
 //		udao.idcheck(id2);	
 //	}
 	
+//	@Test
+//	public void logintest()throws Exception{
+//		
+//		UserDTO udto = new UserDTO();
+//		
+//		udto.setUser_id("login11");
+//		
+//		
+//		udao.login(udto);
+//		System.out.println("결과 값 : " + udao.login(udto));
+//		
+//		
+//	}
+	
+//	@Test
+//	public void idselectTest() throws Exception{
+//		
+//		UserDTO udto = new UserDTO();
+//		
+//		
+//		udto.setUser_name("테스트");
+//		udto.setUser_email("wl960407@naver.com");
+//		udao.idselect(udto);
+//		//
+//		//udao.idselect("wl960407@naver.com");
+//	}
+	
 	@Test
-	public void logintest()throws Exception{
-		
+	public void modifyTest() throws Exception{
 		UserDTO udto = new UserDTO();
-		
-		udto.setUser_id("login11");
-		
-		
-		udao.login(udto);
-		System.out.println("결과 값 : " + udao.login(udto));
-		
+		udto.setUser_id("test");
+		udto.setUser_email("wl960407@naver.com");
+		udto.setUser_pw("123456");
+		udao.modify(udto);
 		
 	}
 	
