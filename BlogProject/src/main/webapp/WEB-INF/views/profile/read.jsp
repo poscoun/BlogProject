@@ -13,7 +13,7 @@
 		$(document).ready(function(){
 			var frmObj = $('form[role="form"]');
 			
-			//console.log(frmObj);
+			
 			
 			$('.btn_m').click(function(){
 				frmObj.attr('action', 'modify');
@@ -22,13 +22,14 @@
 			});
 			
 			
-			$('.btn_d').click(function(){
+			$(".btn_d").click(function(){
 				var con = confirm("삭제하시겠습니까?");
-				if (con){
-					frmObj.attr("action", "remove");
+				if(con) {
+					frmObj.attr("action", "delete");
 					frmObj.submit();
-				}
+				}		
 			});
+			
 		});	 
 		
 	</script>

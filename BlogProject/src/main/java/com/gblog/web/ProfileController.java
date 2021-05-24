@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gblog.dto.ProfileDTO;
@@ -51,13 +52,27 @@ public class ProfileController {
 	 public String modifyPOST (ProfileDTO pdto, RedirectAttributes reAttr) throws Exception{
 		 LOGGER.info(".....modifyPOST.....");
 		 
+
+		 
+		 
 		 psvc.modify(pdto);
 		 
-		 reAttr.addFlashAttribute("result", "success");
+		 reAttr.addFlashAttribute("result", "수정되었습니다.");
 		 
 		 return "redirect:/profile/list";
 	 }
 	 
+	 
+	 
+	 @RequestMapping(value = "/delete", method = RequestMethod.POST)
+		public String delPage(@RequestParam("user_id") String user_id) throws Exception{
+		 	LOGGER.info(".....remove.....");
+		 
+			psvc.remove(user_id);	
+			
+			return "redirect:/profile/list";
+			
+		}
 	 
 
 	 

@@ -17,7 +17,7 @@
 		
 	<update id="update" >
 		update profile
-		set profile_content = #{profile_content}, profile_sns = #{profile_sns}, profile_phone = #{profile_phone}
+		set profile_content = #{profile_content}, profile_sns = #{profile_sns}, profile_phone = #{profile_phone}, profile_photo = #{profile_photo}
 		where user_id = #{user_id}
 	</update>
 	

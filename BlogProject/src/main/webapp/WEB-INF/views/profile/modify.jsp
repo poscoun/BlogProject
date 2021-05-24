@@ -32,7 +32,8 @@
 </head>
 <body>
 	
-<form method="post" role="form">
+<form method="post" role="form" enctype="multipart/form-data">
+
 	 <input type="hidden" name="user_id" value="${profileDTO.user_id }" /> 
 
 
@@ -43,6 +44,7 @@
        		<th>profile_content</th>
         	<th>profile_sns</th>
         	<th>profile_phone</th>
+        	<th>profile_photo</th>
         	<th>profile_date</th>
       	</tr>
     	</thead>
@@ -50,11 +52,12 @@
 		<tbody>
     	<tr>
     		<td>
-    			<input type="text" name="user_id" value="${profileDTO.user_id }" readonly="readonly" />
+    			<c:out value="${profileDTO.user_id }" />
     		</td>	
-			<td><input type="text" name="profiile_content" value="${profileDTO.profile_content }" /></td>
-			<td><input type="text" name="profiile_sns" value="${profileDTO.profile_sns }" /></td>
-			<td><input type="text" name="profiile_phone" value="${profileDTO.profile_phone }" /></td>
+			<td><input type="text" name="profile_content" value="${profileDTO.profile_content }" /></td>
+			<td><input type="text" name="profile_sns" value="${profileDTO.profile_sns }" /></td>
+			<td><input type="text" name="profile_phone" value="${profileDTO.profile_phone }" /></td>
+			<td><input type="file" name="upload"/></td>
 			<td>
 				<fmt:formatDate value="${profileDTO.profile_date }" pattern="yyyy/MM/dd"/>
 			</td>	
