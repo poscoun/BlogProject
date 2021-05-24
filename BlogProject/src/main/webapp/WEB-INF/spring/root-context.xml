@@ -26,14 +26,6 @@
 </bean>
 
 	<context:component-scan base-package="com.gblog.dao" />
-<<<<<<< HEAD
-=======
-	
->>>>>>> e518a851ee4b91323380260f8a215f52ddc09660
-	<context:component-scan base-package="com.gblog.service" />
-	<context:component-scan base-package="com.gblog.advice" />
-		
-	<context:component-scan base-package="com.gblog.dao" />
 	<context:component-scan base-package="com.gblog.service" />
 	<context:component-scan base-package="com.gblog.advice" />
 		

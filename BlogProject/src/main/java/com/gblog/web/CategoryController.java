@@ -28,20 +28,12 @@ public class CategoryController {
 	public String CategoryList(Model model) throws Exception {
 		LOGGER.info("----- list 출력 -----");
 		
-<<<<<<< HEAD:BlogProject/src/main/java/com/gblog/web/CategoryController.java
 		model.addAttribute("CategoryList", csvc.CategoryList());
-=======
-		model.addAttribute("CategoryList", csvc.CategoryList(null));
->>>>>>> e518a851ee4b91323380260f8a215f52ddc09660:BlogProject/src/main/java/com/gblog/controller/CategoryController.java
 		
 		return "category/category";
 		
 	}
-<<<<<<< HEAD:BlogProject/src/main/java/com/gblog/web/CategoryController.java
 	
-=======
-
->>>>>>> e518a851ee4b91323380260f8a215f52ddc09660:BlogProject/src/main/java/com/gblog/controller/CategoryController.java
 	// 카테고리 생성
 	@RequestMapping(value= "/create", method = RequestMethod.GET)
 	public void createGET(CategoryController cdto, Model model) throws Exception{
@@ -61,7 +53,6 @@ public class CategoryController {
 		return "redirect:/category/edit";
 	}
 	
-<<<<<<< HEAD:BlogProject/src/main/java/com/gblog/web/CategoryController.java
 	// 카테고리 에디터
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String CategoryEdit(Model model) throws Exception {
@@ -71,10 +62,6 @@ public class CategoryController {
 		
 		return "/category/delete";
 	}
-=======
-	
-	// 카테고리 에디터 리스트
->>>>>>> e518a851ee4b91323380260f8a215f52ddc09660:BlogProject/src/main/java/com/gblog/controller/CategoryController.java
 	
 	// 카테고리 삭제
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -87,7 +74,6 @@ public class CategoryController {
 		
 		return "redirect:/category/edit";
 	}
-	
 	
 	
 }
