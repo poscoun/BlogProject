@@ -27,8 +27,24 @@
 			});
 
 		});	 
+		
+		
+		
+		
 	</script>
-
+	
+	 <script>
+  $("#profile_photo").change(function(){
+   if(this.files && this.files[0]) {
+    var reader = new FileReader;
+    reader.onload = function(data) {
+     $(".select_img img").attr("src", data.target.result).width(500);        
+    }
+    reader.readAsDataURL(this.files[0]);
+   }
+  });
+ </script>
+	
 </head>
 <body>
 	
@@ -57,14 +73,22 @@
 			<td><input type="text" name="profile_content" value="${profileDTO.profile_content }" /></td>
 			<td><input type="text" name="profile_sns" value="${profileDTO.profile_sns }" /></td>
 			<td><input type="text" name="profile_phone" value="${profileDTO.profile_phone }" /></td>
-			<td><input type="file" name="upload"/></td>
+			<td>
+				<input type="file" name="file" id="profile_photo" />
+			</td>
 			<td>
 				<fmt:formatDate value="${profileDTO.profile_date }" pattern="yyyy/MM/dd"/>
 			</td>	
-		</tr>	
+		</tr>
     	</tbody>
 	</table>
 
+	
+	<div id="image_list">
+		<img id="preview" src="#" width=200 height=300 name="profile_photo " />
+	</div>
+	<div class="select_img"><img src="" /></div>
+		
 	<div>
 		<button type="button" class="btn_s">저장하기</button>&nbsp;
 		<button type="button" class="btn_c">취소하기</button>
