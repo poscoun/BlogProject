@@ -1,4 +1,4 @@
-package com.gblog.controller;
+package com.gblog.web;
 
 import java.util.Locale;
 
