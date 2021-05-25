@@ -1,13 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>          
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+    
+    
+
+
+   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Welcome BookMall</title>
-<link rel="stylesheet" href="resources/css/main.css">
+<link rel="stylesheet" href="/resources/css/member/main.css?ver=1">
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -17,20 +22,57 @@
 
 <div class="wrapper">
 	<div class="wrap">
-		<div class="top_gnb_area">층
-		
-				
+		<div class="top_gnb_area">
+			<ul class="list">
+				<c:if test = "${udto == null}">	<!-- 로그인 x -->	
+					<li >
+						<a href="/user/login">로그인</a>
+					</li>
+					<li>
+						<a href="/user/join">회원가입</a>
+					</li>
+				</c:if>
+				<c:if test="${udto != null }">	<!-- 로그인 o -->		
+					
+					<li>
+						<a id="gnb_logout_button">로그아웃</a>
+					</li>
+					<li>
+						마이룸
+					</li>
+					<li>
+						장바구니
+					</li>
+				</c:if>				
+				<li>
+					고객센터
+				</li>			
+			</ul>			
+		</div>
+		<div class="top_area">
+			<!-- 로고영역 -->
+			<div class="logo_area">
+				<a href="/main"><img src="resources/img/mLogo.png"></a>
+			</div>
+			<div class="search_area">
+				<h1>Search area</h1>
+			</div>
+			<div class="login_area">
+			
+				<!-- 로그인 하지 않은 상태 -->
+				<c:if test = "${udto == null }">
+					<div class="login_button"><a href="/user/login">로그인</a></div>
+					<span><a href="/user/join">회원가입</a></span>				
+				</c:if>				
 				
 				<!-- 로그인한 상태 -->
-				
+				<c:if test="${ udto != null }">
 					<div class="login_success_area">
-					    <span>회원 : ${udto.user_id}</span>
 						<span>회원 : ${udto.user_name}</span>
-						<span>회원 : ${udto.user_phone}</span>
-						<span>회원 : ${udto.user_email}</span>
-						<a href="/user/userIn1">가라</a>
+						
+						<a href="/user/logout.do">로그아웃</a>
 					</div>
-			
+				</c:if>
 				
 			</div>
 			<div class="clearfix"></div>			
@@ -90,19 +132,13 @@
 		//alert("버튼 작동");
 		$.ajax({
 			type:"POST",
-			url:"/member/logout.do",
+			url:"/user/logout.do",
 			success:function(data){
 				alert("로그아웃 성공");
 				document.location.reload();	 
 			} 
 		}); // ajax 
 	});
-	
-	 $(function(){
-	      $('.p_icon').click(function(){
-	         location.href = 'productDetail?pID=${pdto.pID}'
-	      });
-	   });
 	
 </script>
 

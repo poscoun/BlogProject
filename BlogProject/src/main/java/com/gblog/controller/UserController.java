@@ -32,7 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Controller
-@RequestMapping("/user/*")
+@RequestMapping( "/user/*")
 public class UserController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 	
@@ -234,10 +234,9 @@ public class UserController {
 				
 				
 				
-				lvo.setUser_pw("");					// 인코딩된 비밀번호 정보 지움				
-				
+				lvo.setUser_pw("");	               // 인코딩된 비밀번호 정보 지움
 				session.setAttribute("udto", lvo); 	// session에 사용자의 정보 저장
-				return "/home";		// 메인페이지 이동  --> 나중에 메인으로 변경해야함 
+				return "redirect:/";		// 메인페이지 이동  --> 나중에 메인으로 변경해야함 
 				
 				
 			} else {
@@ -270,16 +269,36 @@ public class UserController {
 //    }
 	
 	
+	@RequestMapping(value="logout.do", method=RequestMethod.GET)
+    public String logoutMainGET(HttpServletRequest request) throws Exception{
+        
+        LOGGER.info("logoutMainGET메서드 진입");
+        
+        HttpSession session = request.getSession();
+        System.out.println(session);
+        
+        
+        session.invalidate();
+        System.out.println(session);
+        
+        return "redirect:/";        
+        
+    }
 	
-	@RequestMapping(value="/logout", method=RequestMethod.POST)
+	
+	
+	
+	@RequestMapping(value="logout.do", method=RequestMethod.POST)
     @ResponseBody
     public void logoutPOST(HttpServletRequest request) throws Exception{
     	
     	LOGGER.info("비동기 로그아웃 메서드 진입");
     	
     	HttpSession session = request.getSession();
+    	System.out.println(session);
     	
     	session.invalidate();
+    	System.out.println(session);
     	
     }
 	
