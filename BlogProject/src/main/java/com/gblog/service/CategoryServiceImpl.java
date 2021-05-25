@@ -36,5 +36,20 @@ public class CategoryServiceImpl implements CategoryService {
 		cdao.Delete(category_id);
 	}
 	
+	// 카테고리 수정
+	@Override
+	public void Update(CategoryDTO cdto) throws Exception {
+		// TODO Auto-generated method stub
+		cdao.Update(cdto);
+	}
+	
+	// 카티고리 정보
+	@Override
+	public CategoryDTO Read(Integer category_id) throws Exception {
+		// TODO Auto-generated method stub
+		return cdao.Read(category_id);
+			
+	}
+	
 
 }

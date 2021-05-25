@@ -40,6 +40,20 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return sqlSession.selectList(NAMESPACE+".CategoryList");
 	}
 	
+	// 카테고리 수정
+	@Override
+	public void Update(CategoryDTO cdto) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(NAMESPACE+".updateCategory", cdto);
+	}
+	
+	// 카테고리 정보
+	@Override
+	public CategoryDTO Read(Integer category_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+".readCategory", category_id);
+	}
+	
 
 
 }

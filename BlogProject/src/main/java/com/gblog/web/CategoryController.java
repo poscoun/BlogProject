@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gblog.dto.CategoryDTO;
+import com.gblog.dto.GuestbookDTO;
 import com.gblog.service.CategoryService;
 
 @Controller
@@ -75,5 +76,23 @@ public class CategoryController {
 		return "redirect:/category/edit";
 	}
 	
+	// 카테고리 수정 페이지
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public void ModifyGET(@RequestParam("category_id") Integer category_id, Model model) throws Exception {
+		
+		model.addAttribute(csvc.Read(category_id));
+		
+	}
+	
+	// 수정 처리
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String ModifyPOST(CategoryDTO cdto, RedirectAttributes reAttr) throws Exception {
+			
+		LOGGER.info("update 처리 중 ....");
+			
+		csvc.Update(cdto);
+			
+		return "redirect:/category/edit"; 
+	}
 	
 }

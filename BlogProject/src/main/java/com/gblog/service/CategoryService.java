@@ -11,5 +11,7 @@ public interface CategoryService {
 	
 	public void Delete(Integer category_id) throws Exception;		// 카테고리 삭제
 
-	
+	public void Update(CategoryDTO cdto) throws Exception;		// 카테고리 수정
+
+	public CategoryDTO Read(Integer category_id) throws Exception;		// 카테고리 정보
 }

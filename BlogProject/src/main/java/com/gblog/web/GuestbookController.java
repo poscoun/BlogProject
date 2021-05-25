@@ -76,6 +76,7 @@ public class GuestbookController {
 	public String guestUpdatePOST(GuestbookDTO gdto, RedirectAttributes reAttr) throws Exception {
 		
 		logger.info("update 처리 중 ....");
+		System.out.println(gdto.getGuest_id());
 		
 		gsvc.modify(gdto);
 		
