@@ -9,8 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>board</title>
-<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
-<!-- <script src="/resources/ckeditor/ckeditor.js"></script> -->
+<script src="https://cdn.ckeditor.com/4.16.1/standard-all/ckeditor.js"></script>
 <script>
 	
 	$(document).on('click', '#btnSave', function(e) {
@@ -32,19 +31,10 @@
 			$("input:hidden[name='mode']").val('<c:out value="${mode}"/>');
 			$("#reg_id").val('<c:out value="${postContent.user_id}"/>');
 			$("#title").val('<c:out value="${postContent.post_subj}"/>');
-			$("#content").val('${postContent.post_content})');
-
+			$("#content").val('${postContent.post_content}');
 		}
 	});
 </script>
-<style type="text/css">
-	.ck.ck-editor {
-		max-width: 100%;
-	}
-	.ck-editor__editable{
-		min-height: 300px;
-	}
-</style>
 </head>
 <body>
 	<article>
@@ -67,13 +57,8 @@
 				</div>
 				<div class="mb-3">
 					<label for="content">내용</label>
-					<form:textarea path="post_content" class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" />
-				</div>
-				<div class="mb-3">
-					<label for="tag">TAG</label> 
-					<!-- <input path="tag" class="form-control" name="tag" id="tag" placeholder="태그를 입력해 주세요" />
-					-->
-				</div>
+					<form:textarea path="post_content" class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" value="${postContent.post_content}" />
+				</div>				
 			</form:form>
 			<div>
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
@@ -83,29 +68,14 @@
 	</article>
 	<script type="text/javascript">
 	
-	ClassicEditor 
-    .create( document.querySelector( '#content' ),{ 	// textarea의 id
-    	lanuage: 'ko',
-    	ckfinder: {
-    		uploadUrl: 'post/postForm/fileUpload'  // 내가 지정한 업로드 url (post로 요청감)
-    	}
-    })
-    .then( editor => { 
-        console.log( editor ); 
-    } ) 
-    .catch( error => { 
-        console.error( error ); 
-    } );
-
-	/* CKEDITOR.replace( 'content',{
-		width:'780',
-		height:'300'
-	}); */
-	
-	/* var editorContent = CKEDITOR.instances.content.getData();
-	var convertContent = editorContent.replace(/(<([^>]+)>)/ig,"");
-	console.log(convertContent);
-	console.log(convertContent.length); */
+	var ckeditor_config = {
+		resize_enaleb : false,
+		enterMode : CKEDITOR.ENTER_BR,
+		shiftEnterMode : CKEDITOR.ENTER_P,
+		filebrowserUploadUrl : "/post/ckUpload",
+		uploadUrl: "/post/ckUpload"
+	};
+	CKEDITOR.replace('content', ckeditor_config);
 	
 	</script>
 </body>

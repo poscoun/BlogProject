@@ -9,6 +9,8 @@ public class PostDTO {
 	private Date post_reg;
 	private String user_id;
 	
+	private String post_img;
+	
 	public PostDTO() {
 	}
 
@@ -60,5 +62,13 @@ public class PostDTO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	
+
+	public String getPost_img() {
+		return post_img;
+	}
+
+	public void setPost_img(String post_img) {
+		this.post_img = post_img;
+	}
+
 }

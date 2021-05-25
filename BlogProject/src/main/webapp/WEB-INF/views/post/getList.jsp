@@ -118,6 +118,7 @@
                                                     </ul>
                                                 </li>
                                                 <li><a href="">guest</a></li>
+                                                <li><a href="">sign up</a></li>
                                                 
                                             </ul>
                                         </nav>

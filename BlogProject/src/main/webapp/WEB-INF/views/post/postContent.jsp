@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>postContent</title>
-<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+<script src="/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -181,7 +181,6 @@
 					${postDTO.post_content}
 					<%-- <textarea rows="" cols="" id="content" name="content"><c:out value="${postDTO.post_content}"/></textarea> --%>
 				</div>
-				<div class="board_tag">TAG : </div>
 			</div>
 			<div style="margin-top : 20px">
 				<button type="button" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
@@ -215,17 +214,5 @@
 			
 			</div>
 	</article>
-	<script type="text/javascript">
-	
-	/* 
-	CKEDITOR.replace( 'content',{
-		width:'780',
-		height:'300'
-	}); 
-	var editorContent = CKEDITOR.instances.content.getData();
-	var convertContent = editorContent.replace(/(<([^>]+)>)/ig,"");
-	console.log(convertContent); */
-	
-	</script>
 </body>
 </html>

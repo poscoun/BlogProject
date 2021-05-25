@@ -6,8 +6,8 @@
 <mapper namespace="com.gblog.dao.PostDAO">
 
 	<insert id="postInsert">
-		insert into blog_posts (post_subj, post_content, user_id)
-		value (#{post_subj}, #{post_content}, #{user_id})
+		insert into blog_posts (post_subj, post_content, user_id, post_img)
+		value (#{post_subj}, #{post_content}, #{user_id}, #{post_img})
 	</insert>
 	
 	<select id="postRead" resultType="com.gblog.dto.PostDTO">
@@ -17,7 +17,7 @@
 	
 	<update id="postUpdate">
 		update blog_posts
-		set post_subj = #{post_subj}, post_content = #{post_content}
+		set post_subj = #{post_subj}, post_content = #{post_content}, post_img=#{post_img}
 		where post_id = #{post_id}
 	</update>
 	

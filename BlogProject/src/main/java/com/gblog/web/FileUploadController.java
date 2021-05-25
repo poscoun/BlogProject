@@ -20,11 +20,11 @@ import com.gblog.dto.FileUploadDTO;
 public class FileUploadController {
 	private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 	
-	@RequestMapping(value="/post/postForm/fileUpload")
+	@RequestMapping(value="/post/fileUpload")
 	public String fileUpload(@ModelAttribute("fileUploadDTO") FileUploadDTO fileUploadDTO , 
 			HttpServletRequest request , Model model){
 		
-		logger.info("upload 들어온다! ");
+		logger.info("upload ..... ");
 		
         HttpSession session = request.getSession();
         String rootPath = session.getServletContext().getRealPath("/");
