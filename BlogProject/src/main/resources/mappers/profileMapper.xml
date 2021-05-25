@@ -5,27 +5,27 @@
   
 <mapper namespace="com.gblog.dao.ProfileDAO">
 	
-	<insert id="insert">
+	<insert id="insertProfile">
 		insert into profile (profile_content, profile_photo, profile_sns, profile_phone, user_id)
 		values (#{profile_content}, #{profile_photo}, #{profile_sns}, #{profile_phone}, #{user_id})
 	</insert>
 
-	<select id="read" resultType="com.gblog.dto.ProfileDTO">
+	<select id="readProfile" resultType="com.gblog.dto.ProfileDTO">
 		select * from profile
 		where user_id = #{user_id}
 	</select>
 		
-	<update id="update" >
+	<update id="updateProfile" >
 		update profile
 		set profile_content = #{profile_content}, profile_sns = #{profile_sns}, profile_phone = #{profile_phone}, profile_photo = #{profile_photo}
 		where user_id = #{user_id}
 	</update>
 	
-	<delete id="delete">
+	<delete id="deleteProfile">
 		delete from profile where user_id = #{user_id}
 	</delete>
 	
-	<select id="list" resultType="com.gblog.dto.ProfileDTO">
+	<select id="listProfile" resultType="com.gblog.dto.ProfileDTO">
 		select * from profile
 	</select>
 

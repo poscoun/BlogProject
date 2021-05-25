@@ -16,30 +16,30 @@ public class ProfileDAOImpl implements ProfileDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public void insert(ProfileDTO pdto) throws Exception {
-		sqlSession.insert("insert", pdto);
+	public void insertProfile(ProfileDTO pdto) throws Exception {
+		sqlSession.insert("insertProfile", pdto);
 
 	}
 
 	@Override
-	public ProfileDTO read(String user_id) throws Exception {
-		return sqlSession.selectOne("read", user_id);
+	public ProfileDTO readProfile(String user_id) throws Exception {
+		return sqlSession.selectOne("readProfile", user_id);
 	}
 
 	@Override
-	public void update(ProfileDTO pdto) throws Exception {
-		sqlSession.update("update", pdto);
+	public void updateProfile(ProfileDTO pdto) throws Exception {
+		sqlSession.update("updateProfile", pdto);
 	}
 
 	@Override
-	public void delete(String user_id) throws Exception {
-		sqlSession.delete("delete", user_id);
+	public void deleteProfile(String user_id) throws Exception {
+		sqlSession.delete("deleteProfile", user_id);
 	}
 
 	@Override
-	public List<ProfileDTO> list() throws Exception {
+	public List<ProfileDTO> listProfile() throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("list");
+		return sqlSession.selectList("listProfile");
 	}
 
 }

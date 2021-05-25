@@ -18,31 +18,31 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public void write(ProfileDTO pdto) throws Exception {
 		// TODO Auto-generated method stub
-		pdao.insert(pdto);
+		pdao.insertProfile(pdto);
 	}
 
 	@Override
 	public ProfileDTO read(String user_id) throws Exception {
 		// TODO Auto-generated method stub
-		return pdao.read(user_id);
+		return pdao.readProfile(user_id);
 	}
 
 	@Override
 	public void modify(ProfileDTO pdto) throws Exception {
 		// TODO Auto-generated method stub
-		pdao.update(pdto);
+		pdao.updateProfile(pdto);
 	}
 
 	@Override
 	public void remove(String user_id) throws Exception {
 		// TODO Auto-generated method stub
-		pdao.delete(user_id);
+		pdao.deleteProfile(user_id);
 	}
 
 	@Override
 	public List<ProfileDTO> list() throws Exception {
 		// TODO Auto-generated method stub
-		return pdao.list();
+		return pdao.listProfile();
 	}
 
 }
