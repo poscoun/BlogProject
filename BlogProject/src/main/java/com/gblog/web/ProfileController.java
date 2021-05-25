@@ -39,9 +39,22 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String writePOST(ProfileDTO pdto, RedirectAttributes reAttr) throws Exception{
+	public String writePOST(ProfileDTO pdto, MultipartFile file, RedirectAttributes reAttr) throws Exception{
 		LOGGER.info("....write POST....");
 		LOGGER.info(pdto.toString());
+		
+		 String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		 String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		 String fileName = null;
+
+		 if(file != null) {
+		  fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+		 } else {
+		  fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		 }
+
+		 pdto.setProfile_photo(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		 pdto.setProfile_photo(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		
 		psvc.write(pdto);
 		
@@ -73,7 +86,6 @@ public class ProfileController {
 	 @RequestMapping(value = "/modify", method = RequestMethod.POST)
 	 public String modifyPOST (ProfileDTO pdto, MultipartFile file, RedirectAttributes reAttr) throws Exception{
 		 LOGGER.info(".....modifyPOST.....");
-		 
 		 
 		 String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		 String ymdPath = UploadFileUtils.calcPath(imgUploadPath);

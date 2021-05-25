@@ -82,8 +82,6 @@
  								<label for="profile_photo">이미지</label>
  								<input type="file" id="profile_photo" name="file" />
  								<div class="select_img"><img src="" /></div>
- 
-
 							</div>	
 <script>
   $("#profile_photo").change(function(){

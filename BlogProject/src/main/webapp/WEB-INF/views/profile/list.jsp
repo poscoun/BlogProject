@@ -53,9 +53,7 @@
     	padding: 100px 0px 100px 200px;
   	}
   	
-  	
 
-  
 </style>
 
 
