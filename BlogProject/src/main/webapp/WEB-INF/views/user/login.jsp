@@ -11,7 +11,7 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
-	<link rel="stylesheet"  href="/resources/css/member/login.css?ver=1">
+	<link rel="stylesheet"  href="/resources/css/member/login.css?ver=2">
 </head>
 <body width="100%" height="100%">
     <form action="index.html" method="post" class="loginForm" id="login_form">
@@ -26,6 +26,8 @@
       	<div class = "login_warn">ID 또는 PW를 잘못 입력하셨습니다.</div>
       </c:if>
       
+      
+      
       <button type="button" class="btn" onclick="button()">
         LOG IN
       </button>
@@ -37,7 +39,7 @@
   		//alert("로그인 버튼 작동");
   		
   		/* 로그인 메서드 서버 요청 */
-  		$("#login_form").attr("action", "/user/login");
+  		$("#login_form").attr("action", "/user/login.do");
   		$("#login_form").submit();
   		
   	});

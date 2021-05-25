@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -15,6 +16,7 @@ import com.gblog.dto.UserDTO;
 import com.gblog.service.UserService;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Base64.Decoder;
 import java.util.List;
@@ -209,7 +211,7 @@ public class UserController {
 	
 	
 	//로그인
-	@RequestMapping(value="/login", method= RequestMethod.POST)
+	@RequestMapping(value="login.do", method= RequestMethod.POST)
 	
 	public String login(HttpServletRequest request, UserDTO udto, RedirectAttributes rttr) throws Exception{
 		
@@ -235,7 +237,7 @@ public class UserController {
 				lvo.setUser_pw("");					// 인코딩된 비밀번호 정보 지움				
 				
 				session.setAttribute("udto", lvo); 	// session에 사용자의 정보 저장
-				return "redirect:/user/join";		// 메인페이지 이동  --> 나중에 메인으로 변경해야함 
+				return "/home";		// 메인페이지 이동  --> 나중에 메인으로 변경해야함 
 				
 				
 			} else {
@@ -306,10 +308,36 @@ public class UserController {
 		return "redirect:/user/login";
 		
 	
+		
+		
+		
+	}
+	
+	@RequestMapping(value = "/user/userIn", method = RequestMethod.GET)
+	public void information(@RequestParam("user_id") String user_id, Model model ) throws Exception{
+		model.addAttribute(usvc.information(user_id));
+		
+		
+		
+		
+	}
+	
+	@RequestMapping(value = "/user/userIn1", method = RequestMethod.GET)
+	public void userupdate( Model model)throws Exception{
+		LOGGER.info("get User register");		
 	}
 	
 	
 	
+	@RequestMapping(value = "/user/userIn1", method = RequestMethod.POST)
+	public String userupdate(UserDTO udto ,Model model) throws Exception{
+		usvc.userupdate(udto);
+		model.addAttribute(udto);
+		
+		
+		return "redirect:/user/userIn1";
+		
+	}
 	
 	
 	

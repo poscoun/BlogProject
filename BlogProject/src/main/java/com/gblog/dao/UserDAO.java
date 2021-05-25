@@ -25,5 +25,7 @@ public interface UserDAO {
 	public void modify(UserDTO udto) throws Exception;
 	
 	//회원정보요
-	public UserDTO information(UserDTO udto) throws Exception;
+	public UserDTO information(String user_id) throws Exception;
+	
+	public void userupdate(UserDTO udto)throws Exception;
 }

@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -9,7 +9,7 @@
         <meta charset="utf-8">
         <!-- meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/ -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>pw변경</title>
+        <title>회원가입</title>
         <!-- Bootstrap -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) -->
@@ -25,9 +25,7 @@
         <div class="container"><!-- 좌우측의 공간 확보 -->
             <!-- 헤더 들어가는 부분 -->
             
-            <div class="row">
-                
-            </div>
+            
             <!--// 헤더 들어가는 부분 -->
             <!-- 모달창 -->
             <div class="modal fade" id="defaultModal">
@@ -52,18 +50,22 @@
                 
  
  
-            <form class="form-horizontal" role="form" method="post" >               
-
+            <form class="form-horizontal" role="form" method="POST">               
+        
                 <div class="form-group" id="divId">
                     <label for="inputId" class="col-lg-2 control-label">아이디</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control onlyAlphabetAndNumber" id="user_id" name="user_id" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">                        
-                      
-                        <!-- <span class="id_input_re_1">사용 가능한 아이디입니다.</span>
-						<span class="id_input_re_2">아이디가 이미 존재합니다.</span>	 -->
-						<div class="check_font" id="id_check"></div>
+                        <input type="text" class="form-control onlyAlphabetAndNumber" id="user_id" name="user_id" data-rule-required="true"  maxlength="30" readonly="readonly" value="${udto.user_id }"> 
                     </div>
                    
+                </div>
+               
+                <div class="form-group" id="divName">
+                    <label for="inputName" class="col-lg-2 control-label">이름</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control onlyHangul" id="user_name" name="user_name" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15" value="${udto.user_name }">
+                        
+                    </div>
                 </div>
                 
                 
@@ -71,43 +73,55 @@
                 <div class="form-group" id="divEmail">
                     <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
                     <div class="col-lg-10">
-                        <input type="email" class="form-control mail_input" id="user_email" name="user_email" data-rule-required="true" placeholder="ex)goot77@gmail.com" maxlength="40">                       
+                        <input type="email" class="form-control mail_input" id="user_email" name="user_email" data-rule-required="true" placeholder="ex)goot77@gmail.com" maxlength="40" value="${udto.user_email }">                       
                     </div>
 					<sapn class="mail_input_box_warn"></sapn>                    
                  <div class="mail_check_wrap">
 					<div class="mail_check_input_box" id="mail_check_input_box_false">
-						<input class="mail_check_input" id="mailcheck" disabled="disabled">
+					<br>
+					&nbsp;&nbsp;&nbsp;<input class="mail_check_input" id="mailcheck" disabled="disabled">
 						<div class="check_font" id="email_check"></div>
 					</div>
+					
 					<div class="email_check_button">
-						<input type="button" class="btn btn-primary" id="email_check_button" name="email_check_button" value="인증번호 전송"> 
+					<br>
+					&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" id="email_check_button" name="email_check_button" value="인증번호 전송"> 
 					</div>
 					<div class="clearfix"></div>
 					<span id="mail_check_input_box_warn"></span>
 				</div>
+				
+				
                 </div>
                 
-                <div class="form-group" id="divPassword">
-                    <label for="inputPassword" class="col-lg-2 control-label"></label>
+                <div class="form-group" id="divbirth">
+                    <label for="inputbirth" class="col-lg-2 control-label">생년원일</label>
                     <div class="col-lg-10">
-                        <input type="password" class="form-control" id="user_pw"  name="user_pw" data-rule-required="true" placeholder="new Password" maxlength="30" disabled="disabled">
+                        <input type="tel" class="form-control onlyNumber" id="user_birth" name="user_birth" data-rule-required="true" placeholder="ex)960407." maxlength="6" value="${udto.user_birth }">
                     </div>
                 </div>
                 
                 
-                 <div class="form-group" id="divPasswordCheck">
-                    <label for="inputPasswordCheck" class="col-lg-2 control-label"></label>
+                <div class="form-group" id="divPhoneNumber">
+                    <label for="inputPhoneNumber" class="col-lg-2 control-label">휴대폰 번호</label>
                     <div class="col-lg-10">
-                        <input type="password" class="form-control" id="user_pwcheck" data-rule-required="true" placeholder="Password Check" maxlength="30" disabled="disabled">
-                        <div id="pw_check"></div>
+                        <input type="tel" class="form-control onlyNumber" id="user_phone" name="user_phone" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11" value="${user_phone }">
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
+                    <div class="col-lg-10">
+                        <select class="form-control" id="user_gender" name="user_gender">
+                            <option value="남성">남성</option>
+                            <option value="여성">여성</option>
+                        </select>
+                    </div>
+                </div>
+              
                 
-                
-         
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" class="btn btn-primary">아이디 찾기</button>
+                        <button type="submit" class="btn btn-primary" >수정</button>
                     </div>
                 </div>
             </form>
@@ -127,8 +141,11 @@
                 //모달을 전역변수로 선언
                 var modalContents = $(".modal-contents");
                 var modal = $("#defaultModal");
+                
                
- 
+                
+                
+                
                 $('.onlyAlphabetAndNumber').keyup(function(event){
                     if (!(event.keyCode >=37 && event.keyCode<=40)) {
                         var inputVal = $(this).val();
@@ -136,10 +153,26 @@
                     }
                 });
                 
+                $(".onlyHangul").keyup(function(event){
+                    if (!(event.keyCode >=37 && event.keyCode<=40)) {
+                        var inputVal = $(this).val();
+                        $(this).val(inputVal.replace(/[a-z0-9]/gi,''));
+                    }
+                });
+            
+                $(".onlyNumber").keyup(function(event){
+                    if (!(event.keyCode >=37 && event.keyCode<=40)) {
+                        var inputVal = $(this).val();
+                        $(this).val(inputVal.replace(/[^0-9]/gi,''));
+                    }
+                });
+                
+                
+            
+                
                 
                 //------- 검사하여 상태를 class에 적용
-               
-                $('#user_name').keyup(function(event){
+                $('#user_id').keyup(function(event){
                     
                     var divId = $('#divId');
                     
@@ -152,6 +185,37 @@
                     }
                 });
                 
+               
+                
+                $('#user_name').keyup(function(event){
+                    
+                    var divName = $('#divName');
+                    
+                    if($.trim($('#user_name').val())==""){
+                        divName.removeClass("has-success");
+                        divName.addClass("has-error");
+                    }else{
+                        divName.removeClass("has-error");
+                        divName.addClass("has-success");
+                    }
+                });
+                
+                
+                
+	           $('#user_birth').keyup(function(event){
+                    
+                    var divPhoneNumber = $('#divbirth');
+                    
+                    if($.trim($('#user_birth').val())==""){
+                        divPhoneNumber.removeClass("has-success");
+                        divPhoneNumber.addClass("has-error");
+                    }else{
+                        divPhoneNumber.removeClass("has-error");
+                        divPhoneNumber.addClass("has-success");
+                    }
+                });
+                
+               
                 
                 $('#user_email').keyup(function(event){
                     
@@ -178,40 +242,27 @@
                         mail_check_input_box_false.addClass("has-success");
                     }
                 });
-				 
-				 $('#user_pw').keyup(function(event){
-	                    
-	                    var divPassword = $('#divPassword');
-	                    
-	                    if($('#user_pw').val()==""){
-	                        divPassword.removeClass("has-success");
-	                        divPassword.addClass("has-error");
-	                    }else{
-	                        divPassword.removeClass("has-error");
-	                        divPassword.addClass("has-success");
-	                    }
-	                });
-                
-				 $('#user_pwcheck').keyup(function(event){
-	                    
-	                    var passwordCheck = $('#user_pwcheck').val();
-	                    var password = $('#user_pw').val();
-	                    var divPasswordCheck = $('#divPasswordCheck');
-	                    
-	                    if((passwordCheck=="") || (password!=passwordCheck)){
-	                        divPasswordCheck.removeClass("has-success");
-	                        divPasswordCheck.addClass("has-error");
-	                    }else{
-	                        divPasswordCheck.removeClass("has-error");
-	                        divPasswordCheck.addClass("has-success");
-	                    }
-	                });
-				 
-				 
                 
                 
                 
-          
+                
+                $('#user_phone').keyup(function(event){
+                    
+                    var divPhoneNumber = $('#divPhoneNumber');
+                    
+                    if($.trim($('#user_phone').val())==""){
+                        divPhoneNumber.removeClass("has-success");
+                        divPhoneNumber.addClass("has-error");
+                    }else{
+                        divPhoneNumber.removeClass("has-error");
+                        divPhoneNumber.addClass("has-success");
+                    }
+                });
+                
+                
+                
+                
+                
                 
                 
                 
@@ -219,30 +270,60 @@
                 
                 //------- validation 검사
                 $( "form" ).submit(function( event ) {  
-                   
-                	var divId = $('#divId');               
+                    var divId = $('#divId');
+                    var divbirth = $('#divbirth'); 
+                    var divName = $('#divName');                    
                     var divEmail = $('#divEmail');
+                    var divPhoneNumber = $('#divPhoneNumber');
                     var mail_check_input_box_false = $('#mail_check_input_box_false');
-                    var divPassword = $('#divPassword');
-                    var divPasswordCheck = $('#divPasswordCheck');
                     
                     
-             
-                    //아이디 
-                    if($('#user_id').val()==""){
-                         modalContents.text("아이디를 입력하여 주시기 바랍니다.");
-                         modal.modal('show');
-                         
-                         divId.removeClass("has-success");
-                         divId.addClass("has-error");
-                         $('#user_id').focus();
-                         return false;
-                     }else{
-                         divId.removeClass("has-error");
-                         divId.addClass("has-success");
-                     }  
                     
-                 
+                     //아이디 검사
+                   if($('#user_id').val()==""){
+                        modalContents.text("아이디를 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                        
+                        divId.removeClass("has-success");
+                        divId.addClass("has-error");
+                        $('#user_id').focus();
+                        return false;
+                    }else{
+                        divId.removeClass("has-error");
+                        divId.addClass("has-success");
+                    }  
+                     
+                    
+                    
+                    //이름
+                    if($('#user_name').val()==""){
+                        modalContents.text("이름을 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                        
+                        divName.removeClass("has-success");
+                        divName.addClass("has-error");
+                        $('#user_name').focus();
+                        return false;
+                    }else{
+                        divName.removeClass("has-error");
+                        divName.addClass("has-success");
+                    }
+                    
+                    
+                  //생년월일
+                    if($('#user_birth').val()==""){
+                        modalContents.text("생년월일을 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                        
+                        divbirth.removeClass("has-success");
+                        divbirth.addClass("has-error");
+                        $(' ').focus();
+                        return false;
+                    }else{
+                        divbirth.removeClass("has-error");
+                        divbirth.addClass("has-success");
+                    }
+                    
                    
                     
                     //이메일
@@ -260,7 +341,9 @@
                     }
                     
                     
-                  //이메일
+                    
+                    
+                     //이메일
                     if($('#mailcheck').val()==""){
                         modalContents.text("인증번호 확인해줘.");
                         modal.modal('show');
@@ -272,10 +355,8 @@
                     }else{
                     	mail_check_input_box_false.removeClass("has-error");
                     	mail_check_input_box_false.addClass("has-success");
-                    }
+                    } 
                     
-                    
-            
                     
                     //이메일 체크 
                     
@@ -293,54 +374,62 @@
                     }
                     
                     
-                  //패스워드 검사
-                    if($('#user_pw').val()==""){
-                        modalContents.text("패스워드를 입력하여 주시기 바랍니다.");
+                    
+                    
+                    
+                    
+                    
+                    //휴대폰 번호
+                    if($('#user_phone').val()==""){
+                        modalContents.text("휴대폰 번호를 입력하여 주시기 바랍니다.");
                         modal.modal('show');
                         
-                        divPassword.removeClass("has-success");
-                        divPassword.addClass("has-error");
-                        $('#user_pw').focus();
+                        divPhoneNumber.removeClass("has-success");
+                        divPhoneNumber.addClass("has-error");
+                        $(' ').focus();
                         return false;
                     }else{
-                        divPassword.removeClass("has-error");
-                        divPassword.addClass("has-success");
+                        divPhoneNumber.removeClass("has-error");
+                        divPhoneNumber.addClass("has-success");
                     }
                     
                     
-                  //패스워드 확인
-                    if($('#user_pwcheck').val()==""){
-                        modalContents.text("패스워드 확인을 입력하여 주시기 바랍니다.");
-                        modal.modal('show');
-                        
-                        divPasswordCheck.removeClass("has-success");
-                        divPasswordCheck.addClass("has-error");
-                        $('#user_pwCheck').focus();
-                        return false;
-                    }else{
-                        divPasswordCheck.removeClass("has-error");
-                        divPasswordCheck.addClass("has-success");
-                    }
-                  
-                    //패스워드 비교
-                    if($('#user_pw').val()!=$('#user_pwcheck').val() || $('#user_pwcheck').val()==""){
-                        modalContents.text("패스워드가 일치하지 않습니다.");
-                        modal.modal('show');
-                        
-                        divPasswordCheck.removeClass("has-success");
-                        divPasswordCheck.addClass("has-error");
-                        $('#user_pwcheck').focus();
-                        return false;
-                    }else{
-                        divPasswordCheck.removeClass("has-error");
-                        divPasswordCheck.addClass("has-success");
-                    }
                     
-                    
+                
                 });
                 
             });
             
+             
+             
+            $('#user_id').on("ropertychange change keyup paste input",function(){
+            	
+            	
+            	$.ajax({
+        			url : "/user/idcheck",
+        			type : "post",
+        			dataType : "json",
+        			data : { "user_id" : $("#user_id").val()},
+        			success : function(data) {
+        				if(data == 0) {
+        					$("#id_check").text("사용가능한 아이디입니다");
+    						$("#id_check").css("color", "green");
+        						
+        					
+        				} else if(data == 1) {
+        					
+        					
+        					$("#id_check").text("중복된 아이디 입니다");
+    						$("#id_check").css("color", "red");
+        					
+        					
+        				}
+        			}
+        		}); 
+            	
+            }); 
+            
+           
             
             /* 인증번호 이메일 전송 */
             $("#email_check_button").click(function(){
@@ -377,36 +466,6 @@
             	
             });
             
-            
-            
-            
-	       $('#user_id').on("ropertychange change keyup paste input",function(){
-            	
-            	
-            	$.ajax({
-        			url : "/user/idcheck",
-        			type : "post",
-        			dataType : "json",
-        			data : { "user_id" : $("#user_id").val()},
-        			success : function(data) {
-        				if(data == 0) {
-        					$("#id_check").text("ID 있음");
-    						$("#id_check").css("color", "green");
-        						
-        					
-        				} else if(data == 1) {
-        					
-        					
-        					$("#id_check").text("아이디 없음");
-    						$("#id_check").css("color", "red");
-        					
-        					
-        				}
-        			}
-        		}); 
-            	
-            }); 
-            
            
             
             /* 인증번호 비교 */
@@ -417,9 +476,7 @@
             	
             	if(inputCode == code){							// 일치할 경우
             		$("#email_check").text("인증번호 일치");
-            		$("#email_check").css("color", "green");
-            		$("#user_pw").attr("disabled",false);
-            		$("#user_pwcheck").attr("disabled",false);
+            		$("#email_check").css("color", "green");		
             		
             	} else {											// 일치하지 않을 경우
             		$("#email_check").text("인증번호 불일치");

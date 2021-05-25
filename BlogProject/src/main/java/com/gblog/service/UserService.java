@@ -18,5 +18,7 @@ public interface UserService {
 	
 	public void modify(UserDTO udto) throws Exception;
 	
-	public UserDTO information(UserDTO udto) throws Exception;
+	public UserDTO information(String user_id) throws Exception;
+	
+	public void userupdate(UserDTO udto)throws Exception;
 }
