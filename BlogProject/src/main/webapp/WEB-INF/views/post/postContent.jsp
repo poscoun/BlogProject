@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+<%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -175,7 +175,7 @@
 			<div class="bg-white rounded shadow-sm">
 				<div class="board_title"><c:out value="${postDTO.post_subj}"/></div>
 				<div class="board_info_box">
-					<span class="board_author"><c:out value="${postDTO.user_id}"/>,</span><span class="board_date"><c:out value="${postDTO.post_reg}"/></span>
+					<span class="board_author"></span><span class="board_date"><c:out value="${postDTO.post_reg}"/></span>
 				</div>
 				<div class="board_content">
 					${postDTO.post_content}
@@ -216,3 +216,5 @@
 	</article>
 </body>
 </html>
+
+<%@ include file="../include/footer.jsp" %>

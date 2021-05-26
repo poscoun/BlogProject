@@ -89,14 +89,14 @@ public class UserTest {
 //		
 //	}
 	
-	@Test
-	public void inforTest()throws Exception{
-		UserDTO udto = new UserDTO();
-		
-		udto.setUser_id("test");
-		udao.information(udto);
-		
-	}
+//	@Test
+//	public void inforTest()throws Exception{
+//		UserDTO udto = new UserDTO();
+//		
+//		udto.setUser_id("test");
+//		udao.information(udto);
+//		
+//	}
 	
 	
 	

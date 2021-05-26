@@ -8,7 +8,6 @@ public class UserDTO {
 	private String user_name;
 	private String user_birth;
 	private String user_email;
-	private String user_phone;
 	private String user_gender;
 	private Date user_data;
 	
@@ -54,13 +53,7 @@ public class UserDTO {
 		this.user_email = user_email;
 	}
 
-	public String getUser_phone() {
-		return user_phone;
-	}
 
-	public void setUser_phone(String user_phone) {
-		this.user_phone = user_phone;
-	}
 
 	public String getUser_gender() {
 		return user_gender;

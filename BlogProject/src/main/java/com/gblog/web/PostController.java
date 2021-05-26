@@ -43,11 +43,12 @@ public class PostController {
 	@Inject
 	private PostService psvc;
 	
+	
 	@Resource(name="uploadPath")
     private String uploadPath;
 	
 	@RequestMapping(value = "/getList", method = RequestMethod.GET)
-	public String getList(Model model,
+	public String getList(Model model, HttpServletRequest request,
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range,
 			@RequestParam(required = false) String keyword,
@@ -73,41 +74,15 @@ public class PostController {
 		model.addAttribute("pagination", search);
 		//게시글 화면 출력
 		model.addAttribute("list", psvc.getPostList(search));
+		
+		int category_id = Integer.parseInt(request.getParameter("category_id"));
+		
+		model.addAttribute("category_id", category_id);
 		
 		return "post/getList";
 	}
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model,
-			@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int range,
-			@RequestParam(required = false) String keyword,
-			@ModelAttribute("search") Search search
-			) throws Exception {
-		
-		logger.info("list 출력");
-		
-		//검색
-		model.addAttribute("search", search);
-		search.setKeyword(keyword);
-		
-		// 전체 게시글 개수
-		int listCnt = psvc.getPostListCnt(search);
-		
-		search.pageInfo(page, range, listCnt);
-		
-		// Pagination 객체 생성
-		//Pagination pgn = new Pagination();
-		//pgn.pageInfo(page, range, listCnt);
-		
-		// 페이징
-		model.addAttribute("pagination", search);
-		//게시글 화면 출력
-		model.addAttribute("list", psvc.getPostList(search));
-		
-		return "post/list";
-	}
-	
+
 //	@ResponseBody
 //	@RequestMapping(value = "/replyList", method = RequestMethod.POST)
 //	public List<ReplyDTO> replyList(@RequestParam("post_id") int post_id, Model model) 
@@ -120,6 +95,9 @@ public class PostController {
 	@RequestMapping(value = "/postForm", method = RequestMethod.GET)
 	public String postFormGet(PostDTO pdto, Model model) throws Exception{
 		logger.info("...write get...");
+		
+		model.getAttribute("category_id");
+		
 		return "post/postForm";
 	}
 	

@@ -65,3 +65,4 @@
 <br />
 <br />
 <br />
+<%@ include file="../include/footer.jsp" %>

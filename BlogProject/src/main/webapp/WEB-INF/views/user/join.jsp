@@ -118,12 +118,7 @@
                 </div>
                 
                 
-                <div class="form-group" id="divPhoneNumber">
-                    <label for="inputPhoneNumber" class="col-lg-2 control-label">휴대폰 번호</label>
-                    <div class="col-lg-10">
-                        <input type="tel" class="form-control onlyNumber" id="user_phone" name="user_phone" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
-                    </div>
-                </div>
+                
                 <div class="form-group">
                     <label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
                     <div class="col-lg-10">
@@ -183,8 +178,7 @@
                     }
                 });
                 
-                
-            
+
                 
                 
                 //------- 검사하여 상태를 class에 적용
@@ -285,31 +279,7 @@
                     }
                 });
                 
-                
-                
-                
-                $('#user_phone').keyup(function(event){
-                    
-                    var divPhoneNumber = $('#divPhoneNumber');
-                    
-                    if($.trim($('#user_phone').val())==""){
-                        divPhoneNumber.removeClass("has-success");
-                        divPhoneNumber.addClass("has-error");
-                    }else{
-                        divPhoneNumber.removeClass("has-error");
-                        divPhoneNumber.addClass("has-success");
-                    }
-                });
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+    
                 //------- validation 검사
                 $( "form" ).submit(function( event ) {  
                     var divId = $('#divId');
@@ -318,7 +288,6 @@
                     var divbirth = $('#divbirth'); 
                     var divName = $('#divName');                    
                     var divEmail = $('#divEmail');
-                    var divPhoneNumber = $('#divPhoneNumber');
                     var mail_check_input_box_false = $('#mail_check_input_box_false');
                     
                     
@@ -463,19 +432,6 @@
                     
                     
                     
-                    //휴대폰 번호
-                    if($('#user_phone').val()==""){
-                        modalContents.text("휴대폰 번호를 입력하여 주시기 바랍니다.");
-                        modal.modal('show');
-                        
-                        divPhoneNumber.removeClass("has-success");
-                        divPhoneNumber.addClass("has-error");
-                        $(' ').focus();
-                        return false;
-                    }else{
-                        divPhoneNumber.removeClass("has-error");
-                        divPhoneNumber.addClass("has-success");
-                    }
                     
                     
                     

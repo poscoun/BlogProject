@@ -25,9 +25,9 @@ public class PostDAOTest {
 	@Test
 	public void insertTest() throws Exception {
 		PostDTO pdto = new PostDTO();
+		pdto.setCategory_id(7);
 		pdto.setPost_subj("강남");
 		pdto.setPost_content("1 요리 444 yori");
-		pdto.setUser_id("testId");
 		
 //		for(int i=0; i<150; i++) {
 //			pdto.setPost_subj("testSubj" + i);
@@ -41,7 +41,7 @@ public class PostDAOTest {
 //				logger.info("fail");
 //			}
 //		}
-//		pdao.insertPost(pdto);
+		pdao.insertPost(pdto);
 	}
 	
 //	@Test
@@ -60,10 +60,10 @@ public class PostDAOTest {
 //		logger.info(pdao.read(1).toString());
 //	}
 	
-	@Test
-	public void listTest() throws Exception{
-		logger.info("test");
-	}
+//	@Test
+//	public void listTest() throws Exception{
+//		logger.info("test");
+//	}
 
 	
 }

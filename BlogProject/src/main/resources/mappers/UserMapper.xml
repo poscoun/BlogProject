@@ -8,8 +8,8 @@
   <!-- 회원등록 -->
   <insert id="insertUser">
   	<![CDATA[
-  	insert into user(user_id, user_pw, user_name, user_birth, user_email, user_phone, user_gender)
-  	values(#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_email}, #{user_phone}, #{user_gender})
+  	insert into user(user_id, user_pw, user_name, user_birth, user_email, user_gender)
+  	values(#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_email}, #{user_gender})
   	]]>
   </insert>
   

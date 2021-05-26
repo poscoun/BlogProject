@@ -8,8 +8,8 @@
 	
     <!-- 카테고리 생성 -->
 	<insert id="insertCategory">
-		insert into category (category_name)
-		values (#{category_name})
+		insert into category (category_name, user_id)
+		values (#{category_name}, #{user_id})
 	</insert>
 	
 	<!-- 카테고리 삭제 -->

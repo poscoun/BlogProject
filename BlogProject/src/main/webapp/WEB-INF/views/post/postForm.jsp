@@ -52,8 +52,8 @@
 					<form:input path="post_subj" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요" />
 				</div>
 				<div class="mb-3">
-					<label for="reg_id">작성자</label> 
-					<form:input path="user_id" class="form-control" name="reg_id" id="reg_id" placeholder="이름을 입력해 주세요" />
+					<label for="reg_id">작성자 : ${udto.user_id }</label> 
+					
 				</div>
 				<div class="mb-3">
 					<label for="content">내용</label>

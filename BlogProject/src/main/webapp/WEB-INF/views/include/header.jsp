@@ -29,8 +29,6 @@
 <link rel="stylesheet" href="/resources/assets2/css/slick.css">
 <link rel="stylesheet" href="/resources/assets2/css/nice-select.css">
 <link rel="stylesheet" href="/resources/assets2/css/style.css">
-
-
 </head>
 <body>
 <header>
@@ -53,8 +51,7 @@
 								<div class="main-menu d-none d-lg-block">
 								    <nav>
 								        <ul id="navigation">                                                                                          
-								            <li><a href="index.html">Home</a></li>
-								            <li><a href="blog.html">Blog</a></li>
+								            <li><a href="/post/getList">Home</a></li>
 								            <li><a href="/category/category">Category</a></li>
 								            <li><a href="/guestbook/guestbook_form">Guest</a></li>
 								            <li><a href="#">Sign In</a></li>
@@ -68,43 +65,48 @@
 	        </div>
 	    </div>
 	</div> -->
-	<div class="header-area">
-	    <div class="main-header ">
-	        <div class="header-bottom  header-sticky">
-	            <div class="container-fluid">
-	                <div class="row align-items-center">
-	                    <!-- Logo -->
-						<div class="col-xl-2 col-lg-2">
-						    <div class="logo">
-						        <a href="index.html"><img src="/resources/assets2/img/logo/logo.png" alt=""></a>
-						    </div>
-						</div>
-						<div class="col-xl-10 col-lg-10">
-						    <div class="menu-wrapper  d-flex align-items-center justify-content-end">
-						        <!-- Main-menu -->
-								<div class="main-menu d-none d-lg-block">
-								    <nav>
-								        <ul id="navigation">                                                                                          
-
-								            <li><a href="#">Home</a></li>
-								            <li><a href="/category/category">Category</a></li>
-								            <li><a href="/guestbook/guestbook_form">Guest</a></li>
-								            <li><a href="#">About</a>
-                                                <ul class="submenu">
-                                                    <li><a href="#">MyProfile</a></li>
-                                                    <li><a href="#">Sign Out</a></li>
-                                                </ul>
-                                            </li>
-								        </ul>
-								    </nav>
-								</div>
-						    </div>
-						</div> 
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+		<div class="header-area">
+            <div class="main-header ">
+                <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                    <a href="index.html"><img src="/resources/assets/img/logo/loder.png" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10">
+                                <div class="menu-wrapper  d-flex align-items-center justify-content-end">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav>
+                                			<ul id="navigation">                                                                                          
+			                                    <li><a href="/post/getList">Home</a></li>
+			                                    <li><a href="/category/category">Category</a></li>
+			                                    <li><a href="/guestbook/guestbook_form">Guest</a></li>
+			                                    <li><a href="#">About</a>
+	                                                <ul class="submenu">
+	                                                    <li><a href="/profile/list">MyProfile</a></li>
+	                                                    <li><a href="/user/logout.do">Sign Out</a></li>
+	                                                </ul>
+	                                            </li>
+			                                </ul>
+                            			</nav>
+                                    </div>
+                                </div>
+                            </div> 
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
 </header>
 </body>
 </html>
