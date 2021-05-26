@@ -46,6 +46,7 @@ public class GuestbookController {
 	public String guestbookformGET(Model model) throws Exception {
 		logger.info("write GET ...");
 		
+		/* 세션의 값 유무를 파악 후 있으면 실행  없으면 Login 페이지로 이동 */
 		model.addAttribute("list", gsvc.list());
 		
 		return "/guestbook/guestbook_form";
@@ -76,7 +77,10 @@ public class GuestbookController {
 	public String guestUpdatePOST(GuestbookDTO gdto, RedirectAttributes reAttr) throws Exception {
 		
 		logger.info("update 처리 중 ....");
+
+
 		System.out.println(gdto.getGuest_id());
+
 		
 		gsvc.modify(gdto);
 		
