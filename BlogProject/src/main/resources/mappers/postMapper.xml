@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.gblog.dao.PostDAO">
+
+	<insert id="postInsert">
+		insert into blog_posts (post_subj, post_content, user_id, post_img)
+		value (#{post_subj}, #{post_content}, #{user_id}, #{post_img})
+	</insert>
+	
+	<select id="postRead" resultType="com.gblog.dto.PostDTO">
+		select * from blog_posts
+		where post_id = #{post_id}
+	</select>
+	
+	<update id="postUpdate">
+		update blog_posts
+		set post_subj = #{post_subj}, post_content = #{post_content}, post_img=#{post_img}
+		where post_id = #{post_id}
+	</update>
+	
+	<delete id="postDelete">
+		delete from blog_posts
+		where post_id = #{post_id}
+	</delete>
+	
+	<select id="list" resultType="com.gblog.dto.PostDTO">
+	<![CDATA[
+		select * 
+		from blog_posts
+		where post_id > 0
+		order by post_id desc, post_reg desc		
+	]]>
+	</select>
+	
+	<!-- 페이징 처리 -->
+	<select id="postList" resultType="com.gblog.dto.PostDTO">
+	<![CDATA[
+		select * 
+		from blog_posts
+		where post_id > 0
+	]]>
+
+		<if test="keyword != null and keyword != '' ">
+			AND (post_subj like CONCAT('%', #{keyword}, '%')
+			or post_content like CONCAT('%', #{keyword}, '%'))
+		</if>
+		
+	<![CDATA[
+		order by post_id desc, post_reg desc
+		limit #{startList}, #{listSize}
+	]]>
+	</select>
+
+	<!-- 전체 글의 개수를 읽어옴 -->
+	<select id="listCnt" resultType="int">
+		select count(*) as listCnt
+		from blog_posts 
+		<trim prefix="where" prefixOverrides="AND">
+			<if test="keyword != null and keyword != '' ">
+				AND (post_subj like CONCAT('%', #{keyword}, '%')
+				or post_content like CONCAT('%', #{keyword}, '%'))
+			</if>
+		</trim>
+	</select>
+
+</mapper>
+  
