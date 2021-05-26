@@ -51,17 +51,10 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>	
 </bean>
-
-  <!-- repository(Data Access) 계층 -->
-   <context:component-scan base-package="com.gblog.dao" />
-    
-   <!--  Service 계층(Business Logic) -->
-	<context:component-scan base-package="com.gblog.service"/>
-	
-	<context:component-scan base-package="com.gblog.advice" />
-		
+  
 	<context:component-scan base-package="com.gblog.dao" />
 	<context:component-scan base-package="com.gblog.service" />
 	<context:component-scan base-package="com.gblog.advice" />
-		
+	<context:component-scan base-package="com.gblog.utils" />	
+
 </beans>

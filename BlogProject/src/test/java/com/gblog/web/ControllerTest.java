@@ -1,39 +1,47 @@
 package com.gblog.web;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import javax.inject.Inject;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
-/**
- * Handles requests for the application home page.
- */
-@Controller
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
 public class ControllerTest {
 	
-	private static final Logger logger = LoggerFactory.getLogger(ControllerTest.class);
+	private static final Logger Logger = LoggerFactory.getLogger(ControllerTest.class);
+
+	@Inject
+	private WebApplicationContext webAppCtx;
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//		
-//		String formattedDate = dateFormat.format(date);
-//		
-//		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+	private MockMvc mockMvc;
+	
+	@Before
+	public void setup() {
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webAppCtx).build();
+		Logger.info("setUp() 호출 ....");
 	}
 	
+	@Test
+	public void testController() {
+		try {
+			mockMvc.perform(MockMvcRequestBuilders.get("/controller"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 }
