@@ -24,6 +24,11 @@
 
 		});	 
 		
+		$(document).on("keyup", "#phoneNumber", function() {
+			$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") ); });
+
+
+		
 
 	</script>
 
@@ -35,11 +40,11 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap hero-cap2 pt-70">
-                            <h2>Contact</h2>
+                            <h2>About Me</h2>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="#">About</a></li> 
+                                    <li class="breadcrumb-item"><a href="#">About Me</a></li> 
                                 </ol>
                             </nav>
                         </div>
@@ -74,7 +79,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control valid" name="profile_phone" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter phone number'" placeholder="전화번호를 입력하세요" >
+                                    <input class="form-control valid" name="profile_phone" id="phoneNumber" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter phone number'" placeholder="전화번호를 입력하세요" >
                                 </div>
                             </div>
                             <div class="col-sm-6">

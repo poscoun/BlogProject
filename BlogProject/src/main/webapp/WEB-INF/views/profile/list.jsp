@@ -21,10 +21,9 @@
 		$('#write_btn').on('click', function(){
 			self.location = "/profile/write";
 		});
-
-		
-	});	 
-
+	
+	});
+	
 </script>
 
 <style type="text/css">
@@ -74,7 +73,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item"><a href="#">About</a></li> 
+                                        <li class="breadcrumb-item"><a href="#">About Me</a></li> 
                                     </ol>
                                 </nav>
                             </div>
@@ -105,22 +104,31 @@
                 
                 	<div class="col-lg-8">
                     
-                    <div class="media contact-info">
-                        <span class="contact-info__icon"><i class="ti-tablet"></i></span>
-                        <div class="media-body">
-                            <h3><c:out value="${pdto.profile_phone }"></c:out></h3>
-                            <p>Mon to Fri 9am to 6pm</p>
-                        </div>
-                    </div>
+                    	<div class="media contact-info">
+                       		<span class="contact-info__icon"><i class="ti-tablet"></i></span>
+                        	<div class="media-body">
+                            	<h3><c:out value="${pdto.profile_phone }"></c:out></h3>
+                            	<p>Mon to Fri 9am to 6pm</p>
+                        	</div>
+                    	</div>
                     
-                    <div class="media contact-info">
-                        <span class="contact-info__icon"><i class="ti-email"></i></span>
-                        <div class="media-body">
-                            <h3><c:out value="${pdto.profile_sns }"></c:out></h3>
-                            <p>Send Me your query anytime!</p>
-                        </div>
-                    </div>
-                </div>
+                    	<div class="media contact-info">
+                        	<span class="contact-info__icon"><i class="ti-email"></i></span>
+                        	<div class="media-body">
+                            	<h3><c:out value="${pdto.profile_sns }"></c:out></h3>
+                            	<p>Send Me your query anytime!</p>
+                        	</div>
+                    	</div>
+                    
+                    	<div class="media contact-info">
+                        	<span class="contact-info__icon"><i class="ti-email"></i></span>
+                        	<div class="media-body">
+                        		<h3><fmt:formatDate value="${pdto.profile_date }" pattern="yyyy-MM-dd"/></h3>
+                            	<p>Profile Date</p>
+                        	</div>
+                    	</div>
+                    
+                	</div>
       
                     
                     <div class="footer-btn">
