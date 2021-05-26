@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.gblog.dao.ProfileDAO">
+	
+	<insert id="insertProfile">
+		insert into profile (profile_content, profile_photo, profile_sns, profile_phone, user_id)
+		values (#{profile_content}, #{profile_photo}, #{profile_sns}, #{profile_phone}, #{user_id})
+	</insert>
+
+	<select id="readProfile" resultType="com.gblog.dto.ProfileDTO">
+		select * from profile
+		where user_id = #{user_id}
+	</select>
+		
+	<update id="updateProfile" >
+		update profile
+		set profile_content = #{profile_content}, profile_sns = #{profile_sns}, profile_phone = #{profile_phone}, profile_photo = #{profile_photo}
+		where user_id = #{user_id}
+	</update>
+	
+	<delete id="deleteProfile">
+		delete from profile where user_id = #{user_id}
+	</delete>
+	
+	<select id="listProfile" resultType="com.gblog.dto.ProfileDTO">
+		select * from profile
+	</select>
+
+
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gblog.category.categoryMapper">
+	
+    <!-- 카테고리 생성 -->
+	<insert id="insertCategory">
+		insert into category (category_name)
+		values (#{category_name})
+	</insert>
+	
+	<!-- 카테고리 삭제 -->
+ 	<delete id="deleteCategory">
+		delete from category where category_id = #{category_id}
+	</delete> 
+	
+	<!-- 카테고리 목록 -->
+ 	<select id="CategoryList" resultType="com.gblog.dto.CategoryDTO">
+	 <![CDATA[	
+		select category_name, category_id
+		from category 
+	]]>
+	</select>
+	
+	<!-- 카테고리 수정 -->
+	<update id="updateCategory">
+		update category
+		set category_name = #{category_name}
+		where category_id = #{category_id};
+	</update>
+	
+	<!-- 카테고리 정보 -->
+	<select id="readCategory" resultType="com.gblog.dto.CategoryDTO">
+		select * from category
+		where category_id = #{category_id}
+	</select>
+	
+</mapper>
+
+
