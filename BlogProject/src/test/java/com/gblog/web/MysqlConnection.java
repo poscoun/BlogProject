@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class MysqlConnection {
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://localhost:3306/goott7?useSSL=false";
+	private static final String URL = "jdbc:mysql://localhost:3306/test?useSSL=false";
 	private static final String USER = "scott";
 	private static final String PASSWORD = "tiger";
 	
