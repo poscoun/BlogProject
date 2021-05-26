@@ -6,8 +6,8 @@
 <mapper namespace="com.gblog.dao.PostDAO">
 
 	<insert id="postInsert">
-		insert into blog_posts (post_subj, post_content, user_id, post_img)
-		value (#{post_subj}, #{post_content}, #{user_id}, #{post_img})
+		insert into blog_posts (category_id, post_subj, post_content, post_img)
+		value (#{category_id}, #{post_subj}, #{post_content}, #{post_img})
 	</insert>
 	
 	<select id="postRead" resultType="com.gblog.dto.PostDTO">

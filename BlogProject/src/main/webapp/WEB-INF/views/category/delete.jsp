@@ -54,6 +54,7 @@
 </head>
 <body>
 <form action="./create" name="create" method="post">
+<input type="hidden" name="user_id" value="${udto.user_id }" />
 		<fieldset>
 			<legend>카테고리 에디터</legend>
 			카테고리명 : <input type="text" name="category_name"><br />  
@@ -80,9 +81,9 @@
 					<c:forEach var="cdto" items="${CategoryList}">
 						<tr> 
 						 	<!-- checked="checked" 사용시 defualt 값 없이 자동으로 체크 -->
-							<td><input type="radio" name="category_id" value="${cdto.category_id}" checked="checked"/><c:out value="${cdto.category_id}"/></td>
+							<td><input type="radio" name="category_id" value="${cdto.category_id}"  checked="checked"/><c:out value="${cdto.category_id}"/></td>
 					
-							<td><a href="#" onclick="modify(${cdto.category_id})"><c:out value="${cdto.category_name}"/>[수정]</a></td>
+							<td><a href="#" onclick="modify(${cdto.category_id})" style="color: black;" ><c:out value="${cdto.category_name}"/>[수정]</a></td>
 						</tr>
 					</c:forEach>
 				</c:when>

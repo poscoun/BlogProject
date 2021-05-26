@@ -1,4 +1,4 @@
-package com.gblog.controller;
+package com.gblog.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -38,8 +38,6 @@ public class UserController {
 	
 	@Autowired
 	private JavaMailSender mailSender;		
-	
-	
 
 	@Inject
 	private UserService usvc;
@@ -139,9 +137,7 @@ public class UserController {
 			if(result ==1) {
 				return "/user/join";
 			}else if(result ==0) {
-				
-				
-				
+
 				String rawPw = "";			// 인코딩 전 비밀번호
 				String encodePw = "";	    // 인코딩 후 비밀번호
 				
@@ -205,11 +201,6 @@ public class UserController {
 	}
 	
 	
-
-	
-	
-	
-	
 	//로그인
 	@RequestMapping(value="login.do", method= RequestMethod.POST)
 	
@@ -236,7 +227,7 @@ public class UserController {
 				
 				lvo.setUser_pw("");	               // 인코딩된 비밀번호 정보 지움
 				session.setAttribute("udto", lvo); 	// session에 사용자의 정보 저장
-				return "redirect:/";		// 메인페이지 이동  --> 나중에 메인으로 변경해야함 
+				return "redirect:/category/category";		// 메인페이지 이동  --> 나중에 메인으로 변경해야함 
 				
 				
 			} else {
@@ -281,12 +272,9 @@ public class UserController {
         session.invalidate();
         System.out.println(session);
         
-        return "redirect:/";        
+        return "/post/getList";        
         
     }
-	
-	
-	
 	
 	@RequestMapping(value="logout.do", method=RequestMethod.POST)
     @ResponseBody
