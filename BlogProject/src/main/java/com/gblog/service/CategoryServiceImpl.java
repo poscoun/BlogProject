@@ -24,9 +24,9 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	// 카테고리 목록
 	@Override
-	public List<CategoryDTO> CategoryList(String sid) throws Exception {
+	public List<CategoryDTO> CategoryList() throws Exception {
 		// TODO Auto-generated method stub
-		return cdao.CategoryList(sid);
+		return cdao.CategoryList();
 	}
 	
 	// 카테고리 삭제
@@ -34,6 +34,21 @@ public class CategoryServiceImpl implements CategoryService {
 	public void Delete(Integer category_id) throws Exception {
 		// TODO Auto-generated method stub
 		cdao.Delete(category_id);
+	}
+	
+	// 카테고리 수정
+	@Override
+	public void Update(CategoryDTO cdto) throws Exception {
+		// TODO Auto-generated method stub
+		cdao.Update(cdto);
+	}
+	
+	// 카티고리 정보
+	@Override
+	public CategoryDTO Read(Integer category_id) throws Exception {
+		// TODO Auto-generated method stub
+		return cdao.Read(category_id);
+			
 	}
 	
 

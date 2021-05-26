@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gblog.dto.CategoryDTO;
+import com.gblog.dto.GuestbookDTO;
 import com.gblog.service.CategoryService;
 
 @Controller
@@ -28,12 +29,12 @@ public class CategoryController {
 	public String CategoryList(Model model) throws Exception {
 		LOGGER.info("----- list 출력 -----");
 		
-		model.addAttribute("CategoryList", csvc.CategoryList(null));
+		model.addAttribute("CategoryList", csvc.CategoryList());
 		
 		return "category/category";
 		
 	}
-
+	
 	// 카테고리 생성
 	@RequestMapping(value= "/create", method = RequestMethod.GET)
 	public void createGET(CategoryController cdto, Model model) throws Exception{
@@ -50,11 +51,18 @@ public class CategoryController {
 		
 		reAttr.addFlashAttribute("result", "success");
 		
-		return "redirect:/category/list";
+		return "redirect:/category/edit";
 	}
 	
-	
-	// 카테고리 에디터 리스트
+	// 카테고리 에디터
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public String CategoryEdit(Model model) throws Exception {
+		LOGGER.info("----- edit GET -----");
+		
+		model.addAttribute("CategoryList", csvc.CategoryList());
+		
+		return "/category/delete";
+	}
 	
 	// 카테고리 삭제
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -65,9 +73,26 @@ public class CategoryController {
 		
 		reAttr.addFlashAttribute("result", "success");
 		
-		return "redirect:/category/list";
+		return "redirect:/category/edit";
 	}
 	
+	// 카테고리 수정 페이지
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public void ModifyGET(@RequestParam("category_id") Integer category_id, Model model) throws Exception {
+		
+		model.addAttribute(csvc.Read(category_id));
+		
+	}
 	
+	// 수정 처리
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String ModifyPOST(CategoryDTO cdto, RedirectAttributes reAttr) throws Exception {
+			
+		LOGGER.info("update 처리 중 ....");
+			
+		csvc.Update(cdto);
+			
+		return "redirect:/category/edit"; 
+	}
 	
 }

@@ -5,7 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
 <title>G - Blog</title>
+
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="site.webmanifest">
@@ -83,6 +85,7 @@
 								<div class="main-menu d-none d-lg-block">
 								    <nav>
 								        <ul id="navigation">                                                                                          
+
 								            <li><a href="#">Home</a></li>
 								            <li><a href="/category/category">Category</a></li>
 								            <li><a href="/guestbook/guestbook_form">Guest</a></li>
