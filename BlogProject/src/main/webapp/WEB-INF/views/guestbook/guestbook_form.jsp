@@ -72,9 +72,9 @@
 									<label >세션에서 가져올 아이디</label>
 									<input type="text" name="user_id" id="user_id" placeholder="세션에서 가져올 아이디" />
 									<hr />
-					   				<textarea rows="7" cols="80" style="resize: none" class="form-control" name="guest_content"></textarea>
+					   				<textarea rows="7" cols="80" style="resize: none; font-size: 18px;" class="form-control" name="guest_content"></textarea>
 				 				</div>
-								<button id="guestbookreg" class="btn btn-light" style="color: black;">확인</button>
+								<button id="guestbookreg" class="btn btn-light" style="padding: 13px 20px; border-radius: 20px;">확인</button>
 							</form>
 						</div>
 						<!-- 글 등록 부분 끝-->
@@ -93,8 +93,8 @@
 						            			<hr size="1">
 							                	<label>${guestbook.user_id }</label>&nbsp;&nbsp;&nbsp;
 							                	<label><fmt:formatDate value="${guestbook.guest_date }" pattern="yyyy-MM-dd HH:mm"/></label>&nbsp;&nbsp;&nbsp;&nbsp;
-							                	<a href="#" onclick="guestbookupdate(${guestbook.guest_id})">[수정]</a>&nbsp;
-							                	<a href="#" onclick="guestbookdel(${guestbook.guest_id})">[삭제]</a><br />
+							                	<a href="#" onclick="guestbookupdate(${guestbook.guest_id})" style="color: black">수정</a>&nbsp;
+							                	<a href="#" onclick="guestbookdel(${guestbook.guest_id})" style="color: black">삭제</a><br />
 							                	<div>
 							                		${guestbook.guest_content }
 							                		<c:if test="${guestbook.reply_count ne 0}">
@@ -102,7 +102,7 @@
 													</c:if>		
 							                	</div>
 							                	<br />
-							                	<a  href="#" onclick="guestbookreply(${guestbook.guest_id})">[답글쓰기]</a><br>
+							                	<a  href="#" onclick="guestbookreply(${guestbook.guest_id})" style="color: black">답글쓰기</a><br>
 					                		</c:forEach>
 										</c:if>
 			            			</div>

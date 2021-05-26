@@ -56,10 +56,10 @@
 									<label >${guestbookDTO.user_id }</label>
 									<input type="text" name="user_id" id="user_id" placeholder="세션에서 가져올 아이디" />
 									<hr />
-					   				<textarea rows="7" cols="80" style="resize: none" class="form-control" name="guest_content">${guestbookDTO.guest_content }</textarea>
+					   				<textarea rows="7" cols="80" style="resize: none; font-size: 18px;" class="form-control" name="guest_content">${guestbookDTO.guest_content }</textarea>
 				 				</div>
-								<button id="guestbookmodify" class="btn btn-light" style="color: black;">확인</button>
-								<button id="guestcencle" class="btn btn-light" style="color: black;">돌아가기</button>
+								<button id="guestbookmodify" class="btn btn-light" style="padding: 13px 20px; border-radius: 20px;">확인</button>
+								<button id="guestcencle" class="btn btn-light" style="padding: 13px 20px; border-radius: 20px;">돌아가기</button>
 							</form>
 						</div>
 						<!-- 글 등록 부분 끝-->

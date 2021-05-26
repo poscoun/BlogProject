@@ -83,15 +83,13 @@
 								<div class="main-menu d-none d-lg-block">
 								    <nav>
 								        <ul id="navigation">                                                                                          
-								            <li><a href="index.html">Home</a></li>
-								            <li><a href="blog.html">Blog</a></li>
+								            <li><a href="#">Home</a></li>
 								            <li><a href="/category/category">Category</a></li>
 								            <li><a href="/guestbook/guestbook_form">Guest</a></li>
-								            <li><a href="blog.html">About</a>
+								            <li><a href="#">About</a>
                                                 <ul class="submenu">
-                                                    <li><a href="blog.html">MyProfile</a></li>
-                                                    <li><a href="blog_details.html">---</a></li>
-                                                    <li><a href="elements.html">Sign Out</a></li>
+                                                    <li><a href="#">MyProfile</a></li>
+                                                    <li><a href="#">Sign Out</a></li>
                                                 </ul>
                                             </li>
 								        </ul>
