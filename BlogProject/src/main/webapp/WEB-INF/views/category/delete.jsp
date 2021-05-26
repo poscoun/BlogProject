@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%-- <%@ include file="../include/siderbar.jsp" %> --%>
+<%@ include file="../include/header.jsp" %>
 
 <!DOCTYPE html>
 <html>
@@ -40,20 +44,13 @@
 		})
 	})		// 폼 전송하기 전에 bind로 이벤트가 발생하면서 submit 이벤트 전에 실행
 	
-	$(document).ready(function(){
-		$('modify').click(function(){
-			location.href = 'category/modify.jsp';
-		});
-	});
-	
-	// 수정 페이지로 이동
-	function modifyView(category_id){
-		var url = "${pageContext.request.contextPath}/category/modify";
-		url = url + "?category_id="+category_id;
-		location.href = url;
+	// 수정 버튼 클릭시 수정페이지로 이동
+	function modify(category_id){
+		location.href = '/category/modify?category_id='+category_id;
 	}
-
+	
 </script>
+
 </head>
 <body>
 <form action="./create" name="create" method="post">
@@ -84,7 +81,8 @@
 						<tr> 
 						 	<!-- checked="checked" 사용시 defualt 값 없이 자동으로 체크 -->
 							<td><input type="radio" name="category_id" value="${cdto.category_id}" checked="checked"/><c:out value="${cdto.category_id}"/></td>
-							<td><a href="#" onclick=""><c:out value="${cdto.category_name}"/></a></td>
+					
+							<td><a href="#" onclick="modify(${cdto.category_id})"><c:out value="${cdto.category_name}"/>[수정]</a></td>
 						</tr>
 					</c:forEach>
 				</c:when>

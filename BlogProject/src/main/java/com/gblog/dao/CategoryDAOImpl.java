@@ -21,7 +21,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Override
 	public void Create(CategoryDTO cdto) throws Exception {
 		// TODO Auto-generated method stub
-		sqlSession.insert(NAMESPACE+".insert", cdto);
+		sqlSession.insert(NAMESPACE+".insertCategory", cdto);
 		
 	}
 	
@@ -29,15 +29,29 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Override
 	public void Delete(Integer category_id) throws Exception {
 		// TODO Auto-generated method stub
-		sqlSession.delete(NAMESPACE+".delete", category_id);
+		sqlSession.delete(NAMESPACE+".deleteCategory", category_id);
 		
 	}
 	
 	// 카테고리 목록
 	@Override
-	public List<CategoryDTO> CategoryList(String sid) throws Exception {
+	public List<CategoryDTO> CategoryList() throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+".CategoryList", sid);
+		return sqlSession.selectList(NAMESPACE+".CategoryList");
+	}
+	
+	// 카테고리 수정
+	@Override
+	public void Update(CategoryDTO cdto) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(NAMESPACE+".updateCategory", cdto);
+	}
+	
+	// 카테고리 정보
+	@Override
+	public CategoryDTO Read(Integer category_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+".readCategory", category_id);
 	}
 	
 
