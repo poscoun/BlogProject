@@ -46,16 +46,24 @@ public class ProfileController {
 		 String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		 String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		 String fileName = null;
+		 
+		 
+		 if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			  // 파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 이름이 없다면)
+			  
+			  fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
 
-		 if(file != null) {
-		  fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
-		 } else {
-		  fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
-		 }
-
-		 pdto.setProfile_photo(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-		 pdto.setProfile_photo(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
-		
+			  // gdsImg에 원본 파일 경로 + 파일명 저장
+			  pdto.setProfile_photo(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			  
+			 } else {  // 첨부된 파일이 없으면
+			  fileName = File.separator + "images" + File.separator + "none.png";
+			  // 미리 준비된 none.png파일을 대신 출력함
+			  
+			  pdto.setProfile_photo(fileName);
+			 
+			 }
+		 
 		psvc.write(pdto);
 		
 		reAttr.addFlashAttribute("result", "success");
@@ -91,14 +99,21 @@ public class ProfileController {
 		 String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		 String fileName = null;
 
-		 if(file != null) {
-		  fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
-		 } else {
-		  fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
-		 }
+		 if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			  // 파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 이름이 없다면)
+			  
+			  fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
 
-		 pdto.setProfile_photo(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-		 pdto.setProfile_photo(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+			  // gdsImg에 원본 파일 경로 + 파일명 저장
+			  pdto.setProfile_photo(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			  
+			 } else {  // 첨부된 파일이 없으면
+			  fileName = File.separator + "images" + File.separator + "none.png";
+			  // 미리 준비된 none.png파일을 대신 출력함
+			  
+			  pdto.setProfile_photo(fileName);
+			 
+			 }
 		 
 		 psvc.modify(pdto);
 		 
