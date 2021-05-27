@@ -4,6 +4,8 @@ import java.io.File;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gblog.dao.ProfileDAO;
 import com.gblog.dto.ProfileDTO;
 import com.gblog.service.ProfileService;
 import com.gblog.utils.UploadFileUtils;
@@ -72,19 +75,23 @@ public class ProfileController {
 	}
 	
 	 @RequestMapping(value = "/list", method = RequestMethod.GET)
-	 public void list(Model model) throws Exception {
+	 public void list(Model model, HttpServletRequest request) throws Exception {
 	      LOGGER.info(".... list 출력 ....");
+	      
+	      HttpSession session = request.getSession();
+	      session.getAttribute("udto");
 	      
 	      model.addAttribute("list", psvc.list());
 	   }
 	 
 	 @RequestMapping(value = "/read", method = RequestMethod.GET)
-	 public void read(@RequestParam("user_id") String user_id, Model model) throws Exception{
+	 public void read(@RequestParam("user_id") String user_id, Model model, HttpServletRequest request) throws Exception{
 		 
 		 model.addAttribute(psvc.read(user_id));
 	 }
-	 
-	 @RequestMapping(value = "/modify", method = RequestMethod.GET)
+		
+
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	 public void modifyGET(@RequestParam("user_id") String user_id, Model model) throws Exception{
 		 LOGGER.info(".... modifyGET ....");
 		 
@@ -119,7 +126,9 @@ public class ProfileController {
 		 
 		 reAttr.addFlashAttribute("result", "수정되었습니다.");
 		 
-		 return "redirect:/profile/list";
+		 
+		 
+		 return "redirect:/profile/list ";
 	 }
 	 
 	 @RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -128,7 +137,7 @@ public class ProfileController {
 		 
 			psvc.remove(user_id);	
 			
-			return "redirect:/profile/list";
+			return "redirect:/profile/write";
 			
 		}
 

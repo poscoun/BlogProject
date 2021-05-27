@@ -15,11 +15,12 @@
 				//alert('btn click');
 				//console.dir(frmObj);
 				frmObj.attr('action', "/profile/modify");	
+				frmObj.attr('method', 'post');
 				frmObj.submit();
 			});	
 			
 			$('#btn_c').on('click', function(){
-				self.location = "/profile/list";
+				self.location = "/profile/read?user_id=${udto.user_id}";
 			});
 
 		});	 
@@ -64,7 +65,11 @@
                     
 
                     <form class="form-contact contact_form" method="post" role="form" autocomplete="off" enctype="multipart/form-data">
-                        <input type="hidden" name="user_id" value="${profileDTO.user_id }" />
+                        <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input class="form-control valid" name="user_id" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter id'" value="${udto.user_id }" readonly="readonly" >
+                                </div>
+                            </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group" style="white-space:pre">

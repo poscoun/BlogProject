@@ -10,10 +10,6 @@
   		padding: 50px 0 0 30px;
   	}
   	
-  .footer-btn2{
-  		padding: 30px 0 0 100px;
-  	}
-  
   
   .oriImg{
   		width: 600px;
@@ -65,9 +61,11 @@
 
 <main>
 
-	<form method="post" role="form">
-	 	<input type="hidden" name="user_id" value="${profileDTO.user_id }" />
-	 </form>
+	
+
+ <form method="post" role="form">
+	 	<input type="hidden" name="user_id" value="${udto.user_id }" />  	
+	 </form> 
 	 
         <!--? Hero Start -->
         <div class="slider-area2">
@@ -103,15 +101,13 @@
             <!-- left Contents -->
             <div class="tailor-details">
 				<span>Profile</span>
-                <h2><c:out value="${profileDTO.user_id }"></c:out></h2>
+				<h2><c:out value="${profileDTO.user_id }"></c:out></h2> 
                 <p style="white-space:pre"><c:out value="${profileDTO.profile_content }"></c:out></p>
               	<div class="test"></div>
               	
               	
-                <div class="footer-titles">
-                
+                <div class="footer-titles">            
                 	<div class="col-lg-8">
-                    
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                         <div class="media-body">
@@ -145,9 +141,7 @@
                      	<button type="button" class="border-btn" id="delete_btn">프로필삭제</button>
                     </div>
                     
-                    <div class="footer-btn2">
-                            <button type="button" class="button button-contactForm boxed-btn">회원정보수정</button>
-                    </div>
+                    
                 </div>
 
                 

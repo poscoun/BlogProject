@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,8 +87,9 @@
 			                                    <li><a href="/category/category">Category</a></li>
 			                                    <li><a href="/guestbook/guestbook_form">Guest</a></li>
 			                                    <li><a href="#">About</a>
-	                                                <ul class="submenu">
-	                                                    <li><a href="/profile/list">MyProfile</a></li>
+	                                                <ul class="submenu"> 
+	                                                	<li><a href="/profile/read?user_id=${udto.user_id }">MyProfile</a></li>
+	                                                	<li><a href="/profile/write">ProfileWrite</a></li>
 	                                                    <li><a href="/user/logout.do">Sign Out</a></li>
 	                                                </ul>
 	                                            </li>
