@@ -21,6 +21,9 @@
 		</aside>
 		<aside class="single_sidebar_widget post_category_widget">
 	  		<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
+	  			<div>
+	  				<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="" onclick="post(${user_id})" type="button">EDIT</button>
+	  			</div>
 	  		<ul class="list cat-list">
 		      
 		   	</ul>

@@ -7,8 +7,9 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
-		var frmObj = $('form[name="CategoryModify"]')
+		var frmObj = $('form[name="CategoryModify"]').category_id
 		
+		// 수정 버튼 클릭시
 		$('#Confirm').on('click', function() {
 			//alert('click');
 			
@@ -16,12 +17,28 @@
 			frmObj.submit();
 		});
 		
-		
+		// 돌아가기 버튼 클릭시
 		$('#Cencle').on('click', function() {
 			self.location = "/category/edit";
 		});
 		
+		// 삭제 버튼 클릭시
+		$('#delete').click(function(){
+			var warning = confirm('정말 삭제 하시겠습니까?');
+			if(warning) {
+				// yes
+			$("#CategoryInfo").attr('action', "/category/delete").submit();
+				alert('삭제되었습니다.');
+			} else {
+				// no
+				alert('삭제가 취소되었습니다.');
+			}
+			
+			
+		}); 
+		
 	});
+	
 
 </script>
 <style type="text/css">
@@ -47,14 +64,15 @@
 			<b><font size="5" color="gray">카테고리 수정</font></b>
 			<hr />
 			<div id="CategoryModify">
-				<form name="CategoryInfo" method="post">
+				<form id="CategoryInfo" name="CategoryInfo"  method="post">
 					<div class="form-group">
-						<!-- <input type="hidden" name="user_id" id="user_id" /> -->
 						<label>${categoryDTO.user_id }</label>
 						<hr />
+						<input type="hidden" name="category_id" value="${categoryDTO.category_id}" />
 						<textarea rows="7" cols="80" style="resize: none" class="form-control" name="category_name">${categoryDTO.category_name }</textarea>
 					</div>
 					<button id="Confirm" class="btn btn-light" >확인</button>
+					<button id="delete" class="btn btn-light">삭제</button>
 					<button id="Cencle" class="btn btn-light">돌아가기</button>
 				</form>
 			</div>

@@ -155,7 +155,50 @@
                             
                         </div>
                     </div>
-					<%@ include file="../include/siderbar.jsp" %>
+						
+					<div class="col-lg-4">
+								<div class="blog_right_sidebar">
+									<aside class="single_sidebar_widget search_widget">
+										<form action="#">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<input type="text" class="form-control" placeholder='Search Keyword' >
+								          		</div>
+								      		</div>
+								      		<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+								      			type="submit">Search
+								      		</button>
+											<aside class="single_sidebar_widget">
+												<div>
+													<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="btnWriteForm" onclick="post(${category_id})" type="button">POST</button>
+												</div>
+											</aside>
+								  		</form>
+									</aside>
+									<aside class="single_sidebar_widget post_category_widget">
+								  		<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
+								  			<ul class="list cat-list">
+								  				<c:forEach var="cdto" items="${CategoryList }">
+								  					<li>
+								  						<a href="#" class="d-flex">${cdto.category_name }</a>
+								  					</li>
+								  				</c:forEach>
+								  			</ul>
+								  			<div>
+								  				<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="CategoryEdit" onclick="user(${user_id})" type="button">EDIT</button>
+								  			</div>
+								  		<ul class="list cat-list">
+									      
+									   	</ul>
+									</aside>
+									<aside class="single_sidebar_widget post_category_widget" >
+								  		<h4 class="widget_title" style="color: #2d2d2d; margin-bottom: 20px;">Guest</h4>
+								  		<label style="font: 20px;">Total : <%=session.getAttribute("totalCount") %></label> <br />
+										<label style="font: 20px;">Today : <%=session.getAttribute("todayCount") %></label>
+									</aside>
+								</div>
+							</div>
+						
                 </div>
             </div>
         </section>

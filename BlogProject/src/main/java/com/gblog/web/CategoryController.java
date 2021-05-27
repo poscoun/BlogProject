@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -68,7 +69,6 @@ public class CategoryController {
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestParam("category_id") Integer category_id, RedirectAttributes reAttr) throws Exception {
 		
-		
 		csvc.Delete(category_id);
 		
 		reAttr.addFlashAttribute("result", "success");
@@ -76,10 +76,10 @@ public class CategoryController {
 		return "redirect:/category/edit";
 	}
 	
-	// 카테고리 수정 페이지
+	// 카테고리 디테일 페이지
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void ModifyGET(@RequestParam("category_id") Integer category_id, Model model) throws Exception {
-		
+
 		model.addAttribute(csvc.Read(category_id));
 		
 	}
