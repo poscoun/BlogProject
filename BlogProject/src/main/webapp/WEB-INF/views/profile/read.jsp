@@ -63,9 +63,9 @@
 
 	
 
- <form method="post" role="form">
-	 	<input type="hidden" name="user_id" value="${udto.user_id }" />  	
-	 </form> 
+<form method="post" role="form">
+	 	<input type="hidden" name="user_id" value="${udto.user_id }" />
+</form> 
 	 
         <!--? Hero Start -->
         <div class="slider-area2">

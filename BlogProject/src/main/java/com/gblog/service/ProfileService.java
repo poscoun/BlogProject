@@ -3,6 +3,7 @@ package com.gblog.service;
 import java.util.List;
 
 import com.gblog.dto.ProfileDTO;
+import com.gblog.dto.UserDTO;
 
 public interface ProfileService {
 	public void write(ProfileDTO pdto) throws Exception;

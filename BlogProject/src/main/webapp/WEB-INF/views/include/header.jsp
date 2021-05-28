@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,80 +35,89 @@
 <header>
 	<!-- 조건문 삽입 : session 에 ID 가 없을시 출력 부분 -->
 	<!-- Header Start -->
-<!-- 	<div class="header-area">
-	    <div class="main-header ">
-	        <div class="header-bottom  header-sticky">
-	            <div class="container-fluid">
-	                <div class="row align-items-center">
-	                    Logo
-						<div class="col-xl-2 col-lg-2">
-						    <div class="logo">
-						        <a href="index.html"><img src="/resources/assets2/img/logo/logo.png" alt=""></a>
-						    </div>
-						</div>
-						<div class="col-xl-10 col-lg-10">
-						    <div class="menu-wrapper  d-flex align-items-center justify-content-end">
-						        Main-menu
-								<div class="main-menu d-none d-lg-block">
-								    <nav>
-								        <ul id="navigation">                                                                                          
-								            <li><a href="/post/getList">Home</a></li>
-								            <li><a href="/category/category">Category</a></li>
-								            <li><a href="/guestbook/guestbook_form">Guest</a></li>
-								            <li><a href="#">Sign In</a></li>
-								        </ul>
-								    </nav>
-								</div>
-						    </div>
-						</div> 
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	</div> -->
+	<c:if test="${sessionScope.udto eq null }">
+	 	<div class="header-area">
+		    <div class="main-header ">
+		        <div class="header-bottom  header-sticky">
+		            <div class="container-fluid">
+		                <div class="row align-items-center">
+							<div class="col-xl-2 col-lg-2">
+							    <div class="logo">
+							        <a href="index.html"><img src="/resources/assets2/img/logo/logo.png" alt=""></a>
+							    </div>
+							</div>
+							<div class="col-xl-10 col-lg-10">
+							    <div class="menu-wrapper  d-flex align-items-center justify-content-end">
+									<div class="main-menu d-none d-lg-block">
+									    <nav>
+									        <ul id="navigation">                                                                                          
+									            <li><a href="/post/getList">Home</a></li>
+									            <li><a href="/user/login">Category</a></li>
+									            <li><a href="/user/login">Guest</a></li>
+									            <li><a href="/user/login">Sign In</a></li>
+									        </ul>
+									    </nav>
+									</div>
+							    </div>
+							</div> 
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	</c:if>
+	<c:if test="${sessionScope.udto ne null }">
 		<div class="header-area">
-            <div class="main-header ">
-                <div class="header-bottom  header-sticky">
-                    <div class="container-fluid">
-                        <div class="row align-items-center">
-                            <!-- Logo -->
-                            <div class="col-xl-2 col-lg-2">
-                                <div class="logo">
-                                    <a href="index.html"><img src="/resources/assets/img/logo/loder.png" alt=""></a>
-                                </div>
-                            </div>
-                            <div class="col-xl-10 col-lg-10">
-                                <div class="menu-wrapper  d-flex align-items-center justify-content-end">
-                                    <!-- Main-menu -->
-                                    <div class="main-menu d-none d-lg-block">
-                                        <nav>
-                                			<ul id="navigation">                                                                                          
-			                                    <li><a href="/post/getList">Home</a></li>
-			                                    <li><a href="/category/category">Category</a></li>
-			                                    <li><a href="/guestbook/guestbook_form">Guest</a></li>
-			                                    <li><a href="#">About</a>
-	                                                <ul class="submenu"> 
-	                                                	<li><a href="/profile/read?user_id=${udto.user_id }">MyProfile</a></li>
-	                                                	<li><a href="/profile/write">ProfileWrite</a></li>
-	                                                    <li><a href="/user/logout.do">Sign Out</a></li>
-	                                                </ul>
-	                                            </li>
-			                                </ul>
-                            			</nav>
-                                    </div>
-                                </div>
-                            </div> 
-                            <!-- Mobile Menu -->
-                            <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-    </header>
+			<div class="main-header ">
+				<div class="header-bottom  header-sticky">
+					<div class="container-fluid">
+						<div class="row align-items-center">
+	                    	<div class="col-xl-2 col-lg-2">
+	                        	<div class="logo">
+	                            	<a href="index.html"><img src="/resources/assets/img/logo/loder.png" alt=""></a>
+	                        	</div>
+	                    	</div>
+	                    	<div class="col-xl-10 col-lg-10">
+	                        	<div class="menu-wrapper  d-flex align-items-center justify-content-end">
+	                            <!-- Main-menu -->
+	                            	<div class="main-menu d-none d-lg-block">
+	                                	<nav>
+	                        				<ul id="navigation">                                                                                          
+				                               <li><a href="/post/getList">Home</a></li>
+				                               <li><a href="/category/category">Category</a></li>
+				                               <li><a href="/guestbook/guestbook_form">Guest</a></li>
+				                               
+				                               
+				                               	 <li><a href="#">About</a>                                                      
+                                               		<ul class="submenu"> 
+            											<li><a href="/profile/read?user_id=${udto.user_id }">MyProfile</a></li>	
+                                                        <li><a href="/user/logout.do">Sign Out</a></li>
+                                                     </ul>
+                                               	</li>
+				                         
+											  
+
+                                               <li><a href="#">About</a>
+                                                         <ul class="submenu"> 
+                                                         	<li><a href="/profile/write">ProfileWrite</a></li>
+                                                             <li><a href="/user/logout.do">Sign Out</a></li>
+                                                         </ul>   
+                                                     </li>
+ 
+				                               
+				                               
+											</ul>
+										</nav>
+									</div>
+								</div>
+							</div> 
+	                	</div>
+	            	</div>
+	        	</div>
+	    	</div>
+		</div>
+	</c:if>
+	<!-- Header End -->
 </header>
 </body>
 </html>

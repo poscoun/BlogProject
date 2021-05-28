@@ -15,7 +15,7 @@
 				//alert('btn click');
 				//console.dir(frmObj);
 				frmObj.attr('action', "/profile/modify");	
-				frmObj.attr('method', 'post');
+				//frmObj.attr('method', 'post');
 				frmObj.submit();
 			});	
 			
@@ -32,6 +32,11 @@
 	</script>
 
 <main>
+
+	<form method="post" role="form">
+	 	<input type="text" name="user_id" value="${pdto.user_id }" />  	
+	 </form>
+
     <!--? Hero Start -->
     <div class="slider-area2">
         <div class="slider-height2 d-flex align-items-center">
