@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gblog.dto.UserDTO;
+import com.gblog.service.ProfileService;
 import com.gblog.service.UserService;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -41,6 +42,9 @@ public class UserController {
 
 	@Inject
 	private UserService usvc;
+	
+	@Inject
+	private ProfileService psvc;
 	
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
@@ -204,7 +208,7 @@ public class UserController {
 	//로그인
 	@RequestMapping(value="login.do", method= RequestMethod.POST)
 	
-	public String login(HttpServletRequest request, UserDTO udto, RedirectAttributes rttr) throws Exception{
+	public String login(HttpServletRequest request, UserDTO udto, RedirectAttributes rttr, @RequestParam("user_id") String user_id) throws Exception{
 		
 		HttpSession session = request.getSession();
 		String rawPw = "";
@@ -227,6 +231,8 @@ public class UserController {
 				
 				lvo.setUser_pw("");	               // 인코딩된 비밀번호 정보 지움
 				session.setAttribute("udto", lvo); 	// session에 사용자의 정보 저장
+				session.setAttribute("Profile_list", psvc.read(user_id));
+				
 				return "redirect:/category/category";		// 메인페이지 이동  --> 나중에 메인으로 변경해야함 
 				
 				
