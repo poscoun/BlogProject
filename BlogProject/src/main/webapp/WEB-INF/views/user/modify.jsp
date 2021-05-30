@@ -1,7 +1,11 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page session="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%-- <%@ include file="../include/siderbar.jsp" %> --%>
+<%@ include file="../include/header1.jsp" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -9,7 +13,7 @@
         <meta charset="utf-8">
         <!-- meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/ -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>pw변경</title>
+        <title>Password 변경</title>
         <!-- Bootstrap -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) -->
@@ -22,12 +26,10 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     </head>
     <body>
-        <div class="container"><!-- 좌우측의 공간 확보 -->
+        <!-- <div class="container"> --><!-- 좌우측의 공간 확보 -->
             <!-- 헤더 들어가는 부분 -->
             
-            <div class="row">
-                
-            </div>
+            
             <!--// 헤더 들어가는 부분 -->
             <!-- 모달창 -->
             <div class="modal fade" id="defaultModal">
@@ -47,75 +49,111 @@
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
             <!--// 모달창 -->
-            <hr/>
+           
             <!-- 본문 들어가는 부분 -->
+            
+            <!-- <div class="slider-area2">
+        
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap hero-cap2 pt-70" style="text-align: center; color: black;">
+                            <h2>Sing up</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    </div> -->
+            
+           
+            
                 
  
+ <!-- <section class="blog_area section-padding">  -->
  
-            <form class="form-horizontal" role="form" method="post" >               
-
-                <div class="form-group" id="divId">
-                    <label for="inputId" class="col-lg-2 control-label">아이디</label>
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control onlyAlphabetAndNumber" id="user_id" name="user_id" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">                        
-                      
-                        <!-- <span class="id_input_re_1">사용 가능한 아이디입니다.</span>
-						<span class="id_input_re_2">아이디가 이미 존재합니다.</span>	 -->
-						<div class="check_font" id="id_check"></div>
-                    </div>
-                   
+ <section class="contact-section" >
+ <div class="col-sm-6" >
+          	<h1 class="blog-head"  style="color: #2d2d2d; position: relative; left:48%; text-align: center;"> <img alt="#" src="/resources/images/password.png" style="width: 70px; height: 70px;"></h1> 
+          	<!-- <h1 class="blog-head" style="color: #2d2d2d;">SIGN UP</h1> -->
+          	<br>
+           </div>
+ 
+        <div class="container" >
+             <div class="row" style="position: relative; left:30%;" >
+                
+                <div class="col-lg-8">
+                    <form class="form-contact contact_form"  method="post"  role="form"  >
+                       
+                            
+                            <div class="col-sm-6" id="divId">
+                            	<h3 style="color: black;">ID</h3>
+                                <div class="form-group">
+                                    <input class="form-control onlyAlphabetAndNumber" name="user_id" id="user_id" type="text" data-rule-required="true" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="ID" maxlength="30">
+                                    <div class="check_font" id="id_check"></div>
+                                </div>
+                            </div>
+                            
+                             <div class="col-sm-6" id="divEmail">
+                             
+                            	<h3 style="color: black;">Email</h3>	
+                                <div class="form-group">
+                                    <input class="form-control mail_input" name="user_email" id="user_email" type="email" data-rule-required="true" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ex)goott@email.com'" placeholder="EX) goott@email.com" maxlength="30">
+                                </div>
+                                <span class="mail_input_box_warn"></span>
+                            
+                            
+                            
+                            	 <div class="mail_check_wrap">	
+                            	 
+								<div class="email_check_button">
+								<input type="button" class="button button-contactForm boxed-btn" id="email_check_button" name="email_check_button" value="인증번호 전송" style="padding: 8px 21px;"> 
+								</div>
+								<div class="clearfix"></div>
+								<span id="mail_check_input_box_warn"></span>	
+								<br>
+															
+								<div class="mail_check_input_box" id="mail_check_input_box_false">
+									<input class="form-control mail_check_input" id="mailcheck" disabled="disabled">
+									<div class="check_font" id="email_check"></div>
+								</div>
+								</div>
+							</div>
+							  <br>
+							  <br>
+							
+							<div class="col-sm-6" id="divPassword">
+                           		<h3 style="color: black;">PW</h3>
+                                <div class="form-group">
+                                    <input class="form-control valid" name="user_pw" id="user_pw" type="password"  data-rule-required="true" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Password" maxlength="30" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="col-sm-6" id="divPasswordCheck" >
+                            	<h3 style="color: black;">PW Check</h3>	
+                                <div class="form-group">
+                                    <input class="form-control valid" name=user_pwcheck id="user_pwcheck" type="password" data-rule-required="true" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="Password Check" maxlength="30" disabled="disabled">
+                                </div>
+                            </div>
+                            
+							
+                       
+							 <div class="col-sm-6">
+                        <div class="form-group mt-3">
+                            <button type="submit" class="button button-contactForm boxed-btn" style="padding: 8px 21px;  position: relative; left:27%;">비밀번호 변경</button>
+                        </div>
+                        </div>
+                    </form>
                 </div>
-                
-                
-                
-                <div class="form-group" id="divEmail">
-                    <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
-                    <div class="col-lg-10">
-                        <input type="email" class="form-control mail_input" id="user_email" name="user_email" data-rule-required="true" placeholder="ex)goot77@gmail.com" maxlength="40">                       
-                    </div>
-					<sapn class="mail_input_box_warn"></sapn>                    
-                 <div class="mail_check_wrap">
-					<div class="mail_check_input_box" id="mail_check_input_box_false">
-						<input class="mail_check_input" id="mailcheck" disabled="disabled">
-						<div class="check_font" id="email_check"></div>
-					</div>
-					<div class="email_check_button">
-						<input type="button" class="btn btn-primary" id="email_check_button" name="email_check_button" value="인증번호 전송"> 
-					</div>
-					<div class="clearfix"></div>
-					<span id="mail_check_input_box_warn"></span>
-				</div>
-                </div>
-                
-                <div class="form-group" id="divPassword">
-                    <label for="inputPassword" class="col-lg-2 control-label"></label>
-                    <div class="col-lg-10">
-                        <input type="password" class="form-control" id="user_pw"  name="user_pw" data-rule-required="true" placeholder="new Password" maxlength="30" disabled="disabled">
-                    </div>
-                </div>
-                
-                
-                 <div class="form-group" id="divPasswordCheck">
-                    <label for="inputPasswordCheck" class="col-lg-2 control-label"></label>
-                    <div class="col-lg-10">
-                        <input type="password" class="form-control" id="user_pwcheck" data-rule-required="true" placeholder="Password Check" maxlength="30" disabled="disabled">
-                        <div id="pw_check"></div>
-                    </div>
-                </div>
-                
-                
-         
-                <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" class="btn btn-primary">아이디 찾기</button>
-                    </div>
-                </div>
-            </form>
+            </div>
+               </div>
+            </section>
+          
+        
         
         
         <script>
         
-         //입력 이메일 형식 유효성 검사 
+      //입력 이메일 형식 유효성 검사 
         function mailFormCheck(email){
        	var form = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
        	return form.test(email);
@@ -389,12 +427,12 @@
         			dataType : "json",
         			data : { "user_id" : $("#user_id").val()},
         			success : function(data) {
-        				if(data == 0) {
+        				if(data == 1) {
         					$("#id_check").text("ID 있음");
     						$("#id_check").css("color", "green");
         						
         					
-        				} else if(data == 1) {
+        				} else if(data == 0) {
         					
         					
         					$("#id_check").text("아이디 없음");
@@ -431,6 +469,14 @@
            
         </script>           
           
-        </div>
+        <!-- </div> -->
+        
     </body>
+    
 </html>
+
+
+
+
+<%-- <%@ include file="../include/footer.jsp" %> --%>
+<%-- <%@ include file="../include/footer.jsp" %> --%>

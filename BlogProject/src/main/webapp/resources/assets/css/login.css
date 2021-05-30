@@ -59,16 +59,16 @@ body {
       color: #b0adad; }
   .login-wrapper .login-btn {
     padding: 13px 20px;
-    background-color: #fdbb28;
+    background-color: #09cc7f;
     border-radius: 0;
     font-size: 20px;
     font-weight: bold;
     color: #fff;
     margin-bottom: 14px; }
     .login-wrapper .login-btn:hover {
-      border: 1px solid #fdbb28;
+      border: 1px solid #09cc7f;
       background-color: #fff;
-      color: #fdbb28; }
+      color: #09cc7f; }
   .login-wrapper a.forgot-password-link {
     color: #080808;
     font-size: 14px;

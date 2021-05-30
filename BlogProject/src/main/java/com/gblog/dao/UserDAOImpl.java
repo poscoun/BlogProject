@@ -59,4 +59,10 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.update("userupdate", udto);
 		
 	}
+	@Override
+	public void userdelete(UserDTO udto) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete("userdelete", udto);
+		
+	}
 }

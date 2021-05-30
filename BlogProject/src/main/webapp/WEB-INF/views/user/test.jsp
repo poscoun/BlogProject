@@ -1,132 +1,123 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ page session="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%-- <%@ include file="../include/siderbar.jsp" %> --%>
+<%@ include file="../include/header1.jsp" %>
+
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <!-- meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/ -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Password 변경</title>
+        <!-- Bootstrap -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) -->
+        <script src="http://code.jquery.com/jquery.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- 모든 합쳐진 플러그인을 포함하거나 (아래) 필요한 각각의 파일들을 포함하세요 -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <!-- Respond.js 으로 IE8 에서 반응형 기능을 활성화하세요 (https://github.com/scottjehl/Respond) -->
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    </head>
+    <body>
+        <!-- <div class="container"> --><!-- 좌우측의 공간 확보 -->
+            <!-- 헤더 들어가는 부분 -->
+            
+            
+            <!--// 헤더 들어가는 부분 -->
+            <!-- 모달창 -->
+            <div class="modal fade" id="defaultModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">알림</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="modal-contents"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <!--// 모달창 -->
+           
+            <!-- 본문 들어가는 부분 -->
+            
+            <!-- <div class="slider-area2">
+        
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap hero-cap2 pt-70" style="text-align: center; color: black;">
+                            <h2>Sing up</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    </div> -->
+            
+           
+            
+                
  
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-	<link rel="stylesheet"  href="/resources/css/member/test.css?ver=1">
-</head>
-<body width="100%" height="100%">
-    <form action="index.html" method="post" class="loginForm" id="login_form">
-      <h2>Login</h2>
-      <div class="idForm">
-        <input type="text" class="id" placeholder="ID" name="user_id">
-      </div>
-      
-      
-      
-      
-      <div class="passForm">
-        <input type="password" class="pw" placeholder="Email" id="user_email" name="user_email">
-      </div>
-      <sapn class="mail_input_box_warn"></sapn> 
-      
-      <div class="passForm">
-        <input type="password" class="pw" placeholder="Email Check" id="user_emailck" name="user_emailck" disabled="disabled">
-        <div class="check_font" id="email_check"></div>
-      </div>
-      <div class="email_check_button">
-			<input type="button" class="btn btn-primary" id="email_check_button" name="email_check_button" value="인증번호 전송"> 			       
-	 </div>
-	<div class="clearfix"></div>
-	<span id="mail_check_input_box_warn"></span>
-	
-	<div class="passForm">
-        <input type="password" class="pw" placeholder="Password" name="user_pw">
-      </div>
-      
-      <div class="passForm">
-        <input type="password" class="pw" placeholder="Password Check" name="user_pwck">
-      </div>
-      
-      
-      <button type="button" class="btn" onclick="button()">
-        LOG IN
-      </button>
-      <script>
-      
-      
-      $(".btn").click(function(){
-  		
-  		//alert("로그인 버튼 작동");
-  		
-  		/* 로그인 메서드 서버 요청 */
-  		$("#login_form").attr("action", "/user/login");
-  		$("#login_form").submit();
-  		
-  	});
-      
-      /* 인증번호 이메일 전송 */
-      $("#email_check_button").click(function(){
-      	
-      	var email = $("#user_email").val();			// 입력한 이메일
-      	var cehckBox = $(".mail_check_input");		// 인증번호 입력란
-      	var boxWrap = $(".mail_check_input_box");	// 인증번호 입력란 박스
-      	var warnMsg = $(".mail_input_box_warn");	// 이메일 입력 경고글
-      	
-      	
-      	if(mailFormCheck(email)){
-      		warnMsg.html("이메일이 전송 되었습니다. 이메일을 확인해주세요.");
-      		warnMsg.css("display", "inline-block");
-      	} else {
-      		warnMsg.html("올바르지 못한 이메일 형식입니다.");
-      		warnMsg.css("display", "inline-block");
-      		return false;
-      	}	
-      	
-      	$.ajax({
-      		
-      		type:"GET",
-      		url:"mailCheck?email=" + email,
-      		success:function(data){
-      			
-      			//console.log("data : " + data);
-      			cehckBox.attr("disabled",false);
-      			boxWrap.attr("id", "mail_check_input_box_true");
-      			code = data;
-      			
-      		}
-      				
-      	});
-      	
-      });
-      
-     
-      
-      /* 인증번호 비교 */
-      $(".mail_check_input").on("ropertychange change keyup paste input", function(){
-      	
-      	var inputCode = $(".mail_check_input").val();		// 입력코드	
-      	var checkResult = $("#mail_check_input_box_warn");	// 비교 결과 	
-      	
-      	if(inputCode == code){							// 일치할 경우
-      		$("#email_check").text("인증번호 일치");
-      		$("#email_check").css("color", "green");		
-      		
-      	} else {											// 일치하지 않을 경우
-      		$("#email_check").text("인증번호 불일치");
-      		$("#email_check").css("color", "red");
-      		
-      	}	
-      	
-      });
-      
-      
-      
-      	
-      </script>
-      
-      
-      <div class="bottomText">
-      <a href="/user/idselect">	ID 찾기 </a> | <a href="#"> PW 찾기 </a> | <a href="/user/join"> 회원가입 </a>
-      </div>
-    </form>
-  </body>
+ <!-- <section class="blog_area section-padding">  -->
+ 
+ 
+             
+                
+                <div class="col-lg-8">
+                    <form class="form-contact contact_form"  method="post"   >
+					 	<div class="container box_1170">
+						<div class="section-top-border" style="position: absolute; top: 50%; left: 50%; ">
+								<h3 class="mb-30" style="">Table</h3>
+								
+									<div class="progress-table" style="padding: 20px 50px 40px;" >
+										<div class="table-head">
+											<div class="serial">ID</div>
+											<div class="country">NAME</div>
+											<div class="visit">Member Since</div>
+											
+										</div>
+										<div class="table-row">
+											<div class="serial">${id }</div>
+											<div class="country">${name }</div>
+											<div class="visit"><fmt:formatDate pattern="yyyy-MM-dd" value="${date }"/></div>
+										</div>
+									</div>
+								</div>
+                                 </div>
+                    </form>
+                </div>
+            
+   
+          
+        
+        
+        
+        <script>
+        
+
+           
+        </script>           
+          
+        <!-- </div> -->
+        
+    </body>
+    
 </html>
+
+
+
+
+<%-- <%@ include file="../include/footer.jsp" %> --%>
+<%-- <%@ include file="../include/footer.jsp" %> --%>

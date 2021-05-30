@@ -9,7 +9,7 @@ public class UserDTO {
 	private String user_birth;
 	private String user_email;
 	private String user_gender;
-	private Date user_data;
+	private Date user_date;
 	
 	
 
@@ -63,12 +63,12 @@ public class UserDTO {
 		this.user_gender = user_gender;
 	}
 
-	public Date getUser_data() {
-		return user_data;
+	public Date getUser_date() {
+		return user_date;
 	}
 
-	public void setUser_data(Date user_data) {
-		this.user_data = user_data;
+	public void setUser_data(Date user_date) {
+		this.user_date = user_date;
 	}
 	
 	

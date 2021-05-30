@@ -44,7 +44,7 @@
  <!-- 아이디 찾기 -->
   <select id="idselect" resultType="com.gblog.dto.UserDTO">
   <![CDATA[
-  select user_id 
+  select user_id, user_name, user_date
   from user
   where user_name = #{user_name} and
   user_email = #{user_email}
@@ -62,34 +62,30 @@
   ]]>
   </select>
   
-  <!-- 새 pw -->
+  <!-- 새 password -->
   <update id="modify">
+   <![CDATA[
   update user
   set user_pw = #{user_pw}
   where user_id = #{user_id} and user_email = #{user_email}
+  ]]>
   </update>
    
-   
-   <update id="userupdate">
+   <delete id="userdelete" >
    <![CDATA[
-   update user
-   set   user_birth = #{user_birth},
-       user_phone = #{user_phone}
-       where user_id = #{user_id}
+   delete from user 
+   where user_id = #{user_id} 
+   
    ]]>
+      
+   </delete>
    
-   </update>
    
    
-   <!-- 사용자 정보? -->
-   <select id="information" resultType="com.gblog.dto.UserDTO">
-   <![CDATA[
-   	select user_id, user_name, user_birth, user_phone, user_email, user_gender, user_date
-   	from user
-   	where user_id = #{user_id}
-   ]]>
    
-   </select>
+   
+   
+
   
   
   
