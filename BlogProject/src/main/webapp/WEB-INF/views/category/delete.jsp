@@ -113,7 +113,7 @@ $(document).ready(function(){
 										<form action="./create" name="create" method="post">
 											<div class="input-group mb-3">
 												<input type="hidden" name="user_id" value="${udto.user_id }" />
-												<input type="text" class="form-control" placeholder='CATEGORY NAME' name="category_name" >						
+												<input type="text" class="form-control" placeholder='CATEGORY NAME' name="category_name" style="font-size: 18px;">						
 						          			</div>
 						          				<input type="submit" class="btn btn-light" value="생성" />
 										</form>
@@ -158,12 +158,12 @@ $(document).ready(function(){
 							      		<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
 							      			type="submit">Search
 							      		</button>
-										<aside class="single_sidebar_widget">
-											<div>
-												<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="btnWriteForm" onclick="post(${category_id})" type="button">POST</button>
-											</div>
-										</aside>
 							  		</form>
+								</aside>
+								<aside class="single_sidebar_widget">
+									<div>
+										<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="btnWriteForm" onclick="post(${category_id})" type="button">POST</button>
+									</div>
 								</aside>
 								<aside class="single_sidebar_widget post_category_widget">
 							  		<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>

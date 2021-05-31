@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gblog.dto.GuestbookDTO;
 import com.gblog.dto.GuestbookReplyDTO;
+import com.gblog.service.CategoryService;
 import com.gblog.service.GuestbookService;
 
 @Controller
@@ -26,6 +27,9 @@ public class GuestbookController {
 	
 	@Inject
 	private GuestbookService gsvc;
+	
+	@Inject
+	private CategoryService csvc;
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String index(Locale locale, Model model, HttpSession session) throws Exception {
@@ -48,6 +52,7 @@ public class GuestbookController {
 		
 		/* 세션의 값 유무를 파악 후 있으면 실행  없으면 Login 페이지로 이동 */
 		model.addAttribute("list", gsvc.list());
+		model.addAttribute("category_list", csvc.CategoryList());
 		
 		return "/guestbook/guestbook_form";
 		

@@ -93,8 +93,8 @@ $(document).ready(function(){
                         </c:choose>   
                         </div>
                     </div>
-
-						<div class="col-lg-4">
+					<%@ include file="../include/siderbar2.jsp" %>
+<%-- 						<div class="col-lg-4">
 								<div class="blog_right_sidebar">
 									<aside class="single_sidebar_widget search_widget">
 										<form action="#">
@@ -106,12 +106,12 @@ $(document).ready(function(){
 								      		<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
 								      			type="submit">Search
 								      		</button>
-											<aside class="single_sidebar_widget">
-												<div>
-													<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="btnWriteForm" onclick="post(${category_id})" type="button">POST</button>
-												</div>
-											</aside>
 								  		</form>
+									</aside>
+									<aside class="single_sidebar_widget">
+										<div>
+											<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="btnWriteForm" onclick="post(${category_id})" type="button">POST</button>
+										</div>
 									</aside>
 									<aside class="single_sidebar_widget post_category_widget">
 								  		<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
@@ -128,7 +128,7 @@ $(document).ready(function(){
 										<label style="font: 20px;">Today : <%=session.getAttribute("todayCount") %></label>
 									</aside>
 								</div>
-							</div>
+							</div> --%>
 
                 </div>
             </div>

@@ -104,6 +104,7 @@
 					</aside>
 	   			</div>
 			</div>
+			<%@ include file="../include/siderbar.jsp" %>
 		</div>
 	</div>
 	<br />
@@ -111,3 +112,4 @@
 	<br />
 	<br />
 </div>
+<%@ include file="../include/footer.jsp" %>

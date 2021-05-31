@@ -168,18 +168,18 @@
 								      		<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
 								      			type="submit">Search
 								      		</button>
-											<aside class="single_sidebar_widget">
-												<div>
-													<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="btnWriteForm" onclick="post(${category_id})" type="button">POST</button>
-												</div>
-											</aside>
 								  		</form>
+									</aside>
+									<aside class="single_sidebar_widget">
+										<div>
+											<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="btnWriteForm" onclick="post(${category_id})" type="button">POST</button>
+										</div>
 									</aside>
 									<aside class="single_sidebar_widget post_category_widget">
 								  		<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
 								  			<ul class="list cat-list">
 								  				<c:forEach var="cdto" items="${CategoryList }">
-								  					<li>
+								  					<li class="blog-info-link">
 								  						<a href="#" class="d-flex">${cdto.category_name }</a>
 								  					</li>
 								  				</c:forEach>

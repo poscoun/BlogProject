@@ -18,7 +18,7 @@
 				frmObj.submit();
 			});	
 			
-			$('.btn_c').on('click', function(){
+			$('#btn_c').on('click', function(){
 				self.location = "/profile/list";
 			});
 
@@ -27,8 +27,6 @@
 		$(document).on("keyup", "#phoneNumber", function() {
 			$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") ); });
 
-
-		
 
 	</script>
 
@@ -68,13 +66,13 @@
                     <form class="form-contact contact_form" method="post" role="form" autocomplete="off" enctype="multipart/form-data">
                         <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control valid" name="user_id" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter id'" placeholder="아이디를 입력하세요" >
+                                    <input class="form-control valid" name="user_id" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter id'" value="${udto.user_id }" readonly="readonly" >
                                 </div>
                             </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group" style="white-space:pre">
-                                    <textarea class="form-control w-100" name="profile_content" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'">자기소개글을 입력하세요 </textarea>
+                                    <textarea class="form-control w-100" name="profile_content" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder="자기소개글을 입력하세요"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-6">
