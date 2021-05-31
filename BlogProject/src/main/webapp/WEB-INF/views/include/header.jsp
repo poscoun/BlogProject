@@ -43,7 +43,9 @@
 		                <div class="row align-items-center">
 							<div class="col-xl-2 col-lg-2">
 							    <div class="logo">
+
 							        <a href="index.html"><img src="/resources/assets2/img/logo/loder.png" alt=""></a>
+
 							    </div>
 							</div>
 							<div class="col-xl-10 col-lg-10">
@@ -86,6 +88,7 @@
 				                               <li><a href="/post/getList">Home</a></li>
 				                               <li><a href="/category/category">Category</a></li>
 				                               <li><a href="/guestbook/guestbook_form">Guest</a></li>
+
 												<c:if test="${sessionScope.Profile_list ne null }" >
 				                               <li><a href="#">About</a>
                                                		<ul class="submenu"> 
@@ -102,6 +105,7 @@
                                                      </ul>
                                                	</li>
 												</c:if>                                                     
+
 											</ul>
 										</nav>
 									</div>

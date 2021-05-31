@@ -32,6 +32,7 @@ import com.gblog.common.Pagination;
 import com.gblog.common.Search;
 import com.gblog.dto.PostDTO;
 import com.gblog.dto.ReplyDTO;
+import com.gblog.service.CategoryService;
 import com.gblog.service.PostService;
 
 @Controller
@@ -43,6 +44,8 @@ public class PostController {
 	@Inject
 	private PostService psvc;
 	
+	@Inject
+	private CategoryService csvc;
 	
 	@Resource(name="uploadPath")
     private String uploadPath;
@@ -78,6 +81,7 @@ public class PostController {
 		int category_id = Integer.parseInt(request.getParameter("category_id"));
 		
 		model.addAttribute("category_id", category_id);
+		model.addAttribute("CategoryList", csvc.CategoryList());
 		
 		return "post/getList";
 	}
@@ -96,7 +100,7 @@ public class PostController {
 	public String postFormGet(PostDTO pdto, Model model) throws Exception{
 		logger.info("...write get...");
 		
-		model.getAttribute("category_id");
+		model.addAttribute("CategoryList", csvc.CategoryList());
 		
 		return "post/postForm";
 	}
@@ -104,15 +108,17 @@ public class PostController {
 	@RequestMapping(value = "/savePost", method = RequestMethod.POST)
 	public String savePost(@ModelAttribute("postDTO") PostDTO pdto,
 			@RequestParam("mode") String mode,
+			@RequestParam("category_id") int category_id,
 			RedirectAttributes rttr) throws Exception {
 		
 		if(mode.equals("edit")) {
 			psvc.updatePost(pdto);
 		}else {
-			psvc.insertPost(pdto);
+			pdto.setCategory_id(category_id);
+			psvc.insertPost(pdto);			
 		}
 		
-		return "redirect:/post/list";
+		return "redirect:/post/getList?category_id="+category_id;
 	}
 	
 	@RequestMapping(value = "/postContent", method = RequestMethod.GET)

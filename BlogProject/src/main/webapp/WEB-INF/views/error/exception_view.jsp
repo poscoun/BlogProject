@@ -8,12 +8,14 @@
 <title>exception_view.jsp</title>
 </head>
 <body>
+
 	<h3>${exception.getMessage() }</h3>
 	
 	<ul>
 		<c:forEach var="stack" items="${exception.getStackTrace() }">
 			<li>${stack.toString() }</li>
 		</c:forEach>
+
 	</ul>
 
 	<h1>현재 페이지 확인 중입니다. 잠시만 기다려주세요</h1>

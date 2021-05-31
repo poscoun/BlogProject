@@ -79,6 +79,7 @@
                         <div class="row">
                         	<div class="col-sm-8">
                                 <div class="form-group">
+
                                 	<label>USER ID</label>
                                     <input class="form-control valid" name="user_id" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter id'" value="${udto.user_id }" readonly="readonly" >
                                 </div>
@@ -87,6 +88,7 @@
                                 <div class="form-group" >
                                 	<label>CONTENT</label>
                                     <textarea class="form-control w-100" name="profile_content" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter comment'" placeholder="자기소개글을 입력하세요"></textarea>
+
                                 </div>
                             </div>
                             <div class="col-sm-8">

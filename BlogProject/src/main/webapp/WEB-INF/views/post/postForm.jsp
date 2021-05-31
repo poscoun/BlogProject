@@ -12,13 +12,11 @@
 <script src="https://cdn.ckeditor.com/4.16.1/standard-all/ckeditor.js"></script>
 <script>
 	
-	$(document).on('click', '#btnSave', function(e) {
-		e.preventDefault();
+	$(document).on('click', '#btnSave', function() {
 		$("#form").submit();
 	});
 	
-	$(document).on('click',	'#btnList',	function(e) {
-		e.preventDefault();
+	$(document).on('click',	'#btnList',	function() {
 		location.href = "${pageContext.request.contextPath}/post/list";
 	});
 	
@@ -52,8 +50,15 @@
 					<form:input path="post_subj" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요" />
 				</div>
 				<div class="mb-3">
+					<label for="category_select">카테고리</label>
+					<select name="category_id" id="category_select" >
+							<c:forEach var="cdto" items="${CategoryList }">
+								<option value="${cdto.category_id }">${cdto.category_name }</option>
+							</c:forEach>
+					</select>
+				</div>
+				<div class="mb-3">
 					<label for="reg_id">작성자 : ${udto.user_id }</label> 
-					
 				</div>
 				<div class="mb-3">
 					<label for="content">내용</label>
