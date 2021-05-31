@@ -1,7 +1,11 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page session="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%-- <%@ include file="../include/siderbar.jsp" %> --%>
+<%@ include file="../include/header1.jsp" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,17 +26,10 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     </head>
     <body>
-        <div class="container"><!-- 좌우측의 공간 확보 -->
+        <!-- <div class="container"> --><!-- 좌우측의 공간 확보 -->
             <!-- 헤더 들어가는 부분 -->
             
-            <div class="row">
-                <p></p>
-                <div class="col-md-12">
-                    <small>
-                    <a href="#">로그인</a> | <a href="#">회원가입</a>
-                    </small>
-                </div>
-            </div>
+            
             <!--// 헤더 들어가는 부분 -->
             <!-- 모달창 -->
             <div class="modal fade" id="defaultModal">
@@ -52,53 +49,94 @@
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
             <!--// 모달창 -->
-            <hr/>
+           
             <!-- 본문 들어가는 부분 -->
+            
+            <!-- <div class="slider-area2">
+        
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap hero-cap2 pt-70" style="text-align: center; color: black;">
+                            <h2>Sing up</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    </div> -->
+            
+           
+            
                 
  
+ <!-- <section class="blog_area section-padding">  -->
  
-            <form class="form-horizontal" role="form" method="post" >               
-
-                <div class="form-group" id="divName">
-                    <label for="inputName" class="col-lg-2 control-label">이름</label>
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control onlyHangul" id="user_name" name="user_name" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15">
-                        
-                    </div>
-                </div>
+ <section class="contact-section" >
+ <div class="col-sm-6" >
+          	<h1 class="blog-head"  style="color: #2d2d2d; position: relative; left:48%; text-align: center;"> <img alt="#" src="/resources/images/ID.png" style="width: 70px; height: 70px;"></h1> 
+          	<!-- <h1 class="blog-head" style="color: #2d2d2d;">SIGN UP</h1> -->
+          	<br>
+           </div>
+ 
+        <div class="container" >
+             <div class="row" style="position: relative; left:30%;" >
                 
-                
-                
-                <div class="form-group" id="divEmail">
-                    <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
-                    <div class="col-lg-10">
-                        <input type="email" class="form-control mail_input" id="user_email" name="user_email" data-rule-required="true" placeholder="ex)goot77@gmail.com" maxlength="40">                       
-                    </div>
-					<sapn class="mail_input_box_warn"></sapn>                    
-                 <div class="mail_check_wrap">
-					<div class="mail_check_input_box" id="mail_check_input_box_false">
-						<input class="mail_check_input" id="mailcheck" disabled="disabled">
-						<div class="check_font" id="email_check"></div>
-					</div>
-					<div class="email_check_button">
-						<input type="button" class="btn btn-primary" id="email_check_button" name="email_check_button" value="인증번호 전송"> 
-					</div>
-					<div class="clearfix"></div>
-					<span id="mail_check_input_box_warn"></span>
-				</div>
+                <div class="col-lg-8">
+                    <form class="form-contact contact_form"  method="post"  role="form"  >
+                       
+                            
+                            <div class="col-sm-6" id="divName">
+                            	<h3 style="color: black;">Name</h3>	
+                                <div class="form-group">
+                                    <input class="form-control onlyHangul" name="user_name" id="user_name" type="text" data-rule-required="true" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="Enter your name" maxlength="15">
+                                </div>
+                            </div>
+                            
+                             <div class="col-sm-6" id="divEmail">
+                             
+                            	<h3 style="color: black;">Email</h3>	
+                                <div class="form-group">
+                                    <input class="form-control mail_input" name="user_email" id="user_email" type="email" data-rule-required="true" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ex)goott@email.com'" placeholder="ex)goott@email.com" maxlength="30">
+                                </div>
+                                <span class="mail_input_box_warn"></span>
+                            
+                            
+                            
+                            	 <div class="mail_check_wrap">	
+                            	 
+								<div class="email_check_button">
+								<input type="button" class="button button-contactForm boxed-btn" id="email_check_button" name="email_check_button" value="인증번호 전송" style="padding: 8px 21px;"> 
+								</div>
+								<div class="clearfix"></div>
+								<span id="mail_check_input_box_warn"></span>	
+								<br>
+															
+								<div class="mail_check_input_box" id="mail_check_input_box_false">
+									<input class="form-control mail_check_input" id="mailcheck" disabled="disabled">
+									<div class="check_font" id="email_check"></div>
+								</div>
+								</div>
+								
+							</div>
+                          <br>
+							 <div class="col-sm-6">
+                        <div class="form-group mt-3">
+                            <button type="submit" class="button button-contactForm boxed-btn" style="padding: 8px 21px; position: relative; left:30%;">ID 찾기</button>
+                        </div>
+                        </div>
+                    </form>
                 </div>
-         
-                <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" class="btn btn-primary">아이디 찾기</button>
-                    </div>
-                </div>
-            </form>
+            </div>
+               </div>
+            </section>
+          
+        
         
         
         <script>
         
-         //입력 이메일 형식 유효성 검사 
+      //입력 이메일 형식 유효성 검사 
         function mailFormCheck(email){
        	var form = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
        	return form.test(email);
@@ -112,10 +150,10 @@
                 var modal = $("#defaultModal");
                
  
-                $(".onlyHangul").keyup(function(event){
+                $('.onlyAlphabetAndNumber').keyup(function(event){
                     if (!(event.keyCode >=37 && event.keyCode<=40)) {
                         var inputVal = $(this).val();
-                        $(this).val(inputVal.replace(/[a-z0-9]/gi,''));
+                        $(this).val($(this).val().replace(/[^_a-z0-9]/gi,'')); //_(underscore), 영어, 숫자만 가능
                     }
                 });
                 
@@ -124,14 +162,14 @@
                
                 $('#user_name').keyup(function(event){
                     
-                    var divName = $('#divName');
+                    var divId = $('#divId');
                     
-                    if($.trim($('#user_name').val())==""){
-                        divName.removeClass("has-success");
-                        divName.addClass("has-error");
+                    if($('#user_id').val()==""){
+                        divId.removeClass("has-success");
+                        divId.addClass("has-error");
                     }else{
-                        divName.removeClass("has-error");
-                        divName.addClass("has-success");
+                        divId.removeClass("has-error");
+                        divId.addClass("has-success");
                     }
                 });
                 
@@ -161,7 +199,36 @@
                         mail_check_input_box_false.addClass("has-success");
                     }
                 });
+				 
+				 $('#user_pw').keyup(function(event){
+	                    
+	                    var divPassword = $('#divPassword');
+	                    
+	                    if($('#user_pw').val()==""){
+	                        divPassword.removeClass("has-success");
+	                        divPassword.addClass("has-error");
+	                    }else{
+	                        divPassword.removeClass("has-error");
+	                        divPassword.addClass("has-success");
+	                    }
+	                });
                 
+				 $('#user_pwcheck').keyup(function(event){
+	                    
+	                    var passwordCheck = $('#user_pwcheck').val();
+	                    var password = $('#user_pw').val();
+	                    var divPasswordCheck = $('#divPasswordCheck');
+	                    
+	                    if((passwordCheck=="") || (password!=passwordCheck)){
+	                        divPasswordCheck.removeClass("has-success");
+	                        divPasswordCheck.addClass("has-error");
+	                    }else{
+	                        divPasswordCheck.removeClass("has-error");
+	                        divPasswordCheck.addClass("has-success");
+	                    }
+	                });
+				 
+				 
                 
                 
                 
@@ -174,13 +241,12 @@
                 //------- validation 검사
                 $( "form" ).submit(function( event ) {  
                    
-                    var divName = $('#divName');                    
+                	var divName = $('#divName');            
                     var divEmail = $('#divEmail');
                     var mail_check_input_box_false = $('#mail_check_input_box_false');
                     
                     
-             
-                    //이름
+                  //이름
                     if($('#user_name').val()==""){
                         modalContents.text("이름을 입력하여 주시기 바랍니다.");
                         modal.modal('show');
@@ -194,7 +260,7 @@
                         divName.addClass("has-success");
                     }
                     
-                 
+                    
                    
                     
                     //이메일
@@ -245,6 +311,9 @@
                     }
                     
                     
+                  
+                    
+                    
                 });
                 
             });
@@ -285,6 +354,7 @@
             	
             });
             
+            
            
             
             /* 인증번호 비교 */
@@ -295,7 +365,9 @@
             	
             	if(inputCode == code){							// 일치할 경우
             		$("#email_check").text("인증번호 일치");
-            		$("#email_check").css("color", "green");		
+            		$("#email_check").css("color", "green");
+            		$("#user_pw").attr("disabled",false);
+            		$("#user_pwcheck").attr("disabled",false);
             		
             	} else {											// 일치하지 않을 경우
             		$("#email_check").text("인증번호 불일치");
@@ -307,6 +379,14 @@
            
         </script>           
           
-        </div>
+        <!-- </div> -->
+        
     </body>
+    
 </html>
+
+
+
+
+<%-- <%@ include file="../include/footer.jsp" %> --%>
+<%-- <%@ include file="../include/footer.jsp" %> --%>
