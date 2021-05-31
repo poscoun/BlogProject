@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -54,7 +53,6 @@
 								<div class="form-group">
 									<!-- <input type="hidden" name="user_id" id="user_id" /> -->
 									<label >${guestbookDTO.user_id }</label>
-									<input type="text" name="user_id" id="user_id" placeholder="세션에서 가져올 아이디" />
 									<hr />
 					   				<textarea rows="7" cols="80" style="resize: none; font-size: 18px;" class="form-control" name="guest_content">${guestbookDTO.guest_content }</textarea>
 				 				</div>
@@ -67,43 +65,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-4">
-				<div class="blog_right_sidebar">
-					<aside class="single_sidebar_widget search_widget">
-						<form action="#">
-							<div class="form-group">
-								<div class="input-group mb-3">
-									<input type="text" class="form-control" placeholder='Search Keyword' >
-		            			</div>
-		        			</div>
-		        			<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-		        				type="submit">Search</button>
-		    			</form>
-					</aside>
-					<aside class="single_sidebar_widget post_category_widget">
-		    			<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
-		    			<ul class="list cat-list">
-					       
-					    </ul>
-					</aside>
-					<aside class="single_sidebar_widget newsletter_widget">
-		    			<h4 class="widget_title" style="color: #2d2d2d;">Newsletter</h4>
-						<form action="#">
-    						<div class="form-group">
-        						<input type="email" class="form-control" onfocus="this.placeholder = ''"
-								onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
-                			</div>
-							<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-							type="submit">Subscribe</button>
-           				</form>
-	       			</aside>
-					<aside class="single_sidebar_widget post_category_widget" >
-		    			<h4 class="widget_title" style="color: #2d2d2d; margin-bottom: 20px;">Guest</h4>
-		    			<label style="font: 20px;">Total : <%=session.getAttribute("totalCount") %></label> <br />
-						<label style="font: 20px;">Today : <%=session.getAttribute("todayCount") %></label>
-					</aside>
-	   			</div>
-			</div>
+			<%@ include file="../include/siderbar.jsp" %>
 		</div>
 	</div>
 	<br />

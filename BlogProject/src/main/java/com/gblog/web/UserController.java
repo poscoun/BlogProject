@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gblog.dto.UserDTO;
+import com.gblog.service.ProfileService;
 import com.gblog.service.UserService;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

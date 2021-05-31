@@ -1,7 +1,5 @@
 package com.gblog.web;
 
-import java.util.Locale;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gblog.dto.GuestbookDTO;
 import com.gblog.dto.GuestbookReplyDTO;
+import com.gblog.service.CategoryService;
 import com.gblog.service.GuestbookService;
 
 @Controller
@@ -27,27 +26,24 @@ public class GuestbookController {
 	@Inject
 	private GuestbookService gsvc;
 	
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String index(Locale locale, Model model, HttpSession session) throws Exception {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		gsvc.insertdate();
-		int totalcount = gsvc.visitTotal();
-		int todaycount = gsvc.visitToday();
-		
-		session.setAttribute("totalCount", totalcount);
-		session.setAttribute("todayCount", todaycount);
-		
-		return "/guestbook/main";
-	}
+	@Inject
+	private CategoryService csvc;
 	
 	// 방명록 페이지
 	@RequestMapping(value = "/guestbook_form", method = RequestMethod.GET)
-	public String guestbookformGET(Model model) throws Exception {
+	public String guestbookformGET(Model model, HttpSession session) throws Exception {
 		logger.info("write GET ...");
 		
-		/* 세션의 값 유무를 파악 후 있으면 실행  없으면 Login 페이지로 이동 */
+		/* 세션의 값 유무를 파악 후 있으면 실행 없으면 Login 페이지로 이동 */
+		
+		
 		model.addAttribute("list", gsvc.list());
+		model.addAttribute("category_list", csvc.CategoryList());
+				
+//		session.setAttribute("totalCount", gsvc.visitTotal());
+//		session.setAttribute("todayCount", gsvc.visitToday());
+//		
+//		gsvc.insertdate();
 		
 		return "/guestbook/guestbook_form";
 		
@@ -77,11 +73,6 @@ public class GuestbookController {
 	public String guestUpdatePOST(GuestbookDTO gdto, RedirectAttributes reAttr) throws Exception {
 		
 		logger.info("update 처리 중 ....");
-
-
-		System.out.println(gdto.getGuest_id());
-
-		
 		gsvc.modify(gdto);
 		
 		return "redirect:/guestbook/guestbook_form"; 
@@ -99,10 +90,10 @@ public class GuestbookController {
 	
 	// 답글 윈도우 창
 	@RequestMapping(value = "/guestbook_reply", method = RequestMethod.GET)
-	public String guestbookReplyGET(@RequestParam("guest_id") int guest_id, RedirectAttributes reAttr, Model model) throws Exception {
-		// System.out.println(guest_id);
+	public String guestbookReplyGET(@RequestParam("guest_id") int guest_id, @RequestParam("user_id") String user_id,RedirectAttributes reAttr, Model model) throws Exception {
 		model.addAttribute("reply_list", gsvc.listReply(guest_id));
 		model.addAttribute("guest_id", guest_id);
+		model.addAttribute("user_id", user_id);
 		
 		return "/guestbook/guestbook_reply";
 		
@@ -110,9 +101,10 @@ public class GuestbookController {
 	
 	// 답글 처리
 	@RequestMapping(value = "/guestbook_reply", method = RequestMethod.POST)
-	public String guestbookReplyPOST(@RequestParam("guest_id") int guest_id, RedirectAttributes reAttr, GuestbookReplyDTO gdto) throws Exception {
-		
+	public String guestbookReplyPOST(@RequestParam("guest_id") int guest_id, RedirectAttributes reAttr, GuestbookReplyDTO gdto,
+									 @RequestParam("guest_rp_id") String guest_rp_id) throws Exception {
 		gdto.setGuest_id(guest_id);
+		gdto.setGuest_rp_id(guest_rp_id);
 		gsvc.writeReply(gdto);
 		gsvc.replyCount(guest_id);
 		
