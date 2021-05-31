@@ -2,8 +2,9 @@ package com.gblog.dto;
 
 import java.util.Date;
 
+
 public class ProfileDTO {
-	private String user_id;
+	public String user_id;
 	private String profile_content;
 	private String profile_photo;
 	private String profile_sns;

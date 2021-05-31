@@ -14,12 +14,13 @@
 			$('#btn_s').on('click', function(){
 				//alert('btn click');
 				//console.dir(frmObj);
-				frmObj.attr('action', "/profile/write");	
+				frmObj.attr('action', "/profile/modify");	
+				//frmObj.attr('method', 'post');
 				frmObj.submit();
 			});	
 			
 			$('#btn_c').on('click', function(){
-				self.location = "/profile/list";
+				self.location = "/profile/read?user_id=${udto.user_id}";
 			});
 
 		});	 
@@ -29,18 +30,17 @@
 
 
 	</script>
-	
+
 	<style type="text/css">
-		#profile{
-			padding-left: 300px;
-		}
 		
-		#btn{
-			padding-left: 65px;
-		}
 	</style>
 
 <main>
+
+	<form method="post" role="form">
+	 	<input type="hidden" name="user_id" value="${pdto.user_id }" />  	
+	 </form>
+
     <!--? Hero Start -->
     <div class="slider-area2">
         <div class="slider-height2 d-flex align-items-center">
@@ -63,57 +63,45 @@
     </div>
     <!-- Hero End -->
     <!--?  Contact Area start  -->
+    
+    <div class="visit-tailor-area fix">
     <section class="contact-section">
         <div class="container">
             
-            <div class="row" id="profile">
-                <div class="col-10">
-                    <h2 class="contact-title">프로필 등록</h2>
+            <div class="row">
+                <div class="col-8">
+                    <h2 class="contact-title">프로필 수정</h2>
                 </div>
-                <div class="col-lg-10">
+                <div class="col-lg-8">
                     
 
                     <form class="form-contact contact_form" method="post" role="form" autocomplete="off" enctype="multipart/form-data">
-                             
-
-                        <div class="row">
-                        	<div class="col-sm-8">
+                        <div class="col-sm-6">
                                 <div class="form-group">
-
-                                	<label>USER ID</label>
                                     <input class="form-control valid" name="user_id" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter id'" value="${udto.user_id }" readonly="readonly" >
                                 </div>
                             </div>
-                            <div class="col-8">
-                                <div class="form-group" >
-                                	<label>CONTENT</label>
-                                    <textarea class="form-control w-100" name="profile_content" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter comment'" placeholder="자기소개글을 입력하세요"></textarea>
-
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group" style="white-space:pre">
+                                    <textarea class="form-control w-100" name="profile_content" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" > ${profileDTO.profile_content }</textarea>
                                 </div>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
                                 <div class="form-group">
-                                	<label>PHONE NUMBER</label>
-                                    <input class="form-control valid" name="profile_phone" id="phoneNumber" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter phone number'" placeholder="전화번호를 입력하세요" >
+                                    <input class="form-control valid" name="profile_phone" id="phoneNumber" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter phone number'" value="${profileDTO.profile_phone }">
                                 </div>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
                                 <div class="form-group">
-                                	<label>E-MAIL</label>
-                                    <input class="form-control valid" name="profile_sns" id="text" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="이메일을 입력하세요">
+                                    <input class="form-control valid" name="profile_sns" id="text" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" value="${profileDTO.profile_sns }">
                                 </div>
                             </div>
-                            
-                            
-                            <div class="col-sm-8">
-                                <div class="form-group">
-                            		<div class="inputArea">
- 										<label>PROFILE IMAGE</label>
- 										<div><input type="file" id="profile_photo" name="file"/></div>
- 										<div class="select_img"><img src="" /></div>
-									</div>	
-								</div>
-							</div>
+                            <div class="inputArea">
+ 								<label for="profile_photo">이미지</label>
+ 								<input type="file" id="profile_photo" name="file" />
+ 								<div class="select_img"><img src="" /></div>
+							</div>	
 <script>
   $("#profile_photo").change(function(){
    if(this.files && this.files[0]) {
@@ -130,7 +118,7 @@
  </script>	
                             
                        </div>
-                       <div class="form-group mt-3" id="btn">
+                       <div class="form-group mt-3" >
                             <button type="button" class="button button-contactForm boxed-btn" id="btn_s">저장하기</button>
                             <button type="button" class="button button-contactForm boxed-btn" id="btn_c">취소하기</button>
                        </div>
@@ -141,6 +129,7 @@
             </div>
         </div>
     </section>
+    </div>
 </main>
 
 

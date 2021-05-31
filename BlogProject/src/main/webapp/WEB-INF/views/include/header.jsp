@@ -43,7 +43,9 @@
 		                <div class="row align-items-center">
 							<div class="col-xl-2 col-lg-2">
 							    <div class="logo">
-							        <a href="index.html"><img src="/resources/assets/img/logo/loder.png" alt=""></a>
+
+							        <a href="index.html"><img src="/resources/assets2/img/logo/loder.png" alt=""></a>
+
 							    </div>
 							</div>
 							<div class="col-xl-10 col-lg-10">
@@ -86,18 +88,24 @@
 				                               <li><a href="/post/getList">Home</a></li>
 				                               <li><a href="/category/category">Category</a></li>
 				                               <li><a href="/guestbook/guestbook_form">Guest</a></li>
+
+												<c:if test="${sessionScope.Profile_list ne null }" >
 				                               <li><a href="#">About</a>
-												<ul class="submenu">
-													<li><a href="/profile/write">MyProfile</a></li>
-													<li><a href="/user/logout.do">Sign Out</a></li>
-												</ul>
-												</li>
-												<li><a href="#">About</a>
-												<ul class="submenu">
-													<li><a href="/profile/write">MyProfileWrite</a></li>
-													<li><a href="/user/logout.do">Sign Out</a></li>
-												</ul>
-												</li>
+                                               		<ul class="submenu"> 
+                                               			<li><a href="/profile/read?user_id=${udto.user_id }">MyProfile</a></li>	
+                                                        <li><a href="/user/logout.do">Sign Out</a></li>
+                                                     </ul>
+                                               	</li>
+												</c:if>
+												<c:if test="${sessionScope.Profile_list eq null }">
+                                               	<li><a href="#">About</a>                                                      
+                                               		<ul class="submenu"> 
+                                               			<li><a href="/profile/write">ProfileWrite</a></li>
+                                                        <li><a href="/user/logout.do">Sign Out</a></li>
+                                                     </ul>
+                                               	</li>
+												</c:if>                                                     
+
 											</ul>
 										</nav>
 									</div>

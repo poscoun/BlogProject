@@ -73,7 +73,7 @@
                     <div class="col-lg-10">
                         <input type="email" class="form-control mail_input" id="user_email" name="user_email" data-rule-required="true" placeholder="ex)goot77@gmail.com" maxlength="40">                       
                     </div>
-					<sapn class="mail_input_box_warn"></sapn>                    
+					<span class="mail_input_box_warn"></span>                    
                  <div class="mail_check_wrap">
 					<div class="mail_check_input_box" id="mail_check_input_box_false">
 						<input class="mail_check_input" id="mailcheck" disabled="disabled">

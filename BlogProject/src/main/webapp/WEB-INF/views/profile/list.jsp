@@ -56,11 +56,14 @@
 </style>
 
 
+
 <main>
 
 	<form method="post" role="form">
-	 	<input type="hidden" name="user_id" value="${profileDTO.user_id }" />
+	 	<input type="text" name="user_id" value="${udto.user_id }" />  	
 	 </form>
+	 
+	 
 	 
         <!--? Hero Start -->
         <div class="slider-area2">
@@ -82,6 +85,10 @@
                 </div>
             </div>
         </div>
+        
+        <div class="footer-btn2">
+           <button type="button" class="button button-contactForm boxed-btn" id="write_btn" >등록하기</button>
+        </div>
         <!-- Hero End -->
         <!--? Visit Our Tailor Start -->
         <c:forEach items="${list }" var="pdto">
@@ -95,8 +102,16 @@
             <!-- left Contents -->
             <div class="tailor-details">
 				<span>Profile</span>
-                <h2><a href="/profile/read?user_id=${pdto.user_id }"><c:out value="${pdto.user_id }"></c:out></a></h2>
-                <p style="white-space:pre"><c:out value="${pdto.profile_content }"></c:out></p>
+				
+				<h2>
+                <a href="/profile/read?user_id=${pdto.user_id }">
+					 ${pdto.user_id }
+                </a> 
+                </h2>
+                <p style="white-space:pre">  
+                <c:out value="${pdto.profile_content }"></c:out>
+                </p>
+                
               	<div class="test"></div>
               	
               	

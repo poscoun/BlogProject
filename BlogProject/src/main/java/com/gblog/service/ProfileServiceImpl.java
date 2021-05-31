@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.gblog.dao.ProfileDAO;
 import com.gblog.dto.ProfileDTO;
+import com.gblog.dto.UserDTO;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
@@ -44,5 +45,6 @@ public class ProfileServiceImpl implements ProfileService {
 		// TODO Auto-generated method stub
 		return pdao.listProfile();
 	}
+
 
 }
