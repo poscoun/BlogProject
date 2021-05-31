@@ -4,6 +4,8 @@ import java.io.File;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,10 +14,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gblog.dao.ProfileDAO;
 import com.gblog.dto.ProfileDTO;
+import com.gblog.dto.UserDTO;
 import com.gblog.service.ProfileService;
 import com.gblog.utils.UploadFileUtils;
 
@@ -39,7 +45,7 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String writePOST(ProfileDTO pdto, MultipartFile file, RedirectAttributes reAttr) throws Exception{
+	public String writePOST(@RequestParam("user_id") String user_id, ProfileDTO pdto, MultipartFile file, RedirectAttributes reAttr) throws Exception{
 		LOGGER.info("....write POST....");
 		LOGGER.info(pdto.toString());
 		
@@ -68,31 +74,42 @@ public class ProfileController {
 		
 		reAttr.addFlashAttribute("result", "success");
 		
-		return "redirect:/profile/list"; 
+		return "redirect:/profile/read?user_id=" + user_id;
 	}
 	
 	 @RequestMapping(value = "/list", method = RequestMethod.GET)
-	 public void list(Model model) throws Exception {
+	 public void list(Model model, HttpServletRequest request) throws Exception {
 	      LOGGER.info(".... list 출력 ....");
+	      
+	      HttpSession session = request.getSession();
+	      session.getAttribute("udto");
 	      
 	      model.addAttribute("list", psvc.list());
 	   }
 	 
+
 	 @RequestMapping(value = "/read", method = RequestMethod.GET)
-	 public void read(@RequestParam("user_id") String user_id, Model model) throws Exception{
+	 public void read(@RequestParam("user_id") String user_id, Model model, HttpServletRequest request) throws Exception{
 		 
 		 model.addAttribute(psvc.read(user_id));
+		  
 	 }
-	 
-	 @RequestMapping(value = "/modify", method = RequestMethod.GET)
-	 public void modifyGET(@RequestParam("user_id") String user_id, Model model) throws Exception{
+		
+
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	 public void modifyGET(HttpServletRequest request, @RequestParam("user_id") String user_id, Model model) throws Exception{
 		 LOGGER.info(".... modifyGET ....");
 		 
+		 
+		 HttpSession session = request.getSession();
+	     session.getAttribute("udto");
+		 
+		 
 		 model.addAttribute(psvc.read(user_id));
 	 }
-	 
+	
 	 @RequestMapping(value = "/modify", method = RequestMethod.POST)
-	 public String modifyPOST (ProfileDTO pdto, MultipartFile file, RedirectAttributes reAttr) throws Exception{
+	 public String modifyPOST (@RequestParam("user_id") String user_id, ProfileDTO pdto, MultipartFile file, RedirectAttributes reAttr) throws Exception{
 		 LOGGER.info(".....modifyPOST.....");
 		 
 		 String imgUploadPath = uploadPath + File.separator + "imgUpload";
@@ -118,8 +135,9 @@ public class ProfileController {
 		 psvc.modify(pdto);
 		 
 		 reAttr.addFlashAttribute("result", "수정되었습니다.");
+
 		 
-		 return "redirect:/profile/list";
+		 return "redirect:/profile/read?user_id=" + user_id;
 	 }
 	 
 	 @RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -128,7 +146,7 @@ public class ProfileController {
 		 
 			psvc.remove(user_id);	
 			
-			return "redirect:/profile/list";
+			return "redirect:/profile/write";
 			
 		}
 

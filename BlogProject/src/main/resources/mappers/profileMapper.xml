@@ -12,7 +12,7 @@
 
 	<select id="readProfile" resultType="com.gblog.dto.ProfileDTO">
 		select * from profile
-		where user_id = #{user_id}
+		where user_id = #{user_id }
 	</select>
 		
 	<update id="updateProfile" >
