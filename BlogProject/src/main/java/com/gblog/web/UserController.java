@@ -74,7 +74,7 @@ public class UserController {
 			model.addAttribute("date",user.getUser_date());
 		}
 
-		return "/user/test";
+		return "/user/idselect1";
 
 	}
 

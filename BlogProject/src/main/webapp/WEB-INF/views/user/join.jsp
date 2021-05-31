@@ -74,7 +74,7 @@
  
  <section class="contact-section" >
  <div class="col-sm-6" >
-          	<h1 class="blog-head"  style="color: #2d2d2d; position: relative; left:48%; text-align: center;"> <!-- <img alt="#" src="/resources/assets/img/logo/loder.png"> -->SIGN UP</h1> 
+          	<h1 class="blog-head"  style="color: #2d2d2d; position: relative; left:48%; text-align: center;">SIGN UP</h1> 
           	<!-- <h1 class="blog-head" style="color: #2d2d2d;">SIGN UP</h1> -->
           	<br>
            </div>
