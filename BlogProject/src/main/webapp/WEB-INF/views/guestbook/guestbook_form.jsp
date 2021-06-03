@@ -19,20 +19,20 @@
 		
 	});
 	
-	function guestbookdel(guest_id){
+	function guestbookdel(guest_id, user_id, blog_id){
 		// alert('click');
 		if(confirm("삭제 하시겠습니까?")){
-			location.href = '/guestbook/guestbook_del?guest_id='+guest_id;
+			location.href = '/guestbook/guestbook_del?guest_id='+guest_id+'&user_id='+user_id+'&blog_id='+blog_id;
 		}
 	}
 	
-	function guestbookupdate(guest_id){
-		location.href = '/guestbook/guestbook_modify?guest_id='+guest_id;
+	function guestbookupdate(guest_id, user_id, blog_id){
+		location.href = '/guestbook/guestbook_modify?guest_id='+guest_id+'&user_id='+user_id+'&blog_id='+blog_id;
 	}
 	
-	function guestbookreply(guest_id, user_id){
+	function guestbookreply(guest_id, user_id, blog_id){
 		window.name = "gusetbookform";
-		window.open('/guestbook/guestbook_reply?guest_id='+guest_id+'&user_id='+user_id,
+		window.open('/guestbook/guestbook_reply?guest_id='+guest_id+'&user_id='+user_id+'&blog_id='+blog_id,
 				    "rForm", "width=800, height=600, resizable=no, scrollbars=no");
 		
 	}
@@ -78,58 +78,62 @@
 </div>
 <!-- Hero End -->
 <!-- 글 등록 부분 시작-->
-<div id="cblog_area section-padding">
-	<div class="container" style="padding: 3em 1.8em; margin-right: 20%;">
+<section class="blog_area section-padding">
+ <!-- style="padding: 3em 1.8em; margin-right: 20%;" -->
+	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 mb-5 mb-lg-0">
 				<div class="blog_left_sidebar">
-					<div id="wrap" style="width: 85%;">
-						<b><font size="5" color="gray">방명록</font></b>
-						<hr size="1"/>
-						<div id="writeGuestForm">
-							<form name="guestbookInfo" method="post">
-								<div class="form-group">
-									<input type="hidden" name="user_id" id="user_id" value="${udto.user_id }"/>
-									<label >${udto.user_id }</label>
-									<hr />
-					   				<textarea rows="7" cols="80" style="resize: none; font-size: 18px;" class="form-control" name="guest_content"></textarea>
-				 				</div>
-								<button id="guestbookreg" class="btn btn-light" style="padding: 13px 20px; border-radius: 20px;">확인</button>
-							</form>
-						</div>
-						<!-- 글 등록 부분 끝-->
-						<br />
-						<div style="border: 1px solid; border-color: #ccc; border-radius: 4px; padding: 2em">
-							<div id="listGestFrom">
-				        		<form method="post" name="listform">
-			            			<div id="comment">
-					            		<c:if test="${empty list }">
-					            			<div style="text-align: center">
-					            				<label>등록된 방명록이 없습니다.</label>
-					            			</div>
-					            		</c:if>
-					            		<c:if test="${not empty list }">
-					            			<c:forEach var="guestbook" items="${list}">
-						            			<hr size="1">
-							                	<label>${guestbook.user_id }</label>&nbsp;&nbsp;&nbsp;
-							                	<label><fmt:formatDate value="${guestbook.guest_date }" pattern="yyyy-MM-dd HH:mm"/></label>&nbsp;&nbsp;&nbsp;&nbsp;
-							                	<a href="#" onclick="guestbookupdate(${guestbook.guest_id})" style="color: black">수정</a>&nbsp;
-							                	<a href="#" onclick="guestbookdel(${guestbook.guest_id})" style="color: black">삭제</a><br />
-							                	<div>
-							                		${guestbook.guest_content }
-							                		<c:if test="${guestbook.guest_reply_count ne 0}">
-														<small><b>[&nbsp;<c:out value="${guestbook.guest_reply_count}"/>&nbsp;]</b></small>
-													</c:if>		
-							                	</div>
-							                	<br />
-							                	<a  href="#" onclick="guestbookreply('${guestbook.guest_id}','${udto.user_id}')" style="color: black">답글쓰기</a><br>
-					                		</c:forEach>
-										</c:if>
-			            			</div>
-				        		</form>
+					<article class="blog_item">
+						<div class="blog_details">
+							<div id="writeGuestForm">
+								<form name="guestbookInfo" method="post">
+									<div class="form-group">
+										<%-- <input type="hidden" name="user_id" id="user_id" value="${udto.user_id }"/> --%>
+										<input type="hidden" name="blog_id" value="${blog_id_session}" />
+										<label >${udto.user_id }</label>
+										<hr />
+						   				<textarea rows="7" cols="80" style="resize: none; font-size: 18px;" class="form-control" name="guest_content"></textarea>
+					 				</div>
+									<button id="guestbookreg" class="btn btn-light" style="padding: 13px 20px; border-radius: 20px;">확인</button>
+								</form>
+							</div>
+							<!-- 글 등록 부분 끝-->
+							<br />
+							<div style="border: 1px solid; border-color: #ccc; border-radius: 4px; padding: 2em">
+								<div id="listGestFrom">
+					        		<form method="post" name="listform">
+				            			<div id="comment">
+						            		<c:if test="${empty list }">
+						            			<div style="text-align: center">
+						            				<label>등록된 방명록이 없습니다.</label>
+						            			</div>
+						            		</c:if>
+						            		<c:if test="${not empty list }">
+						            			<c:forEach var="guestbook" items="${list}">
+							            			<hr size="1">
+								                	<label>${guestbook.user_id }</label>&nbsp;&nbsp;&nbsp;
+								                	<label><fmt:formatDate value="${guestbook.guest_date }" pattern="yyyy-MM-dd HH:mm"/></label>&nbsp;&nbsp;&nbsp;&nbsp;
+								                	<c:if test="${guestbook.user_id eq user_id }">
+									                	<a href="#" onclick="guestbookupdate(${guestbook.guest_id},'${udto.user_id}', ${blog_id_update})" style="color: black">수정</a>&nbsp;
+									                	<a href="#" onclick="guestbookdel(${guestbook.guest_id},'${udto.user_id}', ${blog_id_delete})" style="color: black">삭제</a><br />
+								                	</c:if>
+								                	<div>
+								                		${guestbook.guest_content }
+								                		<c:if test="${guestbook.guest_reply_count ne 0}">
+															<small><b>[&nbsp;<c:out value="${guestbook.guest_reply_count}"/>&nbsp;]</b></small>
+														</c:if>		
+								                	</div>
+								                	<br />
+								                	<a  href="#" onclick="guestbookreply('${guestbook.guest_id}','${udto.user_id}','${guestbook.blog_id}')" style="color: black">답글쓰기</a><br>
+						                		</c:forEach>
+											</c:if>
+				            			</div>
+					        		</form>
+								</div>
 							</div>
 						</div>
-					</div>
+					</article>
 				</div>
 			</div>
 			<%@ include file="../include/siderbar.jsp" %>
@@ -139,5 +143,5 @@
 	<br />
 	<br />
 	<br />
-</div>
+</section>
 <%@ include file="../include/footer.jsp" %>

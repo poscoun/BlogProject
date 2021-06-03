@@ -75,7 +75,7 @@
  <section class="contact-section" >
  <div class="col-sm-6" >
           	<h1 class="blog-head"  style="color: #2d2d2d; position: relative; left:48%; text-align: center;"> <img alt="#" src="/resources/images/ID.png" style="width: 70px; height: 70px;"></h1> 
-          	<!-- <h1 class="blog-head" style="color: #2d2d2d;">SIGN UP</h1> -->
+          	<h5 class="blog-head"  style="color: #2d2d2d; position: relative; left:48%; text-align: center;">회원정보에 입력한 이름과 이메일이 같아야 변경이 가능합니다</h5> 
           	<br>
            </div>
  
@@ -89,7 +89,8 @@
                             <div class="col-sm-6" id="divName">
                             	<h3 style="color: black;">Name</h3>	
                                 <div class="form-group">
-                                    <input class="form-control onlyHangul" name="user_name" id="user_name" type="text" data-rule-required="true" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="Enter your name" maxlength="15">
+                                    <input class="form-control onlyHangul" name="user_name" id="user_name" type="text" data-rule-required="true" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="Name" maxlength="15">
+                                    <div class="check_font" id="name_check"></div>
                                 </div>
                             </div>
                             
@@ -97,7 +98,7 @@
                              
                             	<h3 style="color: black;">Email</h3>	
                                 <div class="form-group">
-                                    <input class="form-control mail_input" name="user_email" id="user_email" type="email" data-rule-required="true" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ex)goott@email.com'" placeholder="ex)goott@email.com" maxlength="30">
+                                    <input class="form-control mail_input" name="user_email" id="user_email" type="email" data-rule-required="true" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ex)goott@email.com'" placeholder="EX) goott@email.com" maxlength="30">
                                 </div>
                                 <span class="mail_input_box_warn"></span>
                             
@@ -280,7 +281,7 @@
                     
                   //이메일
                     if($('#mailcheck').val()==""){
-                        modalContents.text("인증번호 확인해줘.");
+                        modalContents.text("인증번호 확인해주세요.");
                         modal.modal('show');
                         
                         mail_check_input_box_false.removeClass("has-success");
@@ -298,7 +299,7 @@
                     //이메일 체크 
                     
                     if($('#mailcheck').val()!=code){
-                        modalContents.text("인증번호 확인해줘.");
+                        modalContents.text("인증번호 확인해주세요.");
                         modal.modal('show');
                         
                         mail_check_input_box_false.removeClass("has-success");
@@ -376,6 +377,41 @@
             	}	
             	
             });
+            
+            
+ 			$('#user_name').on("ropertychange change keyup paste input",function(){
+            	
+            	
+            	$.ajax({
+        			url : "/user/nameselect",
+        			type : "post",
+        			dataType : "json",
+        			data : { "user_name" : $("#user_name").val()},
+        			success : function(data) {
+        				if(data == 0) {
+        					$("#name_check").text("가입되지 않은 회원입니다");
+    						$("#name_check").css("color", "red");
+        						
+        					
+        				} else if(data == 1) {
+        					
+        					
+        					$("#name_check").text("가입된 회원입니다.");
+    						$("#name_check").css("color", "green");
+        					
+        					
+        				}
+        			}
+        		}); 
+            	
+            }); 
+            
+            
+            
+            
+            
+            
+            
            
         </script>           
           
@@ -388,5 +424,3 @@
 
 
 
-<%-- <%@ include file="../include/footer.jsp" %> --%>
-<%-- <%@ include file="../include/footer.jsp" %> --%>

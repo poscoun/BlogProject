@@ -103,6 +103,7 @@
                             	<h3 style="color: black;">PW Check</h3>	
                                 <div class="form-group">
                                     <input class="form-control valid" name=user_pwcheck id="user_pwcheck" type="password" data-rule-required="true" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="Password Check" maxlength="30">
+                                     <div class="check_font" id="pw_check"></div>
                                 </div>
                             </div>
                             
@@ -117,7 +118,7 @@
                              
                             	<h3 style="color: black;">Email</h3>	
                                 <div class="form-group">
-                                    <input class="form-control mail_input" name="user_email" id="user_email" type="email" data-rule-required="true" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ex)goott@email.com'" placeholder="EX) goott@email.com" maxlength="30">
+                                    <input class="form-control mail_input" name="user_email" id="user_email" type="email" data-rule-required="true" onfocus="this.placeholder = ''" onblur="this.placeholder = 'EX )goott@email.com'" placeholder="EX) goott@email.com" maxlength="30">
                                 </div>
                                 <span class="mail_input_box_warn"></span>
                             
@@ -438,7 +439,7 @@
                     
                      //이메일
                     if($('#mailcheck').val()==""){
-                        modalContents.text("인증번호 확인해줘.");
+                        modalContents.text("인증번호 확인해주세요.");
                         modal.modal('show');
                         
                         mail_check_input_box_false.removeClass("has-success");
@@ -453,8 +454,8 @@
                     
                     //이메일 체크 
                     
-                    if($('#mailcheck').val()!=code){
-                        modalContents.text("인증번호 확인해줘.");
+                    /* if($('#mailcheck').val()!=code){
+                        modalContents.text("인증번호 확인해주세요.");
                         modal.modal('show');
                         
                         mail_check_input_box_false.removeClass("has-success");
@@ -464,7 +465,7 @@
                     }else{
                     	mail_check_input_box_false.removeClass("has-error");
                     	mail_check_input_box_false.addClass("has-success");
-                    }
+                    } */
                     
                     
                     
@@ -508,6 +509,29 @@
         		}); 
             	
             }); 
+            
+            
+            
+            
+            $(function(){
+                $("input").keyup(function(){
+                   var pwd1=$("#user_pw").val();
+                   var pwd2=$("#user_pwcheck").val();
+                   if(pwd1 != "" || pwd2 != ""){
+                      if(pwd1 == pwd2){ 
+                         $("#pw_check").text("PW가 일치합니다.");
+                       $("#pw_check").css("color", "green");
+                      }else{ 
+                         $("#pw_check").text("PW가 일치하지 않습니다.");
+                       $("#pw_check").css("color", "red");
+                         
+                      }
+                      }
+                   }
+                );
+                
+             });
+
             
            
             

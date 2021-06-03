@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.gblog.dao.GuestDAO;
 import com.gblog.dao.GuestbookDAO;
 import com.gblog.dao.GusetbookReplyDAO;
+import com.gblog.dto.GuestDTO;
 import com.gblog.dto.GuestbookDTO;
 import com.gblog.dto.GuestbookReplyDTO;
 
@@ -32,9 +33,9 @@ public class GuestbookServiceImple implements GuestbookService{
 	}
 
 	@Override
-	public List<GuestbookDTO> list() throws Exception {
+	public List<GuestbookDTO> list(Integer blog_id) throws Exception {
 		// TODO Auto-generated method stub
-		return gdao.list();
+		return gdao.list(blog_id);
 	}
 
 	@Override
@@ -76,22 +77,21 @@ public class GuestbookServiceImple implements GuestbookService{
 	}
 
 	@Override
-	public void insertdate() throws Exception {
+	public void insertdate(GuestDTO gvdto) throws Exception {
 		// TODO Auto-generated method stub
-		gvdao.insert();
-		
+		gvdao.insert(gvdto);
 	}
 
 	@Override
-	public int visitTotal() throws Exception {
+	public int visitTotal(Integer blog_id) throws Exception {
 		// TODO Auto-generated method stub
-		return gvdao.visitTotal();
+		return gvdao.visitTotal(blog_id);
 	}
 
 	@Override
-	public int visitToday() throws Exception {
+	public int visitToday(Integer blog_id) throws Exception {
 		// TODO Auto-generated method stub
-		return gvdao.visitToday();
+		return gvdao.visitToday(blog_id);
 	}
 
 }

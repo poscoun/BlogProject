@@ -132,6 +132,7 @@
                             	<h3 style="color: black;">PW Check</h3>	
                                 <div class="form-group">
                                     <input class="form-control valid" name=user_pwcheck id="user_pwcheck" type="password" data-rule-required="true" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="Password Check" maxlength="30" disabled="disabled">
+                                     <div class="check_font" id="pw_check"></div>
                                 </div>
                             </div>
                             
@@ -444,6 +445,27 @@
         		}); 
             	
             }); 
+	       
+	       
+	       $(function(){
+               $("input").keyup(function(){
+                  var pwd1=$("#user_pw").val();
+                  var pwd2=$("#user_pwcheck").val();
+                  if(pwd1 != "" || pwd2 != ""){
+                     if(pwd1 == pwd2){ 
+                        $("#pw_check").text("PW가 일치합니다.");
+                      $("#pw_check").css("color", "green");
+                     }else{ 
+                        $("#pw_check").text("PW가 일치하지 않습니다.");
+                      $("#pw_check").css("color", "red");
+                        
+                     }
+                     }
+                  }
+               );
+               
+            });
+
             
            
             

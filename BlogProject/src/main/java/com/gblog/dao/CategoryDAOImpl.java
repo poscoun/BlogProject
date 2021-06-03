@@ -35,9 +35,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 	
 	// 카테고리 목록
 	@Override
-	public List<CategoryDTO> CategoryList() throws Exception {
+	public List<CategoryDTO> CategoryList(String user_id) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+".CategoryList");
+		return sqlSession.selectList(NAMESPACE+".CategoryList", user_id);
 	}
 	
 	// 카테고리 수정

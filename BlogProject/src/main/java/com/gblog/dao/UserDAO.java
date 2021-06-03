@@ -30,4 +30,10 @@ public interface UserDAO {
 	public void userupdate(UserDTO udto)throws Exception;
 	
 	public void userdelete(UserDTO udto) throws Exception;
+	
+	//이름
+	public int nameselect(UserDTO udto) throws Exception;
+	
+	public List<UserDTO> userList() throws Exception;
+		
 }

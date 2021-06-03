@@ -65,4 +65,14 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.delete("userdelete", udto);
 		
 	}
+	@Override
+	public int nameselect(UserDTO udto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("nameselect", udto);
+	}
+	@Override
+	public List<UserDTO> userList() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("userList");
+	}
 }

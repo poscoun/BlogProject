@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class GuestbookReplyDTO {
 	
-	private String user_id;
+	private String guest_rp_id;
 	private Integer guest_id;
 	private String guest_rp_content;
 	private Date guest_rp_date;
@@ -30,12 +30,12 @@ public class GuestbookReplyDTO {
 		this.guest_rp_date = guest_rp_date;
 	}
 
-	public String getUser_id() {
-		return user_id;
+	public String getGuest_rp_id() {
+		return guest_rp_id;
 	}
 
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setGuest_rp_id(String guest_rp_id) {
+		this.guest_rp_id = guest_rp_id;
 	}
 	
 	

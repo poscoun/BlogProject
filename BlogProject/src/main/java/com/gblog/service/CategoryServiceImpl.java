@@ -24,9 +24,9 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	// 카테고리 목록
 	@Override
-	public List<CategoryDTO> CategoryList() throws Exception {
+	public List<CategoryDTO> CategoryList(String user_id) throws Exception {
 		// TODO Auto-generated method stub
-		return cdao.CategoryList();
+		return cdao.CategoryList(user_id);
 	}
 	
 	// 카테고리 삭제

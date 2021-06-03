@@ -1,6 +1,8 @@
 package com.gblog.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -29,12 +31,6 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	@Override
-	public List<PostDTO> list() throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("list");
-	}
-
-	@Override
 	public void update(PostDTO pdto) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.update("postUpdate", pdto);
@@ -51,6 +47,12 @@ public class PostDAOImpl implements PostDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("listCnt", sh);
 	}
+	
+	@Override
+	public int getPostListCateCnt(Search sh) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("listCntCate", sh);
+	}
 
 	@Override
 	public List<PostDTO> list(Search pgn) throws Exception {
@@ -58,6 +60,15 @@ public class PostDAOImpl implements PostDAO {
 		return sqlSession.selectList("postList", pgn);
 	}
 
+	@Override
+	public List<PostDTO> listCatePost(Search pgn) throws Exception {
+		// TODO Auto-generated method stub
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("pgn", pgn);
+//		map.put("category_id", category_id);
+		return sqlSession.selectList("postListCategory", pgn);
+	}
+	
 	@Override
 	public List<ReplyDTO> replyList(int post_id) throws Exception {
 		// TODO Auto-generated method stub

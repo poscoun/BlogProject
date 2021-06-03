@@ -9,23 +9,23 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="/resources/assets/img/favicon.ico">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#btnWriteForm').on('click', function post(category_id){
+		$('#btnWriteForm').on('click', function(){
 			location.href="/post/postForm"
 		});
-		
+			
 	});
 	
 	function fn_contentView(post_id){
-	      var user_id = '${user_id}';
-	      //var category_id = '${category_id}';
-	      var url = "/post/postContent?post_id="+post_id; 
+		/* alert(post_id); */
+ 	      var user_id = '${user_id}';
 	      
+	      var url = "/post/postContent";
+	      url = url + "?post_id=" + post_id;
 	      if(user_id != "" || user_id != null){
 	         url = url + "&user_id=" + user_id;
-	         console.log(url);
 	      }
 	      location.href = url;
 	   }
@@ -34,9 +34,23 @@
 	function fn_prev(page, range, rangeSize, keyword) {
 		var page = rangeSize;
 		var range = range - 1;
-		var url = "${pageContext.request.contextPath}/post/getList?category_id=" + ${categoryOne.category_id };
-		url = url + "&page=" + page;
+		var url = "${pageContext.request.contextPath}/post/homeList";
+		url = url + "?page=" + page;
 		
+		var user_id = '${user_id}';
+        if(user_id != "" || user_id != null){
+           url = url + "&user_id=" + user_id +"&blog_id=" + '${blog_id}';
+        }
+		url = url + "&range=" + range;
+		url = url + "&keyword=" + keyword;
+	      
+		location.href = url;
+		
+	}
+ 	// 페이지 번호 클릭
+	function fn_pagination(page, range, rangeSize, keyword) {
+		var url = "${pageContext.request.contextPath}/post/homeList";
+		url = url + "?page=" + page;
 		var user_id = '${user_id}';
         if(user_id != "" || user_id != null){
            url = url + "&user_id=" + user_id +"&blog_id=" + '${blog_id}';
@@ -45,34 +59,18 @@
 		url = url + "&range=" + range;
 		url = url + "&keyword=" + keyword;
 		
-		location.href = url;
-	}
- 	// 페이지 번호 클릭
-	function fn_pagination(page, range, rangeSize, keyword) {
-		var url = "${pageContext.request.contextPath}/post/getList?category_id=" + ${categoryOne.category_id };
-		url = url + "&page=" + page;
-		var user_id = '${user_id}';
-        
-		if(user_id != "" || user_id != null){
-           url = url + "&user_id=" + user_id +"&blog_id=" + '${blog_id}';
-        }
-        
-		url = url + "&range=" + range;
-		url = url + "&keyword=" + keyword;
 		location.href = url;	
 	}
 	// 다음 버튼 이벤트
 	function fn_next(page, range, rangeSize, keyword) {
 		var page = parseInt((range * rangeSize)) + 1;
 		var range = parseInt(range) + 1;
-		var url = "${pageContext.request.contextPath}/post/getList?category_id=" + ${categoryOne.category_id };
-		url = url + "&page=" + page;
-		
+		var url = "${pageContext.request.contextPath}/post/homeList";
+		url = url + "?page=" + page;
 		var user_id = '${user_id}';
         if(user_id != "" || user_id != null){
            url = url + "&user_id=" + user_id +"&blog_id=" + '${blog_id}';
         }
-        
 		url = url + "&range=" + range;
 		url = url + "&keyword=" + keyword;
 		location.href = url;
@@ -80,8 +78,8 @@
 	
 	$(document).on('click', '#btnSearch', function(e){
 		e.preventDefault();
-		var url = "/post/getList?category_id=" + ${categoryOne.category_id };
-		url = url + "&keyword=" + $('#keyword').val();
+		var url = "/post/homeList"
+		url = url + "?keyword=" + $('#keyword').val();
 		
 		var user_id = '${user_id}';
         if(user_id != "" || user_id != null){
@@ -91,6 +89,11 @@
 		console.log(url);
 	});	
 </script>
+<style>
+.blog_details img{
+	width: 300px;
+}
+</style>
         <!--? Hero Start -->
         <div class="slider-area2">
             <div class="slider-height2 d-flex align-items-center">
@@ -98,12 +101,10 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap hero-cap2 pt-70">
-                                <a href="/post/getList?category_id=${categoryOne.category_id }"><h2>${categoryOne.category_name }</h2></a>
+                                <a href="/post/homeList"><h2>Home</h2></a>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="/post/homeList">Home</a></li>
-                                        <li class="breadcrumb-item"><a href="#">Category</a></li> 
-                                        <li class="breadcrumb-item"><a href="#">Post</a></li> 
                                     </ol>
                                 </nav>
                             </div>
@@ -135,7 +136,12 @@
 		                                    <a class="d-inline-block" href="#" onclick="fn_contentView(${list.post_id})">
 		                                        <h2 class="blog-head" style="color: #2d2d2d;">${list.post_subj }</h2>
 		                                    </a>
-		                                    <%-- <p><c:out value="${list.post_content}" /></p> --%>
+		                                    <hr />
+		                                    <div style="padding: 20px; margin-bottom: 10px">
+		                                    	${list.post_content}
+		                                    </div>
+		                                    <%-- <p id="postContent"><c:out value="${list.post_content}" /></p> --%>
+		                                    <hr />
 		                                    <ul class="blog-info-link">
 		                                        <li><i class="fa fa-comments"></i> ${list.replyCnt } Comments</li>
 		                                    </ul>

@@ -10,7 +10,7 @@
 		select *
 		from blog_reply
 		where post_id = #{post_id}
-		order by rp_id desc
+		order by rp_id asc
 	]]>
 	</select>
 	

@@ -22,58 +22,63 @@
   <main>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-6 login-section-wrapper">
-          <div class="brand-wrapper">
-            <!-- <img src="/resources/assets/img/logo/loder.png" alt="logo" class="logo" style="width: 50px; height: 50px;"> -->
-          </div>
-          <div class="login-wrapper my-auto">
-            <h1 class="login-title">LOGIN</h1>
-            
-            <form action="#!" method="POST"  class="loginForm" id="login_form" >
-              <div class="form-group">
-                <h4 style="color: gray;">ID</h4>
-                <input type="text" name="user_id" id="user_id" class="form-control" >
-              </div>
-              <div class="form-group mb-4">
-                <h4 style="color: gray;">Password</h4>
-                <input type="password" name="user_pw" id="user_pw" class="form-control" >
-              </div>
-              
-            <c:if test="${result==0 }">
-      			<div class = "login_warn">ID 또는 PW를 잘못 입력하셨습니다.</div>
-     		</c:if>
-              
-              
-              <input name="login" id="login" class="btn btn-block login-btn" type="button" value="Login">
-              
-              
-            </form>
-            
-               <script>
-      
-      
-      $("#login").click(function(){
-  		
-  		//alert("로그인 버튼 작동");
-  		
-  		/* 로그인 메서드 서버 요청 */
-  		$("#login_form").attr("action", "/user/login.do");
-  		$("#login_form").submit();
-  		
-  	});
-      
-      
-      
-      
-      	
-      </script>
-            
-            <a href="/user/idselect" style="color: black;">Forgot ID?</a> <br>           
-            <a href="/user/modify" style="color: black;">Forgot Password?</a>            
-            <p class="login-wrapper-footer-text">Don't have an account? <a href="/user/join" class="text-reset">Register here</a></p>
-          </div>
-        </div>
-        <div class="col-sm-6 px-0 d-none d-sm-block">
+				<div class="col-sm-6 login-section-wrapper">
+					<a href="/user/MainHome"
+						style="color: #09cc7f; text-decoration: none;" class="login-title"><img
+						src="/resources/assets/img/logo/loder.png" alt="logo" class="logo"
+						style="width: 50px; height: 50px;">G-Blog</a>
+					<div class="brand-wrapper">
+						<!-- <img src="/resources/assets/img/logo/loder.png" alt="logo" class="logo" style="width: 50px; height: 50px;"> -->
+					</div>
+					<div class="login-wrapper my-auto">
+						<h1 class="login-title">LOGIN</h1>
+
+						<form action="#!" method="POST" class="loginForm" id="login_form">
+							<div class="form-group">
+								<h4 style="color: gray;">ID</h4>
+								<input type="text" name="user_id" id="user_id"
+									class="form-control">
+							</div>
+							<div class="form-group mb-4">
+								<h4 style="color: gray;">Password</h4>
+								<input type="password" name="user_pw" id="user_pw"
+									class="form-control">
+							</div>
+
+							<c:if test="${result==0 }">
+								<div class="login_warn">ID 또는 PW를 잘못 입력하셨습니다.</div>
+							</c:if>
+
+
+							<input name="login" id="login" class="btn btn-block login-btn"
+								type="button" value="Login">
+
+
+						</form>
+
+						<script>
+							$("#login").click(
+									function() {
+
+										//alert("로그인 버튼 작동");
+
+										/* 로그인 메서드 서버 요청 */
+										$("#login_form").attr("action",
+												"/user/login.do");
+										$("#login_form").submit();
+
+									});
+						</script>
+
+						<a href="/user/idselect" style="color: black;">Forgot ID?</a> <br>
+						<a href="/user/modify" style="color: black;">Forgot Password?</a>
+						<p class="login-wrapper-footer-text">
+							Don't have an account? <a href="/user/join" class="text-reset">Register
+								here</a>
+						</p>
+					</div>
+				</div>
+				<div class="col-sm-6 px-0 d-none d-sm-block">
           <img src="/resources/assets/images/login.jpg" alt="login image" class="login-img">
         </div>
       </div>

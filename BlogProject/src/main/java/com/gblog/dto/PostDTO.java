@@ -4,18 +4,19 @@ import java.util.Date;
 
 public class PostDTO {
 	private int post_id;
-	private int category_id;
+	private Integer category_id;
 	private String post_subj;
+	private String user_id;
 	private String post_content;
 	private Date post_reg;
-
 	
-	private String post_img;
+	
+	private String replyCnt;
 	
 	public PostDTO() {
 	}
 
-	public PostDTO(int post_id, int category_id, String post_subj, String post_content, Date post_reg) {
+	public PostDTO(int post_id, Integer category_id, String post_subj, String post_content, Date post_reg) {
 		super();
 		this.post_id = post_id;
 		this.category_id = category_id;
@@ -33,11 +34,11 @@ public class PostDTO {
 		this.post_id = post_id;
 	}
 
-	public int getCategory_id() {
+	public Integer getCategory_id() {
 		return category_id;
 	}
 
-	public void setCategory_id(int category_id) {
+	public void setCategory_id(Integer category_id) {
 		this.category_id = category_id;
 	}
 
@@ -65,12 +66,21 @@ public class PostDTO {
 		this.post_reg = post_reg;
 	}
 
-	public String getPost_img() {
-		return post_img;
+
+	public String getReplyCnt() {
+		return replyCnt;
 	}
 
-	public void setPost_img(String post_img) {
-		this.post_img = post_img;
+	public void setReplyCnt(String replyCnt) {
+		this.replyCnt = replyCnt;
+	}
+
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 }

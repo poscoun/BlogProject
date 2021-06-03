@@ -7,15 +7,8 @@ public class GuestbookDTO {
 	private String user_id;
 	private String guest_content;
 	private Date guest_date;
-	public Integer getReply_count() {
-		return reply_count;
-	}
-
-	public void setReply_count(Integer reply_count) {
-		this.reply_count = reply_count;
-	}
-
-	private Integer reply_count;
+	private Integer guest_reply_count;
+	private Integer blog_id;
 	
 	public GuestbookDTO() {}
 
@@ -51,5 +44,22 @@ public class GuestbookDTO {
 		this.guest_date = guest_date;
 	}
 
+	public Integer getGuest_reply_count() {
+		return guest_reply_count;
+	}
+
+	public void setGuest_reply_count(Integer guest_reply_count) {
+		this.guest_reply_count = guest_reply_count;
+	}
+
+	public Integer getBlog_id() {
+		return blog_id;
+	}
+
+	public void setBlog_id(Integer blog_id) {
+		this.blog_id = blog_id;
+	}
+
+	
 
 }

@@ -1,5 +1,7 @@
 package com.gblog.web;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,17 +26,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.gblog.common.Pagination;
 import com.gblog.common.Search;
+
+import com.gblog.dto.GuestDTO;
+
 import com.gblog.dto.PostDTO;
+import com.gblog.dto.ProfileDTO;
 import com.gblog.dto.ReplyDTO;
 import com.gblog.service.CategoryService;
+import com.gblog.service.GuestbookService;
 import com.gblog.service.PostService;
+import com.gblog.service.ProfileService;
+import com.gblog.service.UserService;
 
 @Controller
 @RequestMapping("/post/*")
@@ -45,27 +52,168 @@ public class PostController {
 	private PostService psvc;
 	
 	@Inject
+	private GuestbookService gsvc;
+	
+	@Inject
 	private CategoryService csvc;
+	
+	@Inject
+	private UserService usvc;
+	
+	@Inject
+	private ProfileService pfsvc;
+	
 	
 	@Resource(name="uploadPath")
     private String uploadPath;
 	
+	@RequestMapping(value = "/homeList", method = RequestMethod.GET)
+	   public String homeList(Model model, HttpServletRequest request,
+	         @RequestParam(required = false, defaultValue = "1") int page,
+	         @RequestParam(required = false, defaultValue = "1") int range,
+	         @RequestParam(required = false) String keyword,
+	         @ModelAttribute("search") Search search,
+	         @RequestParam(value="user_id", required = false) String user_id,
+	         @RequestParam(value="blog_id", required = false) Integer blogid,
+	         HttpSession session, GuestDTO gdto	
+	         ) throws Exception {
+	      
+	      logger.info("list 출력");
+	      
+	      //검색
+	      model.addAttribute("search", search);
+	      search.setKeyword(keyword);
+	      //int listCnt = psvc.getPostListCnt(search);
+	      //search.pageInfo(page, range, listCnt);
+	      //model.addAttribute("pagination", search);
+	      
+	      String sessionId = (String)session.getAttribute("user_id");
+	      if(sessionId == null) {
+	    	  int listCnt = psvc.getPostListCnt(search);
+    		  search.pageInfo(page, range, listCnt);
+    		  model.addAttribute("pagination", search);
+    		  model.addAttribute("list", psvc.getPostList(search));
+    		  model.addAttribute("user_id", user_id);
+    		  model.addAttribute("category_list", csvc.CategoryList(user_id));
+    		  
+	     	      
+	      }else {
+	    	  
+	    	  if(user_id != null) {
+	    		  
+	    		  search.setUser_id(user_id);
+	    		  
+	    		  model.addAttribute("user_id", user_id);
+	    		  model.addAttribute("category_list", csvc.CategoryList(user_id));
+	    		  
+	    		  ProfileDTO blog_id = pfsvc.read(user_id);
+	    		  System.out.println(blog_id);
+	    		  
+	    		  model.addAttribute("blog_id", blog_id.getBlog_id());
+	    		  
+	    		  int listCnt = psvc.getPostListCnt(search);
+	    		  search.pageInfo(page, range, listCnt);
+	    		  model.addAttribute("pagination", search);
+	    		  model.addAttribute("list", psvc.getPostList(search));
+	    		  
+	    		  gdto.setBlog_id(blogid);
+	    		  gsvc.insertdate(gdto);
+	    		  int totalcount = gsvc.visitTotal(blogid);
+	    		  int todaycount = gsvc.visitToday(blogid);
+	    		  
+	    		  session.setAttribute("totalCount", totalcount);
+	    		  session.setAttribute("todayCount", todaycount);
+	    		  
+	    	  }else {
+	    		  search.setUser_id(sessionId);
+	    		  model.addAttribute("category_list", csvc.CategoryList(sessionId));
+	    		  
+	    		  ProfileDTO pdto = pfsvc.read(sessionId);
+	    		  
+	    		  model.addAttribute("blog_id", pdto.getBlog_id());
+	    		  
+	    		  int listCnt = psvc.getPostListCnt(search);
+	    		  search.pageInfo(page, range, listCnt);
+	    		  model.addAttribute("pagination", search);
+	    		  model.addAttribute("list", psvc.getPostList(search));
+	    		  
+	    		  gdto.setBlog_id(pdto.getBlog_id());
+	    		  gsvc.insertdate(gdto);
+	    		  int totalcount = gsvc.visitTotal(pdto.getBlog_id());
+	    		  int todaycount = gsvc.visitToday(pdto.getBlog_id());
+	    		  
+	    		  session.setAttribute("totalCount", totalcount);
+	    		  session.setAttribute("todayCount", todaycount);
+	    	  }
+	    	  
+	      }
+	      
+	      session.getAttribute("udto");
+	      
+	      model.addAttribute("userlist", usvc.userList());
+	      model.addAttribute("bloglist", pfsvc.list());
+	      
+	      session.getAttribute("bdto");
+	      
+
+	      
+	      // 전체 게시글 개수
+//	      int listCnt = psvc.getPostListCnt(search);
+	      
+//	      model.addAttribute("blog_id", blogid);
+	      
+//	      search.pageInfo(page, range, listCnt);
+	      
+	      // 페이징
+//	      model.addAttribute("pagination", search);
+	      //게시글 화면 출력
+//	      model.addAttribute("list", psvc.getPostList(search));
+      
+	     
+	       //model.addAttribute("category_list", csvc.CategoryList(user_id));
+	      
+	      return "post/homeList";
+	   }
+	
 	@RequestMapping(value = "/getList", method = RequestMethod.GET)
 	public String getList(Model model, HttpServletRequest request,
+			@RequestParam Integer category_id,
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range,
 			@RequestParam(required = false) String keyword,
-			@ModelAttribute("search") Search search
-			) throws Exception {
+			@ModelAttribute("search") Search search,
+			@RequestParam(value="user_id", required=false) String user_id,
+			@RequestParam(value="blog_id", required = false) Integer blogid,
+			HttpSession session ) throws Exception {
 		
 		logger.info("list 출력");
 		
 		//검색
 		model.addAttribute("search", search);
 		search.setKeyword(keyword);
+		search.setCategory_id(category_id);
+		System.out.println(keyword +" and " + category_id);
+		
+		String sessionId = (String)session.getAttribute("user_id");
+		if(user_id != null) {
+		//int category_id = Integer.parseInt(request.getParameter("category_id"));
+			
+			model.addAttribute("user_id", user_id);
+			model.addAttribute("category_id", category_id);
+			model.addAttribute("categoryOne", csvc.Read(category_id));
+			model.addAttribute("category_list", csvc.CategoryList(user_id));
+		}else {
+			model.addAttribute("user_id", sessionId);
+			model.addAttribute("category_id", category_id);
+			model.addAttribute("categoryOne", csvc.Read(category_id));
+			model.addAttribute("category_list", csvc.CategoryList(sessionId));
+			
+			
+		}
+		
 		
 		// 전체 게시글 개수
-		int listCnt = psvc.getPostListCnt(search);
+		int listCnt = psvc.getPostListCateCnt(search);
 		
 		search.pageInfo(page, range, listCnt);
 		
@@ -76,31 +224,25 @@ public class PostController {
 		// 페이징
 		model.addAttribute("pagination", search);
 		//게시글 화면 출력
-		model.addAttribute("list", psvc.getPostList(search));
 		
-		int category_id = Integer.parseInt(request.getParameter("category_id"));
+		model.addAttribute("bloglist", pfsvc.list());		// 유저 리스트 
 		
-		model.addAttribute("category_id", category_id);
-		model.addAttribute("CategoryList", csvc.CategoryList());
-		
+		model.addAttribute("list", psvc.getPostCateList(search));
+	    
 		return "post/getList";
 	}
 	
-
-//	@ResponseBody
-//	@RequestMapping(value = "/replyList", method = RequestMethod.POST)
-//	public List<ReplyDTO> replyList(@RequestParam("post_id") int post_id, Model model) 
-//			throws Exception{
-//		logger.info("...replylist post...");
-//		model.addAttribute("reList", psvc.getReplyList(post_id));
-//		return psvc.getReplyList(post_id);
-//	}
-
 	@RequestMapping(value = "/postForm", method = RequestMethod.GET)
-	public String postFormGet(PostDTO pdto, Model model) throws Exception{
+	public String postFormGet(PostDTO pdto, Model model, HttpServletRequest request) throws Exception{
 		logger.info("...write get...");
 		
-		model.addAttribute("CategoryList", csvc.CategoryList());
+		HttpSession session = request.getSession();
+		session.getAttribute("udto");
+		
+		String user_id = (String)session.getAttribute("user_id");
+		
+		
+		model.addAttribute("CategoryList", csvc.CategoryList(user_id));
 		
 		return "post/postForm";
 	}
@@ -108,42 +250,91 @@ public class PostController {
 	@RequestMapping(value = "/savePost", method = RequestMethod.POST)
 	public String savePost(@ModelAttribute("postDTO") PostDTO pdto,
 			@RequestParam("mode") String mode,
-			@RequestParam("category_id") int category_id,
-			RedirectAttributes rttr) throws Exception {
+			//@RequestParam("category_id") int category_id,
+			RedirectAttributes rttr, Model model, HttpSession session) throws Exception {
+		
+		//pdto.setCategory_id(category_id);
+		System.out.println("writer: "+pdto.getUser_id());
+		String user_id = (String)session.getAttribute("user_id");
+		
 		
 		if(mode.equals("edit")) {
 			psvc.updatePost(pdto);
 		}else {
-			pdto.setCategory_id(category_id);
-			psvc.insertPost(pdto);			
+			psvc.insertPost(pdto);
 		}
+		model.addAttribute("CategoryList", csvc.CategoryList(user_id));
 		
-		return "redirect:/post/getList?category_id="+category_id;
+		//return "redirect:/post/getList?category_id="+category_id;
+		return "redirect:/post/homeList";
+	}
+	
+	// test
+	@RequestMapping(value = "/updatePost", method = RequestMethod.POST)
+	public String updatePost(@ModelAttribute("postDTO") PostDTO pdto,
+			@RequestParam("post_id") String post_id,			
+			RedirectAttributes rttr) throws Exception {
+		
+			psvc.updatePost(pdto);
+
+		//return "redirect:/post/postContent?post_id="+post_id;
+		return "redirect:/post/homeList";
 	}
 	
 	@RequestMapping(value = "/postContent", method = RequestMethod.GET)
-	public void read(@RequestParam("post_id") int post_id, Model model) throws Exception {
-		
-		model.addAttribute("postDTO", psvc.getPostContent(post_id));
-		model.addAttribute("replyDTO", new ReplyDTO());
-		// key(name)을 사용하지 않을 경우 자동으로 클래스명을 소문자로 인식해서 지정해줌
-	}
+	   public void read(@RequestParam("post_id") int post_id, Model model,
+	         @RequestParam(value="user_id", required=false) String user_id,
+	         @RequestParam(value="blog_id", required = false) Integer blogid,
+	        // @RequestParam(value="category_id", required = false) Integer category_id,
+	         HttpServletRequest request) throws Exception {
+	      
+	      HttpSession session = request.getSession();
+	      session.getAttribute("udto");
+	      
+	      //System.out.println(category_id);
+
+	      String sessionId = (String)session.getAttribute("user_id");
+	      
+	      if(user_id != null) {
+	       		model.addAttribute("user_id", user_id);
+//	         	model.addAttribute("category_list", csvc.CategoryList(user_id));
+	      }else {
+	    	  	model.addAttribute("user_id", sessionId);
+//		    	model.addAttribute("category_list", csvc.CategoryList(sessionId));
+	      }
+		  
+	      // sidebar - member
+	      model.addAttribute("bloglist", pfsvc.list());
+	      
+	      model.addAttribute("postDTO", psvc.getPostContent(post_id));
+	      model.addAttribute("replyDTO", new ReplyDTO());
+	      model.addAttribute("replyList", psvc.getReplyList(post_id));
+	      
+	   }
+	
 	
 	@RequestMapping(value = "/modifyForm", method = RequestMethod.GET)
 	public String modifyForm(@RequestParam("post_id") int post_id,
-			@RequestParam("mode") String mode, Model model) throws Exception{
+			@RequestParam("mode") String mode, Model model, HttpSession session) throws Exception{
 		
+		String user_id = (String)session.getAttribute("user_id");
 		model.addAttribute("postContent", psvc.getPostContent(post_id));
 		model.addAttribute("mode", mode);
 		model.addAttribute("postDTO", new PostDTO());
-		return "post/postForm";
+		model.addAttribute("CategoryList", csvc.CategoryList(user_id));
+		return "post/postEdit";
 	}
 	
 	@RequestMapping(value = "/deletePost", method = RequestMethod.GET)
-	public String deletePost(RedirectAttributes rttr, @RequestParam("post_id") int post_id) 
+	public String deletePost(RedirectAttributes rttr, @RequestParam("post_id") int post_id,
+			@RequestParam(required = false) Integer category_id) 
 			throws Exception {
 		psvc.deletePost(post_id);
-		return "redirect:/post/list";
+
+		if(category_id == null) {
+			return "redirect:/post/homeList";
+		}
+		return "redirect:/post/getList?category_id="+category_id;
 	}
 	
 	// ck 에디터에서 파일 업로드
@@ -193,6 +384,7 @@ public class PostController {
 
 		return; 
 	}
+	
 
 
 }

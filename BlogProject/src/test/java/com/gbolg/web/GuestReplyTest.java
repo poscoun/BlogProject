@@ -41,7 +41,7 @@ public class GuestReplyTest {
 		
 		List<GuestbookReplyDTO> list = grdao.listreply(9);
 		for(GuestbookReplyDTO gdto : list) {
-			System.out.println(gdto.getGuest_id()+"\t"+gdto.getGuest_rp_content()+"\t"+gdto.getGuest_rp_date()+"\t"+gdto.getUser_id());
+			System.out.println(gdto.getGuest_id()+"\t"+gdto.getGuest_rp_content()+"\t"+gdto.getGuest_rp_date()+"\t"+gdto.getGuest_rp_id());
 		}
 		
 	}

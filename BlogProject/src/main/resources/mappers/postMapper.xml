@@ -6,8 +6,8 @@
 <mapper namespace="com.gblog.dao.PostDAO">
 
 	<insert id="postInsert">
-		insert into blog_posts (category_id, post_subj, post_content, post_img)
-		value (#{category_id}, #{post_subj}, #{post_content}, #{post_img})
+		insert into blog_posts (category_id, post_subj, post_content, user_id)
+		value (#{category_id}, #{post_subj}, #{post_content}, #{user_id})
 	</insert>
 	
 	<select id="postRead" resultType="com.gblog.dto.PostDTO">
@@ -17,7 +17,7 @@
 	
 	<update id="postUpdate">
 		update blog_posts
-		set post_subj = #{post_subj}, post_content = #{post_content}, post_img=#{post_img}
+		set post_subj = #{post_subj}, post_content = #{post_content}
 		where post_id = #{post_id}
 	</update>
 	
@@ -26,21 +26,50 @@
 		where post_id = #{post_id}
 	</delete>
 	
-	<select id="list" resultType="com.gblog.dto.PostDTO">
+	<select id="postList" resultType="com.gblog.dto.PostDTO">
+		<![CDATA[
+			select *, (select count(*) from blog_reply where post_id=bp.post_id) as replyCnt
+			from blog_posts bp
+			join user us
+			on us.user_id = bp.user_id
+			where us.user_id = #{user_id}
+		]]>
+			
+		<if test="keyword != null and keyword != '' ">
+			AND (post_subj like CONCAT('%', #{keyword}, '%')
+			or post_content like CONCAT('%', #{keyword}, '%'))
+		</if>
+		
 	<![CDATA[
-		select * 
-		from blog_posts
-		where post_id > 0
-		order by post_id desc, post_reg desc		
-	]]>
+		order by post_id desc, post_reg desc
+		limit #{startList}, #{listSize}
+		]]>
 	</select>
 	
 	<!-- 페이징 처리 -->
-	<select id="postList" resultType="com.gblog.dto.PostDTO">
+	<!--<select id="postList" resultType="com.gblog.dto.PostDTO">
 	<![CDATA[
-		select * 
-		from blog_posts
-		where post_id > 0
+		select *, (select count(*) from blog_reply where post_id=b.post_id) as replyCnt
+		from blog_posts b
+		where b.post_id > 0
+	]]>
+
+		<if test="keyword != null and keyword != '' ">
+			AND (post_subj like CONCAT('%', #{keyword}, '%')
+			or post_content like CONCAT('%', #{keyword}, '%'))
+		</if>
+		
+	<![CDATA[
+		order by post_id desc, post_reg desc
+		limit #{startList}, #{listSize}
+	]]>
+	</select> -->
+	
+	<select id="postListCategory" resultType="com.gblog.dto.PostDTO">
+	<![CDATA[
+		select *, (select count(*) from blog_reply where post_id=b.post_id) as replyCnt
+		from blog_posts b
+		where category_id = #{category_id}
 	]]>
 
 		<if test="keyword != null and keyword != '' ">
@@ -55,15 +84,26 @@
 	</select>
 
 	<!-- 전체 글의 개수를 읽어옴 -->
-	<select id="listCnt" resultType="int">
+   <select id="listCnt" resultType="int">
+      select count(*) as listCnt
+      from blog_posts bp
+      join user us
+      on us.user_id = bp.user_id
+      where us.user_id = #{user_id}
+      <if test="keyword != null and keyword != '' ">
+         AND (post_subj like CONCAT('%', #{keyword}, '%')
+         or post_content like CONCAT('%', #{keyword}, '%'))
+      </if>
+   </select>
+	
+	<select id="listCntCate" resultType="int">
 		select count(*) as listCnt
 		from blog_posts 
-		<trim prefix="where" prefixOverrides="AND">
+		where category_id = #{category_id}
 			<if test="keyword != null and keyword != '' ">
 				AND (post_subj like CONCAT('%', #{keyword}, '%')
 				or post_content like CONCAT('%', #{keyword}, '%'))
 			</if>
-		</trim>
 	</select>
 
 </mapper>
