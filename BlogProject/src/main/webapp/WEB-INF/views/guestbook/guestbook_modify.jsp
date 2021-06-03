@@ -6,6 +6,9 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
+ 		var user_id = "${user_id}"
+		var blog_id = "${blog_id_update}"
+		
 		var frmObj = $('form[name="writeGuestForm"]')
 		
 		$('#guestbookmodify').on('click', function() {
@@ -40,6 +43,26 @@
 			height: 220px;
 		}
 </style>
+<div class="slider-area2">
+    <div class="slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap hero-cap2 pt-70">
+                        <a href="/post/homeList"><h2>Guest</h2></a>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/post/homeList">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Guest</a></li>
+                                <li class="breadcrumb-item"><a href="#">Modify</a></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="cblog_area section-padding">
 	<div class="container" style="padding: 3em 1.8em; margin-right: 20%;">
 		<div class="row">

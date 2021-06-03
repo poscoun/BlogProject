@@ -11,41 +11,23 @@
 <title>board</title>
 <script src="https://cdn.ckeditor.com/4.16.1/standard-all/ckeditor.js"></script>
 <script>
-	
 	$(document).on('click', '#btnSave', function() {
-		var title = $('#title').val();
+		var title = $('#post_subj').val();
+		var frmObj = $('form[role="form"]');
+		
 		if (title == null || title==""){
 			alert("Please Write Title");
 			$('#title').focus();
 		}else{
-			$("#form").submit();
+			frmObj.attr('action', "/post/updatePost?post_id="+${postContent.post_id});   
+			frmObj.submit();
 		}
 	});
 	
 	$(document).on('click',	'#btnList',	function() {
 		location.href = "${pageContext.request.contextPath}/post/homeList";
 	});
-	
-	$(document).ready(function(){
-		var mode = '<c:out value="${mode}"/>';
-		if ( mode == 'edit'){
-			//입력 폼 셋팅
-			$("#reg_id").prop('readonly', true);
-			$("input:hidden[name='post_id']").val(<c:out value="${postContent.post_id}"/>);
-			$("input:hidden[name='mode']").val('<c:out value="${mode}"/>');
-			$("#title").val('<c:out value="${postContent.post_subj}"/>');
-			$("#content").val('${postContent.post_content}');
-		}
-	});
 </script>
-<style type="text/css">
-.ck.ck-editor {
-	max-width: 500px;
-}
-.ck-editor__editable {
-	min-height: 300px;
-}
-</style>
 </head>
 		<!--? Hero Start -->
         <div class="slider-area2">
@@ -54,7 +36,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap hero-cap2 pt-70">
-                                <a href="#"><h2>POST</h2></a>
+                                <a href="#"><h2>POST FORM</h2></a>
                                 <nav aria-label="breadcrumb">
                                 </nav>
                             </div>
@@ -68,12 +50,8 @@
 	<article>
 		<section class="blog_area single-post-area section-padding" style="padding-top: 60px;">
 		   <div class="container">
-			<form:form name="form" id="form" role="form" modelAttribute="postDTO" method="post" 
-			action="${pageContext.request.contextPath}/post/savePost">
-				<!-- postDTO에는 mode라는 속성을 가지고 있지 않기 때문에 일반적인 form태그 사용 -->
-				<form:hidden path="post_id" />
-				<input type="hidden" name="mode"/>
-				<input type="hidden" name="user_id" value="${udto.user_id }"/>
+		   <form class="form-contact contact_form" method="post" role="form" enctype="multipart/form-data">
+				<input type="hidden" name="post_id" value="${postContent.post_id}"/>
 				<div class="input-group mb-3">
 					<label for="category_select" style="font-size: 12px; padding: 5px">category</label>
 					<select name="category_id" id="category_select" >
@@ -84,15 +62,15 @@
 				</div>
 				<!-- form 키워드 사용, name=> path 사용 -->
 				<div class="input-group mb-3">
-					<form:input path="post_subj" class="form-control" name="name" id="title" placeholder="제목을 입력해 주세요" style="font-size:20px; height: 40px" />
+					<input class="form-control" name="post_subj" id="post_subj" type="text" style="font-size:20px; height: 40px" value='<c:out value="${postContent.post_subj}"/>'>
 				</div>
 				<div class="input-group">
 				</div>
 				
 				<div>
-					<form:textarea path="post_content" class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요"/>
+					<textarea class="form-control w-100" name="post_content" id="post_content" cols="30" rows="9">${postContent.post_content}</textarea>
 				</div>				
-			</form:form>
+			</form>
 			<div style="text-align: center; margin: 40px">
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave" style="margin: 10px">저장</button>
 				<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button>
@@ -100,6 +78,7 @@
 		</div>
 		</section>
 	</article>
+			
 	<script type="text/javascript">
 	
 	var ckeditor_config = {
@@ -112,7 +91,7 @@
 		filebrowserUploadUrl : "/post/ckUpload",
 		uploadUrl: "/post/ckUpload"
 	};
-	CKEDITOR.replace('content', ckeditor_config);
+	CKEDITOR.replace('post_content', ckeditor_config);
 	
 	</script>
 	<%@ include file="../include/footer.jsp" %>

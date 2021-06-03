@@ -28,6 +28,11 @@
 	<select id="listProfile" resultType="com.gblog.dto.ProfileDTO">
 		select * from profile
 	</select>
-
+	
+	<insert id="insertPro">
+		insert into profile (user_id)
+		select #{user_id} from DUAL
+		where not exists (select user_id from profile where user_id = #{user_id})
+	</insert>
 
 </mapper>

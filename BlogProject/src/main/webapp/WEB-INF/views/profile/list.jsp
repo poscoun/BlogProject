@@ -75,7 +75,7 @@
                                 <h2>About Me</h2>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="/post/homeList">Home</a></li>
                                         <li class="breadcrumb-item"><a href="#">About Me</a></li> 
                                     </ol>
                                 </nav>

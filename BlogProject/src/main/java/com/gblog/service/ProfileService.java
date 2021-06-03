@@ -16,4 +16,6 @@ public interface ProfileService {
 	
 	public List<ProfileDTO> list() throws Exception;
 	
+	public void insert(ProfileDTO pdto) throws Exception;
+	
 }

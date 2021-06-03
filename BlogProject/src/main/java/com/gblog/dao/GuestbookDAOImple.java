@@ -23,9 +23,9 @@ public class GuestbookDAOImple implements GuestbookDAO{
 	}
 
 	@Override
-	public List<GuestbookDTO> list() throws Exception {
+	public List<GuestbookDTO> list(Integer blog_id) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+".list");
+		return sqlSession.selectList(NAMESPACE+".list", blog_id);
 	}
 
 	@Override

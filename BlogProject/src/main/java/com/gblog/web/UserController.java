@@ -11,19 +11,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gblog.dto.BlogDTO;
+import com.gblog.dto.ProfileDTO;
 import com.gblog.dto.UserDTO;
+import com.gblog.service.BlogService;
+import com.gblog.service.GuestbookService;
 import com.gblog.service.ProfileService;
 import com.gblog.service.UserService;
+import com.gblog.utils.UploadFileUtils;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Base64.Decoder;
+import java.io.File;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +51,15 @@ public class UserController {
 
 	@Inject
 	private UserService usvc;
+	
+	@Inject
+	private ProfileService psvc;
+	
+//	@Inject
+//	private BlogService psvc;
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
@@ -54,6 +71,15 @@ public class UserController {
 		int result = usvc.idcheck(udto);
 		return result;
 	}
+	
+	// 이름확인
+			@ResponseBody
+			@RequestMapping(value = "/nameselect", method = RequestMethod.POST)
+			public int nameselect(UserDTO udto) throws Exception {
+				int result1 = usvc.nameselect(udto);
+				return result1;
+			}
+		
 
 	@RequestMapping(value = "/idselect", method = RequestMethod.GET)
 	public void idselect(Model model) throws Exception {
@@ -78,6 +104,15 @@ public class UserController {
 		return "/user/idselect1";
 
 	}
+	
+	
+	
+	//회원리스트
+	@RequestMapping(value = "/MainHome", method = RequestMethod.GET)
+	public void userselect(Model model) throws Exception {
+		model.addAttribute("userList", usvc.userList());
+	}
+
 
 	//
 	/*
@@ -132,6 +167,7 @@ public class UserController {
 				encodePw = pwEncoder.encode(rawPw);
 				udto.setUser_pw(encodePw);
 				usvc.insertUser(udto);
+				
 			}
 
 		} catch (Exception e) {
@@ -185,13 +221,15 @@ public class UserController {
 	// 로그인
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
 
-	public String login(HttpServletRequest request, UserDTO udto, RedirectAttributes rttr) throws Exception {
+	public String login(HttpServletRequest request, UserDTO udto, RedirectAttributes rttr, @RequestParam("user_id") String user_id, Model model,
+						MultipartFile file, ProfileDTO pdto) throws Exception {
 
 		HttpSession session = request.getSession();
 		String rawPw = "";
 		String encodePw = "";
 
 		UserDTO lvo = usvc.login(udto); // 제출한아이디와 일치하는 아이디 있는지
+		
 
 		if (lvo != null) { // 일치하는 아이디 존재시
 
@@ -202,8 +240,37 @@ public class UserController {
 
 				lvo.setUser_pw(""); // 인코딩된 비밀번호 정보 지움
 				session.setAttribute("udto", lvo); // session에 사용자의 정보 저장
-
-				return "redirect:/category/category"; // 메인페이지 이동 --> 나중에 메인으로 변경해야함
+				session.setAttribute("user_id", lvo.getUser_id());
+				session.setAttribute("Profile_list", psvc.read(user_id));
+				
+//				String imgUploadPath = uploadPath + File.separator + "imgUpload";
+//				 String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+//				 String fileName = null;
+//
+//				 if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+//					  // 파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 이름이 없다면)
+//					  
+//					  fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+//
+//					  // gdsImg에 원본 파일 경로 + 파일명 저장
+//					  pdto.setProfile_photo(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+//					  
+//					 } else {  // 첨부된 파일이 없으면
+//					  fileName = File.separator + "images" + File.separator + "none.png";
+//					  // 미리 준비된 none.png파일을 대신 출력함
+//					  
+//					  pdto.setProfile_photo(fileName);
+//					 
+//					 }
+				 
+				psvc.insert(pdto);
+				
+				session.setAttribute("bdto", psvc.list());
+				
+				model.addAttribute("userlist", usvc.userList());
+				
+				
+				return "redirect:/post/homeList"; // 메인페이지 이동 --> 나중에 메인으로 변경해야함
 
 			} else {
 
@@ -234,7 +301,7 @@ public class UserController {
 //    }
 
 	@RequestMapping(value = "logout.do", method = RequestMethod.GET)
-	public String logoutMainGET(HttpServletRequest request) throws Exception {
+	public String logoutMainGET(HttpServletRequest request, Model model) throws Exception {
 
 		LOGGER.info("logoutMainGET메서드 진입");
 
@@ -243,8 +310,10 @@ public class UserController {
 
 		session.invalidate();
 		System.out.println(session);
+		
+		model.addAttribute("userList", usvc.userList());
 
-		return "/post/getList";
+		return "redirect:/profile/allList";
 
 	}
 
@@ -294,31 +363,7 @@ public class UserController {
 	
 	
 
-	/*
-	 * //비밀번호 수정???
-	 * 
-	 * @RequestMapping(value = "/modify", method = RequestMethod.POST) public String
-	 * modify(UserDTO udto) throws Exception{
-	 * 
-	 * String rawPw = ""; // 인코딩 전 비밀번호 String encodePw = ""; // 인코딩 후 비밀번호
-	 * 
-	 * UserDTO lvo = usvc.login(udto); // 제출한아이디와 일치하는 아이디 있는지
-	 * 
-	 * if(lvo != null) { // 일치하는 아이디 존재시
-	 * 
-	 * rawPw = udto.getUser_pw(); // 사용자가 제출한 비밀번호 encodePw = lvo.getUser_pw(); //
-	 * 데이터베이스에 저장한 인코딩된 비밀번호
-	 * 
-	 * 회원가입 쿼리 실행 usvc.modify(udto); }
-	 * 
-	 * return "redirect:/user/login";
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * }
-	 */
+	
 	
 	
 	

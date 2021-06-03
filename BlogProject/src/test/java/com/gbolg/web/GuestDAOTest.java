@@ -12,8 +12,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+//import com.gblog.dao.BlogDAO;
 import com.gblog.dao.GuestDAO;
 import com.gblog.dao.GuestbookDAO;
+import com.gblog.dto.BlogDTO;
 import com.gblog.dto.GuestDTO;
 import com.gblog.dto.GuestbookDTO;
 
@@ -26,6 +28,9 @@ public class GuestDAOTest {
 	
 	@Inject
 	private GuestDAO gdao;
+	
+	@Inject
+//	private BlogDAO bdao;
 	
 	private static Logger logger = LoggerFactory.getLogger(GuestDAOTest.class);
 	
@@ -63,16 +68,21 @@ public class GuestDAOTest {
 //		logger.info(gdao.read(6).toString());
 //	}
 	
-	@Test
-	public void visitTest() throws Exception{
+//	@Test
+//	public void visitTest() throws Exception{
 		
 		// gdao.insert();
 //		int totalcount = gdao.visitTotal();
 //		System.out.println(totalcount);
-		
-		int todaytcount = gdao.visitToday();
-		System.out.println(todaytcount);
-		
-	}
+//		
+//		int todaytcount = gdao.visitToday();
+//		System.out.println(todaytcount);
+//		
+//	}
+	
+//	@Test
+//	public void test() throws Exception {
+//		bdao.selectOne("test");
+//	}
 	
 }

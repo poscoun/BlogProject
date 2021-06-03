@@ -20,7 +20,7 @@
 </style>
 <script type="text/javascript">
 
-function checkValue(guest_id){
+function checkValue(guest_id, guest_rp_id, blog_id){
     var form = document.replyInfo;
 
     if(!form.guest_rp_content.value)
@@ -32,7 +32,7 @@ function checkValue(guest_id){
     else
     {
         form.target = opener.name;
-        form.action='/guestbook/guestbook_reply?guest_id='+guest_id;
+        form.action='/guestbook/guestbook_reply?guest_id='+guest_id+'&guest_rp_id='+guest_rp_id+'&blog_id='+blog_id;
         form.submit();
 
         if (opener != null) {
@@ -48,20 +48,18 @@ function checkValue(guest_id){
 		<br>
 		<b><font size="5" color="gray">답글</font></b>
 		<hr size="1" width="700">
-	
 		<!-- 답글 등록 부분 시작-->
 		<div id="writeReplyForm">
 			<form name="replyInfo" target="replyForm" id="replyInfo" method="post">
 				<!-- 부모 방명록의 정보를 같이 전송한다. -->
+				<%-- <input type="hidden" name="blog_id" value="${blog_id}" /> --%>
 				<div class="form-group">
-					<input type="hidden" name="user_id" id="user_id" />
-					<label>세션에서 가져올 아이디</label>
-					<input type="text" name="user_id" id="user_id" class="form-control" style="width: 30%; display: inline;" />
+					<label>${user_id }</label>
 					<hr />
 	  				<textarea rows="7" cols="80" style="resize: none" class="form-control" name="guest_rp_content" id="guest_rp_text"></textarea>
 				</div>
 				<br>
-				<input type="button" value="확인" id="replyInsert" onclick="checkValue(${guest_id})" class="btn btn-light">
+				<input type="button" value="확인" id="replyInsert" onclick="checkValue('${guest_id}','${user_id}','${blog_id}')" class="btn btn-light">
 				<input type="button" value="창닫기" onclick="window.close()" class="btn btn-light">
 			</form>
 		</div>
@@ -76,7 +74,7 @@ function checkValue(guest_id){
 		            <c:if test="${not empty reply_list }">
 		            	<c:forEach var="guestbookrpl" items="${reply_list}">
 		            		<hr size="1" width="700">		            			
-			                <label>${guestbookrpl.user_id }</label>&nbsp;&nbsp;&nbsp;
+			                <label>${guestbookrpl.guest_rp_id }</label>&nbsp;&nbsp;&nbsp;
 			                <label><fmt:formatDate value="${guestbookrpl.guest_rp_date }" pattern="yyyy-MM-dd HH:mm"/></label>&nbsp;&nbsp;&nbsp;&nbsp; <br />
 			                ${guestbookrpl.guest_rp_content } <br>
 			                <br />

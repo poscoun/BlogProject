@@ -42,4 +42,11 @@ public class ProfileDAOImpl implements ProfileDAO {
 		return sqlSession.selectList("listProfile");
 	}
 
+	@Override
+	public void insertPro(ProfileDTO pdto) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert("insertPro", pdto);
+		
+	}
+
 }

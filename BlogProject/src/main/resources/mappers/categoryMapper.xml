@@ -17,12 +17,12 @@
 		delete from category where category_id = #{category_id}
 	</delete> 
 	
-	<!-- 카테고리 목록 -->
- 	<select id="CategoryList" resultType="com.gblog.dto.CategoryDTO">
-	 <![CDATA[	
-		select category_name, category_id
-		from category 
-	]]>
+	<select id="CategoryList" resultType="com.gblog.dto.CategoryDTO">
+		SELECT * 
+		FROM category ca
+		JOIN user us
+		ON us.user_id = ca.user_id
+		WHERE ca.user_id = #{user_id}
 	</select>
 	
 	<!-- 카테고리 수정 -->

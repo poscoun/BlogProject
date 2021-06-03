@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.gblog.dao.ProfileDAO;
 import com.gblog.dto.ProfileDTO;
 import com.gblog.dto.UserDTO;
+import com.gblog.service.BlogService;
 import com.gblog.service.ProfileService;
 import com.gblog.utils.UploadFileUtils;
 
@@ -39,6 +40,7 @@ public class ProfileController {
 	@Resource(name="uploadPath")
 	private String uploadPath;
 
+	
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public void writeGET(ProfileDTO pdto, Model model) throws Exception{
 		LOGGER.info("....write GET....");
@@ -150,8 +152,18 @@ public class ProfileController {
 			
 		}
 
-	 
-	 
+	 @RequestMapping(value = "/allList", method = RequestMethod.GET)
+	    public void allList(Model model, HttpSession session,
+	    		@RequestParam(value="user_id", required = false) String user_id,
+		        @RequestParam(value="blog_id", required = false) Integer blogid) throws Exception {
+		
+		 
+		 model.addAttribute("allList", psvc.list());
+		 
+
+
+	         
+	    }
 	 
 
 }

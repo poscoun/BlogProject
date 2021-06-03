@@ -6,8 +6,8 @@
 <mapper namespace="com.gblog.dao.GuestbookDAO">
 	
 	<insert id="insert">
-		insert into guestbook (user_id, guest_content)
-		values (#{user_id}, #{guest_content})
+		insert into guestbook (user_id, guest_content, blog_id)
+		values (#{user_id}, #{guest_content}, #{blog_id})
 	</insert>
 	
 	<select id="read" resultType="com.gblog.dto.GuestbookDTO">
@@ -16,8 +16,11 @@
 	</select>
 	
 	<select id="list" resultType="com.gblog.dto.GuestbookDTO">
-		select * from guestbook
-		where guest_id > 0
+		SELECT gb.blog_id, gb.user_id, gb.guest_id, gb.guest_content, gb.guest_date, gb.guest_reply_count 
+		FROM guestbook gb
+		JOIN profile pf
+		ON pf.blog_id = gb.blog_id
+		WHERE gb.blog_id = #{blog_id}
 		order by guest_id desc, guest_date desc
 	</select>
 	
@@ -35,7 +38,7 @@
 	<update id="updateReplyCount" parameterType="int">
 		<![CDATA[
 			update guestbook
-			set reply_count = (select count(guest_id) from guestbook_reply where guest_id = #{guest_id})
+			set guest_reply_count = (select count(guest_id) from guestbook_reply where guest_id = #{guest_id})
 			where guest_id = #{guest_id};
 		]]>
 	</update>

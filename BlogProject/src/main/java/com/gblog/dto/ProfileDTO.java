@@ -10,6 +10,7 @@ public class ProfileDTO {
 	private String profile_sns;
 	private String profile_phone;
 	private Date profile_date;
+	private Integer blog_id;
 	
 	public ProfileDTO() {}
 
@@ -59,6 +60,14 @@ public class ProfileDTO {
 
 	public void setProfile_date(Date profile_date) {
 		this.profile_date = profile_date;
+	}
+
+	public Integer getBlog_id() {
+		return blog_id;
+	}
+
+	public void setBlog_id(Integer blog_id) {
+		this.blog_id = blog_id;
 	}
 	
 	

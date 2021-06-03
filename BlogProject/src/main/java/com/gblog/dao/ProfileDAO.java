@@ -14,4 +14,6 @@ public interface ProfileDAO {
 	public void deleteProfile(String user_id) throws Exception;
 	
 	public List<ProfileDTO> listProfile() throws Exception;
+	
+	public void insertPro(ProfileDTO pdto) throws Exception;
 }

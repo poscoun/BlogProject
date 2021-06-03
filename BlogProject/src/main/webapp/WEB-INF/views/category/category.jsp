@@ -11,26 +11,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="/resources/assets/img/favicon.ico">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<!-- CSS here -->
-<link rel="stylesheet" href="/resources/assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="/resources/assets/css/owl.carousel.min.css">
-<link rel="stylesheet" href="/resources/assets/css/slicknav.css">
-<link rel="stylesheet" href="/resources/assets/css/animate.min.css">
-<link rel="stylesheet" href="/resources/assets/css/hamburgers.min.css">
-<link rel="stylesheet" href="/resources/assets/css/magnific-popup.css">
-<link rel="stylesheet" href="/resources/assets/css/fontawesome-all.min.css">
-<link rel="stylesheet" href="/resources/assets/css/themify-icons.css">
-<link rel="stylesheet" href="/resources/assets/css/slick.css">
-<link rel="stylesheet" href="/resources/assets/css/nice-select.css">
-<link rel="stylesheet" href="/resources/assets/css/style.css">
 <script type="text/javascript">
-
-$(document).ready(function(){
-	$('#btnWriteForm').on('click', function post(category_id){
-		location.href="/post/postForm"
-	});
-	
-});
 
 $(document).ready(function(){
 	$('#CategoryEdit').on('click', function user(user_id){
@@ -39,6 +20,13 @@ $(document).ready(function(){
 	
 });	
 	
+$(document).on('click', '#btnSearch', function(e){
+	e.preventDefault();
+	var url = "/post/homeList"
+	url = url + "?keyword=" + $('#keyword').val();
+	location.href = url;
+	console.log(url);
+});		
 </script>
         <!--? Hero Start -->
         <div class="slider-area2">
@@ -67,7 +55,6 @@ $(document).ready(function(){
                 <div class="row">
                     <div class="col-lg-8 mb-5 mb-lg-0">
                         <div class="blog_left_sidebar">
-                        
                         <c:choose>
                         	<c:when test="${empty CategoryList }">
                         		<article class="blog_item">
@@ -93,43 +80,7 @@ $(document).ready(function(){
                         </c:choose>   
                         </div>
                     </div>
-					<%@ include file="../include/siderbar2.jsp" %>
-<%-- 						<div class="col-lg-4">
-								<div class="blog_right_sidebar">
-									<aside class="single_sidebar_widget search_widget">
-										<form action="#">
-											<div class="form-group">
-												<div class="input-group mb-3">
-													<input type="text" class="form-control" placeholder='Search Keyword' >
-								          		</div>
-								      		</div>
-								      		<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-								      			type="submit">Search
-								      		</button>
-								  		</form>
-									</aside>
-									<aside class="single_sidebar_widget">
-										<div>
-											<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="btnWriteForm" onclick="post(${category_id})" type="button">POST</button>
-										</div>
-									</aside>
-									<aside class="single_sidebar_widget post_category_widget">
-								  		<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
-								  			<div>
-								  				<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="CategoryEdit" onclick="user(${user_id})" type="button">EDIT</button>
-								  			</div>
-								  		<ul class="list cat-list">
-									      
-									   	</ul>
-									</aside>
-									<aside class="single_sidebar_widget post_category_widget" >
-								  		<h4 class="widget_title" style="color: #2d2d2d; margin-bottom: 20px;">Guest</h4>
-								  		<label style="font: 20px;">Total : <%=session.getAttribute("totalCount") %></label> <br />
-										<label style="font: 20px;">Today : <%=session.getAttribute("todayCount") %></label>
-									</aside>
-								</div>
-							</div> --%>
-
+					<%@ include file="../include/siderbar.jsp" %>					
                 </div>
             </div>
         </section>

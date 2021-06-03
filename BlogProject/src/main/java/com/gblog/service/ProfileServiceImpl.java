@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.springframework.stereotype.Service;
 
 import com.gblog.dao.ProfileDAO;
@@ -44,6 +45,13 @@ public class ProfileServiceImpl implements ProfileService {
 	public List<ProfileDTO> list() throws Exception {
 		// TODO Auto-generated method stub
 		return pdao.listProfile();
+	}
+
+	@Override
+	public void insert(ProfileDTO pdto) throws Exception {
+		// TODO Auto-generated method stub
+		pdao.insertPro(pdto);
+		
 	}
 
 

@@ -68,6 +68,16 @@ public class UserServicelmpl implements UserService{
 		udao.userdelete(udto);
 		
 	}
+	@Override
+	public int nameselect(UserDTO udto) throws Exception {
+		// TODO Auto-generated method stub
+		return udao.nameselect(udto);
+	}
+	@Override
+	public List<UserDTO> userList() throws Exception {
+		// TODO Auto-generated method stub
+		return udao.userList();
+	}
 	
 	
 	

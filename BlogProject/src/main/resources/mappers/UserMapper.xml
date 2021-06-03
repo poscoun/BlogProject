@@ -24,6 +24,17 @@
   </select>
   
   
+  <!--이름확인 -->
+  <select id="nameselect" resultType="int">
+  <![CDATA[
+  select count(*) from user
+  where user_name = #{user_name}  
+  
+  ]]>
+  
+  </select>
+  
+  
   <!-- 이메일 중복 확인 -->
   <select id="login" resultType="com.gblog.dto.UserDTO">
   <![CDATA[
@@ -80,18 +91,7 @@
       
    </delete>
    
-   
-   
-   
-   
-   
-
-  
-  
-  
-  
-  
-  
-  
-  
+   <select id="userList" resultType="com.gblog.dto.UserDTO">
+   		select * from user;
+   </select>
   </mapper>
