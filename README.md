@@ -1,5 +1,8 @@
 # BlogProject
 
+## 개발기간
+2021.05.17 ~ 2021.06.02
+
 ## 개발환경
 - Eclipse IDE(2021-03)
 - spring MVC
